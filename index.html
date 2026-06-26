@@ -15,50 +15,85 @@
 <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/lucide@0.383.0/dist/umd/lucide.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 </head>
 <body>
 <div id="root"></div>
 
 <script>
-// Polyfill de window.storage para que la app funcione fuera del entorno de Claude,
-// usando localStorage del navegador en su lugar. Misma interfaz async, mismo comportamiento.
+// Configuración de Firebase (proyecto rutachina-2026)
+const firebaseConfig = {
+  apiKey: "AIzaSyAdTZ7JSjaTit6_OS0bbw_GcvwkMhlhfnI",
+  authDomain: "rutachina-2026.firebaseapp.com",
+  databaseURL: "https://rutachina-2026-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "rutachina-2026",
+  storageBucket: "rutachina-2026.firebasestorage.app",
+  messagingSenderId: "275498929546",
+  appId: "1:275498929546:web:eea4dfcfa4ae85dc7dcc73",
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+window.firebaseDb = db;
+
+// Sanitiza una key para que sea válida como path de Realtime Database
+// (no puede contener . # $ [ ] /)
+function sanitizeKey(key) {
+  return key.replace(/[.#$\[\]\/]/g, "_");
+}
+
+// Polyfill de window.storage respaldado por Firebase Realtime Database.
+// Misma interfaz que el storage nativo de Claude (get/set/delete/list),
+// pero los datos viven en la nube y se sincronizan entre todos los dispositivos
+// que abran esta misma app.
 window.storage = {
   async get(key, shared) {
     try {
-      const raw = localStorage.getItem("chinatrip:" + key);
-      if (raw === null) return null;
-      return { key, value: raw, shared: !!shared };
+      const safeKey = sanitizeKey(key);
+      const snapshot = await db.ref("data/" + safeKey).once("value");
+      const value = snapshot.val();
+      if (value === null || value === undefined) return null;
+      return { key, value: String(value), shared: true };
     } catch (e) {
+      console.error("Firebase get error", e);
       return null;
     }
   },
   async set(key, value, shared) {
     try {
-      localStorage.setItem("chinatrip:" + key, value);
-      return { key, value, shared: !!shared };
+      const safeKey = sanitizeKey(key);
+      await db.ref("data/" + safeKey).set(value);
+      return { key, value, shared: true };
     } catch (e) {
+      console.error("Firebase set error", e);
       return null;
     }
   },
   async delete(key, shared) {
     try {
-      localStorage.removeItem("chinatrip:" + key);
-      return { key, deleted: true, shared: !!shared };
+      const safeKey = sanitizeKey(key);
+      await db.ref("data/" + safeKey).remove();
+      return { key, deleted: true, shared: true };
     } catch (e) {
+      console.error("Firebase delete error", e);
       return null;
     }
   },
   async list(prefix, shared) {
     try {
-      const keys = Object.keys(localStorage)
-        .filter((k) => k.startsWith("chinatrip:" + (prefix || "")))
-        .map((k) => k.replace("chinatrip:", ""));
-      return { keys, prefix, shared: !!shared };
+      const snapshot = await db.ref("data").once("value");
+      const all = snapshot.val() || {};
+      const keys = Object.keys(all).filter((k) => !prefix || k.startsWith(sanitizeKey(prefix)));
+      return { keys, prefix, shared: true };
     } catch (e) {
+      console.error("Firebase list error", e);
       return null;
     }
   },
 };
+
+console.log("Firebase storage conectado — los datos se sincronizan entre todos los dispositivos");
 
 </script>
 
@@ -1167,23 +1202,50 @@ function useAllDayStamps(dayNums) {
   const [stampedMap, setStampedMap] = useState({});
   const [loaded, setLoaded] = useState(false);
   useEffect(() => {
-    let mounted = true;
-    (async () => {
-      const entries = await Promise.all(dayNums.map(async n => {
-        try {
-          const res = await window.storage.get(`visited:day-${n}`, false);
-          return [n, res ? res.value === "true" : false];
-        } catch (e) {
-          return [n, false];
+    if (!window.firebaseDb) {
+      // Fallback sin Firebase: comportamiento antiguo de una sola lectura
+      let mounted = true;
+      (async () => {
+        const entries = await Promise.all(dayNums.map(async n => {
+          try {
+            const res = await window.storage.get(`visited:day-${n}`, false);
+            return [n, res ? res.value === "true" : false];
+          } catch (e) {
+            return [n, false];
+          }
+        }));
+        if (mounted) {
+          setStampedMap(Object.fromEntries(entries));
+          setLoaded(true);
         }
-      }));
-      if (mounted) {
-        setStampedMap(Object.fromEntries(entries));
-        setLoaded(true);
-      }
-    })();
+      })();
+      return () => {
+        mounted = false;
+      };
+    }
+
+    // Con Firebase: listener en tiempo real, se sincroniza solo cuando cambia algo
+    const refs = dayNums.map(n => {
+      const ref = window.firebaseDb.ref("data/visited_day_" + n);
+      const handler = snapshot => {
+        const value = snapshot.val();
+        setStampedMap(prev => ({
+          ...prev,
+          [n]: value === "true" || value === true
+        }));
+      };
+      ref.on("value", handler);
+      return {
+        ref,
+        handler
+      };
+    });
+    setLoaded(true);
     return () => {
-      mounted = false;
+      refs.forEach(({
+        ref,
+        handler
+      }) => ref.off("value", handler));
     };
   }, []);
   const toggleDay = async n => {
@@ -2104,17 +2166,31 @@ function ManualNoteField({
   const [loaded, setLoaded] = useState(false);
   const [editing, setEditing] = useState(false);
   useEffect(() => {
-    let mounted = true;
-    (async () => {
-      try {
-        const res = await window.storage.get(storageKey, false);
-        if (mounted && res) setValue(res.value);
-      } catch (e) {}
-      if (mounted) setLoaded(true);
-    })();
-    return () => {
-      mounted = false;
+    if (!window.firebaseDb) {
+      // Fallback sin Firebase: lectura única, comportamiento antiguo
+      let mounted = true;
+      (async () => {
+        try {
+          const res = await window.storage.get(storageKey, false);
+          if (mounted && res) setValue(res.value);
+        } catch (e) {}
+        if (mounted) setLoaded(true);
+      })();
+      return () => {
+        mounted = false;
+      };
+    }
+
+    // Con Firebase: listener en tiempo real
+    const safeKey = storageKey.replace(/[.#$\[\]\/]/g, "_");
+    const ref = window.firebaseDb.ref("data/" + safeKey);
+    const handler = snapshot => {
+      const v = snapshot.val();
+      if (v !== null && v !== undefined) setValue(String(v));
     };
+    ref.on("value", handler);
+    setLoaded(true);
+    return () => ref.off("value", handler);
   }, [storageKey]);
   const save = async v => {
     setValue(v);
