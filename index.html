@@ -63,12 +63,8 @@ window.storage = {
 </script>
 
 <script>
-const {
-  useState,
-  useEffect
-} = React;
+const { useState, useEffect } = React;
 
-// Adaptador de iconos: usamos lucide-react via createElement con los íconos de lucide UMD
 function makeIcon(name) {
   return function Icon(props) {
     const ref = React.useRef(null);
@@ -89,16 +85,10 @@ function makeIcon(name) {
         console.error("Icon render error for", name, e);
       }
     }, [props.size, props.color, JSON.stringify(props.style)]);
-    return React.createElement("span", {
-      ref: ref,
-      style: {
-        display: "inline-flex",
-        lineHeight: 0,
-        ...(props.style || {})
-      }
-    });
+    return React.createElement("span", { ref: ref, style: { display: "inline-flex", lineHeight: 0, ...(props.style||{}) } });
   };
 }
+
 const MapPin = makeIcon("MapPin");
 const Plane = makeIcon("Plane");
 const Wallet = makeIcon("Wallet");
@@ -112,6 +102,7 @@ const MapIcon = makeIcon("Map");
 const Moon = makeIcon("Moon");
 const Train = makeIcon("Train");
 const Hotel = makeIcon("Hotel");
+
 const APP_DATA = {
   "days": [{
     "day_num": 1,
@@ -400,10 +391,10 @@ const APP_DATA = {
     "day_num": 19,
     "fecha_dia": "Lun 20 Jul",
     "titulo": "Furongzhen",
-    "estado_raw": "Tren pendiente 12306 (abre ~5 jul). Hotel a confirmar reserva. Cena: mirar zona en el pueblo · 🟡 Día durillo (tren + pueblo tranquilo) · 💰 Gasto: € bajo (pueblo pequeño, gasto bajo)",
+    "estado_raw": "Tren pendiente 12306 (abre ~5 jul). ✅ Hotel Tuwang Palace reservado. Cena: mirar zona en el pueblo · 🟡 Día durillo (tren + pueblo tranquilo) · 💰 Gasto: € bajo (pueblo pequeño, gasto bajo)",
     "color": "🟡",
     "budget": "€ bajo (pueblo pequeño, gasto bajo)",
-    "body_clean": "**Antes de salir del hotel (Moli, Zhangjiajie ciudad):**\n- Captura del Tuwang Palace en chino, pueblo pequeño con menos angloparlantes\n- Confirmar billete de tren la noche anterior\n\n**🚗 Transporte del día:**\n\n- Alarma recomendada: 07:30 aprox.\n- Hora límite orientativa: salir según transporte elegido hacia Furongzhen, sin apurar check-in\n- Moli Hotel → estación/terminal Zhangjiajie: DiDi/taxi recomendado por equipaje\n- Zhangjiajie → Furongzhen: tren/bus/traslado según reserva final\n- Llegada Furongzhen → Tuwang Palace: taxi/traslado local si hay cuestas/equipaje; confirmar con alojamiento\n- Notas: Furongzhen es pueblo de escaleras y piedra, maleta cómoda y calzado estable\n\n#### 🌅 Mañana - Tren\nG6151, 09:42-10:05 (Zhangjiajie West - Furongzhen). PENDIENTE 12306, abre ~5 jul.\n\n**⚠️ Plan B (si no sale billete en 12306):** comprobar alternativas de tren en horario cercano el mismo día 20 jul (Zhangjiajie West - Furongzhen tiene varias frecuencias). Si ningún tren cuadra, la alternativa es coche privado/taxi de larga distancia directamente desde Zhangjiajie ciudad hasta Furongzhen (~2-3h por carretera) — más caro pero evita perder la noche reservada en Tuwang Palace. Decidir antes del 5 jul, cuando abre la venta, para no quedarse sin margen de reacción.\n\n#### ☀️ Tarde - Casco antiguo\nCallejuelas de piedra de Furong Ancient Town, el pueblo colgado sobre la cascada.\n\nSnack sin verificar: Liu Xiaoqing Rice Tofu Shop, probar Mi Doufu antes de cenar.\n\n#### 🌙 Noche - Cascada iluminada\nEncendido de luces de los edificios colgados sobre la gran cascada iluminada.\n\nCena día 20 - SIN VERIFICAR:\n\n- Nombre: Tuwang Shifu\n- Platos sugeridos: pescado de río, Tujia La Rou, tofu de la casa y arroz\n\nEstado: Elegido pendiente de verificar, en el pueblo.\n\n---",
+    "body_clean": "**Antes de salir del hotel (Moli, Zhangjiajie ciudad):**\n- Hotel ya confirmado. Captura del Tuwang Palace en chino, pueblo pequeño con menos angloparlantes\n- Confirmar billete de tren la noche anterior\n\n**🚗 Transporte del día:**\n\n- Alarma recomendada: 07:30 aprox.\n- Hora límite orientativa: salir según transporte elegido hacia Furongzhen, sin apurar check-in\n- Moli Hotel → estación/terminal Zhangjiajie: DiDi/taxi recomendado por equipaje\n- Zhangjiajie → Furongzhen: tren/bus/traslado según reserva final\n- Llegada Furongzhen → Tuwang Palace: taxi/traslado local si hay cuestas/equipaje; confirmar con alojamiento\n- Notas: Furongzhen es pueblo de escaleras y piedra, maleta cómoda y calzado estable\n\n#### 🌅 Mañana - Tren\nG6151, 09:42-10:05 (Zhangjiajie West - Furongzhen). PENDIENTE 12306, abre ~5 jul.\n\n**⚠️ Plan B (si no sale billete en 12306):** comprobar alternativas de tren en horario cercano el mismo día 20 jul (Zhangjiajie West - Furongzhen tiene varias frecuencias). Si ningún tren cuadra, la alternativa es coche privado/taxi de larga distancia directamente desde Zhangjiajie ciudad hasta Furongzhen (~2-3h por carretera) — más caro pero evita perder la noche reservada en Tuwang Palace. Decidir antes del 5 jul, cuando abre la venta, para no quedarse sin margen de reacción.\n\n#### ☀️ Tarde - Casco antiguo\nCallejuelas de piedra de Furong Ancient Town, el pueblo colgado sobre la cascada.\n\nSnack sin verificar: Liu Xiaoqing Rice Tofu Shop, probar Mi Doufu antes de cenar.\n\n#### 🌙 Noche - Cascada iluminada\nEncendido de luces de los edificios colgados sobre la gran cascada iluminada.\n\nCena día 20 - SIN VERIFICAR:\n\n- Nombre: Tuwang Shifu\n- Platos sugeridos: pescado de río, Tujia La Rou, tofu de la casa y arroz\n\nEstado: Elegido pendiente de verificar, en el pueblo.\n\n---",
     "meals": {
       "principal": {
         "que_mirar": "Snack: Liu Xiaoqing Rice Tofu · Cena: Tuwang Shifu",
@@ -487,7 +478,7 @@ const APP_DATA = {
     "comidas": "**No merece buscar restaurante cerrado (excursión, tren, traslado o zona aislada) — improvisar, llevar snack o comer donde cuadre:**\n\n**Leyenda de estado de comida:** ✅ Verificado (existe de verdad, dirección confirmada) · 🟦 Elegido (es el plan, puede estar verificado o no) · ☎️ Reserva pendiente (hay que llamar/reservar mesa) · ❓ Sin verificar (nombre apuntado, falta comprobar que existe) · 🔲 Pendiente reservar/decidir (sin sitio decidido todavía)\n\n| Fecha | Servicio | Motivo | Recomendación |\n| :--- | :--- | :--- | :--- |\n| 6 jul | Cena | Tren nocturno HK → Pekín | Comprar antes de subir / llevar al tren |\n| 8 jul | Comida | Ciudad Prohibida + Jingshan | Flexible al salir, no reservar |\n| 9 jul | Comida | Gran Muralla Mutianyu | Comer allí o al volver; llevar snack |\n| 10 jul | Comida | Tren Pekín → Xi'an | Estación / llegada / algo rápido |\n| 11 jul | Comida | Guerreros de Terracota | Improvisar allí o al volver |\n| 12 jul | Comida | Tren Xi'an → Chengdú | Flexible por llegada |\n| 13 jul | Comida | Base de Pandas | Decidir al salir según cansancio |\n| 14 jul | Comida | Tren Chengdú → Chongqing | Flexible por llegada/check-in |\n| 16 jul | Comida | Tren Chongqing → Zhangjiajie + traslado Wulingyuan | Flexible / llegada |\n| 17 jul | Comida | Zhangjiajie National Forest Park | Llevar comida sencilla y snack; no restaurante |\n| 18 jul | Comida | Comodín Zhangjiajie / excursión según clima | No reservar; depende del plan |\n| 19 jul | Comida (mediodía) | Tianmen Mountain | Flexible / excursión |\n| 21 jul | Comida | Furongzhen → Guilin → Longji/Dazhai | No buscar; estación/carretera/lo que cuadre |\n| 22 jul | Comida | Longji → Guilin Norte → Yangshuo/Xingping | Flexible por traslado |\n| 23 jul | Comida | Ruta e-bike Yangshuo / Yulong (comer en ruta, en Yangshuo a mitad de camino) | Comer en ruta, no reservar |\n| 24 jul | Comida | Yangshuo → Guangzhou → Hong Kong | Trenes/frontera; no restaurante |\n| 25 jul | Comida | Traslado HK → Guangzhou → aeropuerto CAN | Aeropuerto / lo que cuadre |\n| 25 jul | Cena | Vuelo internacional | Vuelo |\n\n**Sí merece mirar restaurantes o zonas de comida (estado real actualizado, cruzado con el cuerpo del itinerario):**\n\n| Fecha | Ciudad/base | Qué mirar | Estado |\n| :--- | :--- | :--- | :--- |\n| 3 jul | Hong Kong | Cena: Mak Man Kee Noodle Shop + Kai Kai Dessert (Jordan) | ✅ Verificado 🟦 Elegido |\n| 4 jul | Hong Kong isla | Comida: Dim Sum Square (opción B Samsen) · Cena: Yat Lok (opción B Yung Kee) | ✅ Verificado 🟦 Elegido |\n| 5 jul | Kowloon | Comida: Lau Sum Kee Noodle / opción B One Dim Sum / merienda Kam Wah · Cena: Hing Kee Claypot Rice / opción B Spice Market o Temple Street Spicy Crabs | ❓ Sin verificar 🟦 Elegido |\n| 6 jul | Hong Kong | Comida/brunch: libre elección por Kowloon cuando haya hambre, no reservar · Cena: comprar antes de subir al tren | 🔲 No reservar (decisión consciente) |\n| 7 jul | Pekín | Comida: Fangzhuanchang 69 Zhajiangmian · Cena: No. 9 Courtyard (opción B Mr. Shi's Dumplings, opción C Yaoji Chaogan) | Comida ✅🟦 · Cena ❓ Sin verificar 🟦 Elegido |\n| 8 jul | Pekín | Cena: Da Dong Nanxincang | ✅ Verificado 🟦 Elegido ☎️ Reserva pendiente |\n| 9 jul | Pekín | Cena: Haidilao Dongzhimen/Guijie (opción B Xian Lao Man, opción C Siji Minfu) | ❓ Sin verificar 🟦 Elegido |\n| 10 jul | Xi'an | Cena: Fan Ji La Zhi Roujiamo | ✅ Verificado 🟦 Elegido |\n| 12 jul | Chengdú | Cena: Zhong Shuijiao (confirmar sucursal) | ✅ Verificado 🟦 Elegido |\n| 13 jul | Chengdú | Cena: Yulin Chuanchuan Xiang | ✅ Verificado 🟦 Elegido |\n| 14 jul | Chongqing | Cena: Yang Ji Long Fu (opción B pescado Wanzhou, opción C Li Chuan Chuan Xiang) | ❓ Sin verificar 🟦 Elegido |\n| 15 jul | Chongqing | Desayuno: Shanyidian (sin local concreto) · Cena: Peijie Old Hotpot (opción B Hongyadong con vistas) | Desayuno 🔲 · Cena ❓ Sin verificar 🟦 Elegido |\n| 16 jul | Wulingyuan | Cena: cocina casera de Hunan cerca de Maosao Inn (opción B Hunan Mifen) | ❓ Sin verificar 🟦 Elegido |\n| 17 jul | Wulingyuan | Cena: Tang Shi Fu Tu Jia San Xia Guo | ❓ Sin verificar 🟦 Elegido |\n| 18 jul | Wulingyuan | Cena ligera cerca de Maosao Inn: Hunan Mifen (alternativas shaokao o jiachang cai) | ❓ Sin verificar 🟦 Elegido |\n| 19 jul | Zhangjiajie ciudad | Cena cerca del Moli Hotel/Tianmen Cableway: Jiachang Cai (alternativas Hunan Mifen o shaokao) | ❓ Sin verificar 🟦 Elegido |\n| 20 jul | Furongzhen | Snack: Liu Xiaoqing Rice Tofu · Cena: Tuwang Shifu | ❓ Sin verificar 🟦 Elegido |\n| 21 jul | Dazhai/Longji | Cena en el propio Longsheng Fengyi Hotel | 🔲 Mirar zona/alojamiento |\n| 22 jul | Xingping | Cena: Beer Fish en Xingping Ancient Town | ❓ Sin verificar 🟦 Elegido |\n| 23 jul | Yangshuo/Xingping | Cena según dónde acabéis la ruta (Xingping o Yangshuo/West Street) | 🔲 Pendiente decidir |\n| 24 jul | Hong Kong | Cena, ya con calma — pendiente de cerrar según hotel final | 🔲 Pendiente reservar |\n\n**Tabla aparte: desayunos tempranos (madrugones antes de excursión)** — fechas corregidas tras detectar que estaban desplazadas un día respecto al cuerpo del itinerario:\n\n| Fecha real | Ciudad | Hora | Qué buscar | Motivo de la hora | Estado |\n| :--- | :--- | :--- | :--- | :--- | :--- |\n| 9 jul | Pekín | 05:45h | Puesto de Baozi cerca del hotel (Dongzhimen/Yonghe Temple) | Salida a las 06:00h hacia Mutianyu | 🔲 Pendiente reservar |\n| 11 jul | Xi'an | 07:15h | Puesto de Zenggao cerca del hotel (Torre del Campanario) | Salida temprana a Guerreros de Terracota | 🔲 Pendiente reservar |\n| 13 jul | Chengdú | 06:45h | Puesto de fideos/wontons en caldo cerca del hotel (Taikoo Li/Chunxi Road) | Entrada a la Base de Pandas a las 07:30h | 🔲 Pendiente reservar |\n| 15 jul | Chongqing | 08:30h | Puesto de Shanyidian cerca del hotel (Jiefangbei) | Jornada de metro Liziba + teleférico | 🔲 Pendiente reservar |\n\n---",
     "entradas": "| Entrada | Fecha | Estado |\n| :--- | :--- | :--- |\n| Ciudad Prohibida | 8 jul | ❌ PENDIENTE · ⏰ ALARMA APP 2 jul 09:00 · comprar para 8 jul mañana · 2 adultos con pasaporte |\n| Gran Muralla Mutianyu | 9 jul | ✅ COMPRADA · 2 adultos · franja 08:30-12:00 · entrada postal + shuttle interno + teleférico ida/vuelta · coche privado hotel 06:00 organizado · tobogán NO incluido |\n| Guerreros de Terracota | 11 jul | ❌ PENDIENTE · ⏰ ALARMA APP 4 jul 09:00 · comprar para 11 jul mañana · 2 adultos con pasaporte |\n| Base de Pandas | 13 jul | ❌ PENDIENTE · ⏰ ALARMA APP 30 jun 09:00 · comprar para 13 jul primera mañana / 07:30 · 2 adultos con pasaporte |\n| Zhangjiajie parque + Bailong + Tianzishan | 17 jul | ✅ COMPRADA · 2 adultos · entrada 4 días · franja 07:00-08:00 · Puerta Este, Línea B |\n| Puente de cristal Gran Cañón | 18 jul (comodín) | ⚠️ EN DECISIÓN HOY · qué paquete elegir depende del tiempo que haga en Zhangjiajie el 16-17 jul |\n| Teleférico Tianmen | 19 jul | ⚠️ EN DECISIÓN HOY · se compra junto con el paquete del puente de cristal |\n| Peak Tram Hong Kong | días 3-5 | ✅ COMPRADA |\n\n**⏰ Alarmas de compra activas (ventana rodante, anotar en el móvil):**\n\n- 30 junio 2026 · 09:00 · Comprar entradas Base de Pandas Chengdú para el 13 julio, primera franja de mañana si está disponible, 2 adultos con pasaporte. Nota: a 26/06 solo deja comprar hasta el 9 julio.\n- 2 julio 2026 · 09:00 · Comprar entradas Ciudad Prohibida para el 8 julio, franja de mañana, 2 adultos con pasaporte. Nota: a 26/06 solo deja comprar hasta el 2 julio.\n- 4 julio 2026 · 09:00 · Comprar entradas Guerreros de Terracota para el 11 julio, primera franja de mañana, 2 adultos con pasaporte. Nota: a 26/06 solo deja comprar hasta el 3 julio.\n\n---",
     "transversales": "**Pagos:** China funciona casi sin efectivo. Instalar y vincular Alipay y/o WeChat Pay con tarjeta extranjera antes de salir. HK acepta tarjeta y Apple Pay con normalidad.\n\n**Internet:** apps occidentales bloqueadas en continental. VPN instalada y probada antes de entrar. eSIM de datos con roaming suele saltarse el bloqueo.\n\n**Mapas:** Amap (Gaode) o Apple Maps en continental.\n\n**Trenes pendientes 12306:** 20-21 jul abren ~5 jul (en Hong Kong); 24-25 jul abren ~9 jul (en Pekín). Poner alarmas.\n\n**Calor de julio:** madrugar siempre. Muralla, Terracota, Ciudad Prohibida, Zhangjiajie, todo a primera hora.\n\n**Aduana a la vuelta:** franquicia UE ~430€/persona. Un MacBook supera ese límite, declarable al volver a España.\n\n### Entradas: resumen de estado\n\n| Entrada | Fecha | Estado |\n| :--- | :--- | :--- |\n| Ciudad Prohibida | 8 jul | ❌ PENDIENTE · ⏰ ALARMA APP 2 jul 09:00 · comprar para 8 jul mañana · 2 adultos con pasaporte |\n| Gran Muralla Mutianyu | 9 jul | ✅ COMPRADA · 2 adultos · franja 08:30-12:00 · entrada postal + shuttle interno + teleférico ida/vuelta · coche privado hotel 06:00 organizado · tobogán NO incluido |\n| Guerreros de Terracota | 11 jul | ❌ PENDIENTE · ⏰ ALARMA APP 4 jul 09:00 · comprar para 11 jul mañana · 2 adultos con pasaporte |\n| Base de Pandas | 13 jul | ❌ PENDIENTE · ⏰ ALARMA APP 30 jun 09:00 · comprar para 13 jul primera mañana / 07:30 · 2 adultos con pasaporte |\n| Zhangjiajie parque + Bailong + Tianzishan | 17 jul | ✅ COMPRADA · 2 adultos · entrada 4 días · franja 07:00-08:00 · Puerta Este, Línea B |\n| Puente de cristal Gran Cañón | 18 jul (comodín) | ⚠️ EN DECISIÓN HOY · qué paquete elegir depende del tiempo que haga en Zhangjiajie el 16-17 jul |\n| Teleférico Tianmen | 19 jul | ⚠️ EN DECISIÓN HOY · se compra junto con el paquete del puente de cristal |\n| Peak Tram Hong Kong | días 3-5 | ✅ COMPRADA |\n\n**⏰ Alarmas de compra activas (ventana rodante, anotar en el móvil):**\n\n- 30 junio 2026 · 09:00 · Comprar entradas Base de Pandas Chengdú para el 13 julio, primera franja de mañana si está disponible, 2 adultos con pasaporte. Nota: a 26/06 solo deja comprar hasta el 9 julio.\n- 2 julio 2026 · 09:00 · Comprar entradas Ciudad Prohibida para el 8 julio, franja de mañana, 2 adultos con pasaporte. Nota: a 26/06 solo deja comprar hasta el 2 julio.\n- 4 julio 2026 · 09:00 · Comprar entradas Guerreros de Terracota para el 11 julio, primera franja de mañana, 2 adultos con pasaporte. Nota: a 26/06 solo deja comprar hasta el 3 julio.\n\n---",
-    "pendientes": "1. **4 billetes de tren pendientes en 12306:** Furongzhen→Guilin+coche Longji (21 jul, tramo más delicado), Yangshuo→Guangzhou South→HK (24 jul, no antes de 11:30), HK→Guangzhou South (25 jul, crítico por vuelo), Zhangjiajie West→Furongzhen (20 jul, abre ~5 jul)\n2. **Última noche en Hong Kong (24-25 jul) sin hotel reservado** - zona West Kowloon/Jordan/Tsim Sha Tsui\n3. ~~Discrepancia en hora de vuelo de vuelta~~ - RESUELTO: confirmado 15:25 (el 16:10 era dato antiguo)\n4. **Mismatch de estación en Chongqing** - llegada a Chongqing West, salida desde Chongqing East el día 16, organizar traslado la noche antes\n5. **Hotel de Furongzhen (Tuwang Palace)** - estado \"confirmar reserva\", no \"reservado\"\n6. **Entrada Guerreros de Terracota** - pendiente. ⏰ Alarma app 4 jul 09:00 para comprar la franja del 11 jul\n7. **Reserva de Da Dong (Pekín, cena día 8)** - pedir a recepción del hotel que gestione la reserva más cerca de la fecha\n\n\n---",
+    "pendientes": "1. **4 billetes de tren pendientes en 12306:** Furongzhen→Guilin+coche Longji (21 jul, tramo más delicado), Yangshuo→Guangzhou South→HK (24 jul, no antes de 11:30), HK→Guangzhou South (25 jul, crítico por vuelo), Zhangjiajie West→Furongzhen (20 jul, abre ~5 jul)\n2. **Última noche en Hong Kong (24-25 jul) sin hotel reservado** - zona West Kowloon/Jordan/Tsim Sha Tsui\n3. ~~Discrepancia en hora de vuelo de vuelta~~ - RESUELTO: confirmado 15:25 (el 16:10 era dato antiguo)\n4. **Mismatch de estación en Chongqing** - llegada a Chongqing West, salida desde Chongqing East el día 16, organizar traslado la noche antes\n5. ~~Hotel de Furongzhen (Tuwang Palace)~~ - RESUELTO: ya reservado\n6. **Entrada Guerreros de Terracota** - pendiente. ⏰ Alarma app 4 jul 09:00 para comprar la franja del 11 jul\n7. **Reserva de Da Dong (Pekín, cena día 8)** - pedir a recepción del hotel que gestione la reserva más cerca de la fecha\n\n\n---",
     "emergencias": "- **Seguro de viaje:** compañía, número de póliza y teléfono de asistencia internacional — capturados offline en el móvil de ambos\n- **Pasaportes:** número de pasaporte y copia escaneada/fotografiada offline (no solo en la nube, también guardada en el dispositivo)\n- **Contacto de emergencia en España:** nombre y teléfono accesibles sin necesidad de desbloquear el móvil (pantalla de bloqueo o tarjeta física)\n- **Medicación básica:** botiquín con lo habitual (analgésico, antidiarreico, antihistamínico, tiritas) — en China continental puede ser difícil encontrar marcas conocidas\n- **Si falla Alipay/WeChat Pay:** llevar algo de efectivo en RMB como respaldo; las tarjetas extranjeras no siempre funcionan en comercios pequeños\n- **Si se pierde un tren:** ir directamente a la ventanilla de servicio al cliente de la estación (人工窗口) con el pasaporte; en trenes de alta velocidad suele haber opción de cambio con cargo\n- **Si se pierde el móvil:** tener anotado en papel o en email accesible desde otro dispositivo: número de pasaporte, contacto de emergencia, número de la póliza de seguro, y contraseña de recuperación de Alipay/WeChat\n- **Frases útiles para hotel/taxi/hospital:** tener preparadas en el móvil (capturas o app de traducción offline) frases básicas en chino para pedir ayuda, decir dónde duele, o pedir que llamen a una ambulancia\n- **Embajada/Consulado de España:**\n\n  - Pekín: Embajada de España en Pekín\n\n  - Shanghái: Consulado General de España en Shanghái (referencia, no está en la ruta del viaje)\n\n  - Cantón (Guangzhou): Consulado General de España en Cantón\n\n  - Hong Kong: Consulado General de España en Hong Kong\n\n  - Nota: localizar dirección exacta y teléfono de cada uno antes de salir, y guardarlos offline"
   },
   "trenes": [{
@@ -696,7 +687,7 @@ const APP_DATA = {
     "nombre": "Tuwang Palace · Eight Halls, Waterfall View",
     "direccion": "Furong Ancient Town, Furongzhen",
     "mapsUrl": null,
-    "estado": "⚠️ Confirmar reserva",
+    "estado": "✅ Reservado",
     "nombreChino": null
   }, {
     "fechas": "21-22 jul",
@@ -810,7 +801,315 @@ const APP_DATA = {
         "localizador": "8O3P4L"
       }]
     }
-  }
+  },
+  "comidas": [{
+    "day_num": 2,
+    "fecha": "Vie 3 Jul",
+    "tipo": "Comida/Cena",
+    "hora": null,
+    "que": "Cena: Mak Man Kee Noodle Shop + Kai Kai Dessert (Jordan)",
+    "motivo": null,
+    "estado": "✅ Verificado 🟦 Elegido",
+    "ciudad": "Hong Kong",
+    "mapsUrl": null
+  }, {
+    "day_num": 3,
+    "fecha": "Sáb 4 Jul",
+    "tipo": "Comida/Cena",
+    "hora": null,
+    "que": "Comida: Dim Sum Square (opción B Samsen) · Cena: Yat Lok (opción B Yung Kee)",
+    "motivo": null,
+    "estado": "✅ Verificado 🟦 Elegido",
+    "ciudad": "Hong Kong isla",
+    "mapsUrl": null
+  }, {
+    "day_num": 4,
+    "fecha": "Dom 5 Jul",
+    "tipo": "Comida/Cena",
+    "hora": null,
+    "que": "Comida: Lau Sum Kee Noodle / opción B One Dim Sum / merienda Kam Wah · Cena: Hing Kee Claypot Rice / opción B Spice Market o Temple Street Spicy Crabs",
+    "motivo": null,
+    "estado": "❓ Sin verificar 🟦 Elegido",
+    "ciudad": "Kowloon",
+    "mapsUrl": null
+  }, {
+    "day_num": 5,
+    "fecha": "Lun 6 Jul",
+    "tipo": "Comida/Cena",
+    "hora": null,
+    "que": "Comida/brunch: libre elección por Kowloon cuando haya hambre, no reservar · Cena: comprar antes de subir al tren",
+    "motivo": null,
+    "estado": "🔲 No reservar (decisión consciente)",
+    "ciudad": "Hong Kong",
+    "mapsUrl": null
+  }, {
+    "day_num": 6,
+    "fecha": "Mar 7 Jul",
+    "tipo": "Comida/Cena",
+    "hora": null,
+    "que": "Comida: Fangzhuanchang 69 Zhajiangmian · Cena: No. 9 Courtyard (opción B Mr. Shi's Dumplings, opción C Yaoji Chaogan)",
+    "motivo": null,
+    "estado": "Comida ✅🟦 · Cena ❓ Sin verificar 🟦 Elegido",
+    "ciudad": "Pekín",
+    "mapsUrl": null
+  }, {
+    "day_num": 7,
+    "fecha": "Mié 8 Jul",
+    "tipo": "Comida/Cena",
+    "hora": null,
+    "que": "Cena: Da Dong Nanxincang",
+    "motivo": null,
+    "estado": "✅ Verificado 🟦 Elegido ☎️ Reserva pendiente",
+    "ciudad": "Pekín",
+    "mapsUrl": null
+  }, {
+    "day_num": 8,
+    "fecha": "Jue 9 Jul",
+    "tipo": "Desayuno",
+    "hora": "05:45h",
+    "que": "Puesto de Baozi cerca del hotel (Dongzhimen/Yonghe Temple)",
+    "motivo": "Salida a las 06:00h hacia Mutianyu",
+    "estado": "🔲 Pendiente reservar",
+    "ciudad": null,
+    "mapsUrl": null
+  }, {
+    "day_num": 8,
+    "fecha": "Jue 9 Jul",
+    "tipo": "Comida/Cena",
+    "hora": null,
+    "que": "Cena: Haidilao Dongzhimen/Guijie (opción B Xian Lao Man, opción C Siji Minfu)",
+    "motivo": null,
+    "estado": "❓ Sin verificar 🟦 Elegido",
+    "ciudad": "Pekín",
+    "mapsUrl": null
+  }, {
+    "day_num": 9,
+    "fecha": "Vie 10 Jul",
+    "tipo": "Comida/Cena",
+    "hora": null,
+    "que": "Cena: Fan Ji La Zhi Roujiamo",
+    "motivo": null,
+    "estado": "✅ Verificado 🟦 Elegido",
+    "ciudad": "Xi'an",
+    "mapsUrl": null
+  }, {
+    "day_num": 10,
+    "fecha": "Sáb 11 Jul",
+    "tipo": "Desayuno",
+    "hora": "07:15h",
+    "que": "Puesto de Zenggao cerca del hotel (Torre del Campanario)",
+    "motivo": "Salida temprana a Guerreros de Terracota",
+    "estado": "🔲 Pendiente reservar",
+    "ciudad": null,
+    "mapsUrl": null
+  }, {
+    "day_num": 11,
+    "fecha": "Dom 12 Jul",
+    "tipo": "Comida/Cena",
+    "hora": null,
+    "que": "Cena: Zhong Shuijiao (confirmar sucursal)",
+    "motivo": null,
+    "estado": "✅ Verificado 🟦 Elegido",
+    "ciudad": "Chengdú",
+    "mapsUrl": null
+  }, {
+    "day_num": 12,
+    "fecha": "Lun 13 Jul",
+    "tipo": "Desayuno",
+    "hora": "06:45h",
+    "que": "Puesto de fideos/wontons en caldo cerca del hotel (Taikoo Li/Chunxi Road)",
+    "motivo": "Entrada a la Base de Pandas a las 07:30h",
+    "estado": "🔲 Pendiente reservar",
+    "ciudad": null,
+    "mapsUrl": null
+  }, {
+    "day_num": 12,
+    "fecha": "Lun 13 Jul",
+    "tipo": "Comida/Cena",
+    "hora": null,
+    "que": "Cena: Yulin Chuanchuan Xiang",
+    "motivo": null,
+    "estado": "✅ Verificado 🟦 Elegido",
+    "ciudad": "Chengdú",
+    "mapsUrl": null
+  }, {
+    "day_num": 13,
+    "fecha": "Mar 14 Jul",
+    "tipo": "Comida/Cena",
+    "hora": null,
+    "que": "Cena: Yang Ji Long Fu (opción B pescado Wanzhou, opción C Li Chuan Chuan Xiang)",
+    "motivo": null,
+    "estado": "❓ Sin verificar 🟦 Elegido",
+    "ciudad": "Chongqing",
+    "mapsUrl": null
+  }, {
+    "day_num": 14,
+    "fecha": "Mié 15 Jul",
+    "tipo": "Desayuno",
+    "hora": "08:30h",
+    "que": "Puesto de Shanyidian cerca del hotel (Jiefangbei)",
+    "motivo": "Jornada de metro Liziba + teleférico",
+    "estado": "🔲 Pendiente reservar",
+    "ciudad": null,
+    "mapsUrl": null
+  }, {
+    "day_num": 14,
+    "fecha": "Mié 15 Jul",
+    "tipo": "Comida/Cena",
+    "hora": null,
+    "que": "Desayuno: Shanyidian (sin local concreto) · Cena: Peijie Old Hotpot (opción B Hongyadong con vistas)",
+    "motivo": null,
+    "estado": "Desayuno 🔲 · Cena ❓ Sin verificar 🟦 Elegido",
+    "ciudad": "Chongqing",
+    "mapsUrl": null
+  }, {
+    "day_num": 15,
+    "fecha": "Jue 16 Jul",
+    "tipo": "Comida/Cena",
+    "hora": null,
+    "que": "Cena: cocina casera de Hunan cerca de Maosao Inn (opción B Hunan Mifen)",
+    "motivo": null,
+    "estado": "❓ Sin verificar 🟦 Elegido",
+    "ciudad": "Wulingyuan",
+    "mapsUrl": null
+  }, {
+    "day_num": 16,
+    "fecha": "Vie 17 Jul",
+    "tipo": "Comida/Cena",
+    "hora": null,
+    "que": "Cena: Tang Shi Fu Tu Jia San Xia Guo",
+    "motivo": null,
+    "estado": "❓ Sin verificar 🟦 Elegido",
+    "ciudad": "Wulingyuan",
+    "mapsUrl": null
+  }, {
+    "day_num": 17,
+    "fecha": "Sáb 18 Jul",
+    "tipo": "Comida/Cena",
+    "hora": null,
+    "que": "Cena ligera cerca de Maosao Inn: Hunan Mifen (alternativas shaokao o jiachang cai)",
+    "motivo": null,
+    "estado": "❓ Sin verificar 🟦 Elegido",
+    "ciudad": "Wulingyuan",
+    "mapsUrl": null
+  }, {
+    "day_num": 18,
+    "fecha": "Dom 19 Jul",
+    "tipo": "Comida/Cena",
+    "hora": null,
+    "que": "Cena cerca del Moli Hotel/Tianmen Cableway: Jiachang Cai (alternativas Hunan Mifen o shaokao)",
+    "motivo": null,
+    "estado": "❓ Sin verificar 🟦 Elegido",
+    "ciudad": "Zhangjiajie ciudad",
+    "mapsUrl": null
+  }, {
+    "day_num": 19,
+    "fecha": "Lun 20 Jul",
+    "tipo": "Comida/Cena",
+    "hora": null,
+    "que": "Snack: Liu Xiaoqing Rice Tofu · Cena: Tuwang Shifu",
+    "motivo": null,
+    "estado": "❓ Sin verificar 🟦 Elegido",
+    "ciudad": "Furongzhen",
+    "mapsUrl": null
+  }, {
+    "day_num": 20,
+    "fecha": "Mar 21 Jul",
+    "tipo": "Comida/Cena",
+    "hora": null,
+    "que": "Cena en el propio Longsheng Fengyi Hotel",
+    "motivo": null,
+    "estado": "🔲 Mirar zona/alojamiento",
+    "ciudad": "Dazhai/Longji",
+    "mapsUrl": null
+  }, {
+    "day_num": 21,
+    "fecha": "Mié 22 Jul",
+    "tipo": "Comida/Cena",
+    "hora": null,
+    "que": "Cena: Beer Fish en Xingping Ancient Town",
+    "motivo": null,
+    "estado": "❓ Sin verificar 🟦 Elegido",
+    "ciudad": "Xingping",
+    "mapsUrl": null
+  }, {
+    "day_num": 22,
+    "fecha": "Jue 23 Jul",
+    "tipo": "Comida/Cena",
+    "hora": null,
+    "que": "Cena según dónde acabéis la ruta (Xingping o Yangshuo/West Street)",
+    "motivo": null,
+    "estado": "🔲 Pendiente decidir",
+    "ciudad": "Yangshuo/Xingping",
+    "mapsUrl": null
+  }, {
+    "day_num": 23,
+    "fecha": "Vie 24 Jul",
+    "tipo": "Comida/Cena",
+    "hora": null,
+    "que": "Cena, ya con calma — pendiente de cerrar según hotel final",
+    "motivo": null,
+    "estado": "🔲 Pendiente reservar",
+    "ciudad": "Hong Kong",
+    "mapsUrl": null
+  }],
+  "entradas": [{
+    "nombre": "Ciudad Prohibida",
+    "fecha": "8 jul",
+    "categoria": "monumento",
+    "estado": "PENDIENTE",
+    "alarma": "2 julio 2026, 09:00",
+    "detalle": "Comprar para el 8 jul, franja de mañana, 2 adultos con pasaporte (gugong.npgx.cn). A 26/06 solo deja comprar hasta el 2 julio."
+  }, {
+    "nombre": "Gran Muralla Mutianyu",
+    "fecha": "9 jul",
+    "categoria": "monumento",
+    "estado": "COMPRADA",
+    "alarma": null,
+    "detalle": "2 adultos, franja 08:30-12:00. Incluye entrada postal + shuttle interno + teleférico ida/vuelta. Tobogán NO incluido (no comprar GetYourGuide aparte, 78€/persona)."
+  }, {
+    "nombre": "Guerreros de Terracota",
+    "fecha": "11 jul",
+    "categoria": "monumento",
+    "estado": "PENDIENTE",
+    "alarma": "4 julio 2026, 09:00",
+    "detalle": "Comprar para el 11 jul, primera franja de mañana, 2 adultos con pasaporte. A 26/06 solo deja comprar hasta el 3 julio."
+  }, {
+    "nombre": "Base de Pandas Gigantes",
+    "fecha": "13 jul",
+    "categoria": "parque",
+    "estado": "PENDIENTE",
+    "alarma": "30 junio 2026, 09:00",
+    "detalle": "Comprar para el 13 jul, primera franja / 07:30 si aparece, 2 adultos con pasaporte. A 26/06 solo deja comprar hasta el 9 julio."
+  }, {
+    "nombre": "Zhangjiajie Parque + Bailong + Tianzishan",
+    "fecha": "17 jul",
+    "categoria": "parque",
+    "estado": "COMPRADA",
+    "alarma": null,
+    "detalle": "2 adultos · entrada 4 días · franja 07:00-08:00 · Puerta Este, Línea B."
+  }, {
+    "nombre": "Puente de Cristal, Gran Cañón",
+    "fecha": "18 jul (comodín)",
+    "categoria": "parque",
+    "estado": "EN DECISIÓN",
+    "alarma": null,
+    "detalle": "Qué paquete elegir depende del tiempo que haga en Zhangjiajie el 16-17 jul. Se compra junto con el teleférico de Tianmen."
+  }, {
+    "nombre": "Teleférico Tianmen",
+    "fecha": "19 jul",
+    "categoria": "transporte",
+    "estado": "EN DECISIÓN",
+    "alarma": null,
+    "detalle": "Se compra junto con el paquete del puente de cristal, según decisión del día 18."
+  }, {
+    "nombre": "Peak Tram Hong Kong",
+    "fecha": "días 3-5",
+    "categoria": "transporte",
+    "estado": "COMPRADA",
+    "alarma": null,
+    "detalle": "Entrada recomendada online para evitar cola."
+  }]
 };
 const COLOR_INFO = {
   "🔵": {
@@ -1578,7 +1877,7 @@ function TrainCard({
   t,
   idx
 }) {
-  const mapsUrl = name => `https://maps.apple/?q=${encodeURIComponent(name)}`;
+  const mapsUrl = name => `https://maps.apple.com/?q=${encodeURIComponent(name)}`;
   return /*#__PURE__*/React.createElement("div", {
     style: {
       background: "#F5F2EA",
@@ -1892,7 +2191,7 @@ function HotelCard({
 }) {
   const reservado = h.estado.includes("✅");
   const sinReservar = h.estado.includes("SIN RESERVAR");
-  const fallbackMapsUrl = `https://maps.apple/?q=${encodeURIComponent(h.nombre || h.direccion)}`;
+  const fallbackMapsUrl = `https://maps.apple.com/?q=${encodeURIComponent(h.nombre || h.direccion)}`;
   return /*#__PURE__*/React.createElement("div", {
     style: {
       background: "#F5F2EA",
@@ -2021,6 +2320,221 @@ function HotelCard({
     placeholder: "Pegar aquí dirección en chino / enlace de Amap..."
   }));
 }
+function estadoColors(estado) {
+  if (!estado) return {
+    bg: "#E8A33D",
+    text: "#2A1F0E"
+  };
+  if (estado.includes("✅") && !estado.includes("❓")) return {
+    bg: "#5B8C5A",
+    text: "#EFF6EE"
+  };
+  if (estado.includes("❓")) return {
+    bg: "#E8A33D",
+    text: "#2A1F0E"
+  };
+  if (estado.includes("🔲")) return {
+    bg: "#8a8577",
+    text: "#F5F2EA"
+  };
+  return {
+    bg: "#E8A33D",
+    text: "#2A1F0E"
+  };
+}
+function MealCard({
+  meal,
+  idx
+}) {
+  const colors = estadoColors(meal.estado);
+  const mapsUrl = `https://maps.apple.com/?q=${encodeURIComponent(meal.que ? meal.que.split(":")[1]?.split("(")[0]?.split("·")[0]?.trim() || meal.que : "restaurante")}`;
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: "#F5F2EA",
+      borderRadius: "4px",
+      marginBottom: "14px",
+      padding: "16px 18px",
+      boxShadow: "0 2px 10px rgba(0,0,0,0.3)",
+      border: "1px solid rgba(0,0,0,0.06)"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "flex-start",
+      marginBottom: "8px",
+      gap: "10px"
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontFamily: "'Archivo Black', sans-serif",
+      fontSize: "11px",
+      color: "#8a8577",
+      letterSpacing: "0.06em"
+    }
+  }, "DÍA ", meal.day_num, " · ", meal.fecha.toUpperCase(), " ", meal.ciudad ? `· ${meal.ciudad.toUpperCase()}` : ""), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: "9px",
+      fontWeight: 700,
+      padding: "2px 8px",
+      borderRadius: "999px",
+      flexShrink: 0,
+      background: "#3E6B8C",
+      color: "#EAF2F8"
+    }
+  }, meal.tipo.toUpperCase())), /*#__PURE__*/React.createElement("p", {
+    style: {
+      fontSize: "14px",
+      color: "#2e2b25",
+      lineHeight: "1.45",
+      margin: "0 0 10px 0"
+    }
+  }, meal.que), meal.motivo && /*#__PURE__*/React.createElement("p", {
+    style: {
+      fontSize: "12px",
+      color: "#6b665a",
+      margin: "0 0 10px 0"
+    }
+  }, meal.hora && /*#__PURE__*/React.createElement("strong", null, meal.hora, " · "), meal.motivo), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      gap: "8px"
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: "10px",
+      fontWeight: 700,
+      padding: "3px 9px",
+      borderRadius: "999px",
+      background: colors.bg,
+      color: colors.text
+    }
+  }, meal.estado), /*#__PURE__*/React.createElement("a", {
+    href: mapsUrl,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    style: {
+      display: "inline-flex",
+      alignItems: "center",
+      gap: "4px",
+      padding: "4px 10px",
+      borderRadius: "999px",
+      background: "#3E6B8C",
+      color: "#EAF2F8",
+      fontSize: "11px",
+      fontWeight: 600,
+      textDecoration: "none",
+      flexShrink: 0
+    }
+  }, /*#__PURE__*/React.createElement(MapPin, {
+    size: 10
+  }), " Mapa")), /*#__PURE__*/React.createElement(ManualNoteField, {
+    storageKey: `meal-manual:${idx}`,
+    placeholder: "Pegar aquí dirección exacta / enlace de Amap..."
+  }));
+}
+const ENTRY_ICONS = {
+  parque: "🌲",
+  monumento: "🏯",
+  transporte: "🚡"
+};
+function EntryCard({
+  entry
+}) {
+  const isComprada = entry.estado === "COMPRADA";
+  const isPendiente = entry.estado === "PENDIENTE";
+  const badgeBg = isComprada ? "#5B8C5A" : isPendiente ? "#D64545" : "#E8A33D";
+  const badgeText = isComprada ? "#EFF6EE" : isPendiente ? "#FBEAEA" : "#2A1F0E";
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: "#F5F2EA",
+      borderRadius: "4px",
+      marginBottom: "14px",
+      padding: "16px 18px",
+      boxShadow: "0 2px 10px rgba(0,0,0,0.3)",
+      border: "1px solid rgba(0,0,0,0.06)",
+      position: "relative"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: "absolute",
+      top: 0,
+      left: 0,
+      right: 0,
+      height: "6px",
+      backgroundImage: "radial-gradient(circle, #1B1F23 3px, transparent 3.5px)",
+      backgroundSize: "16px 6px",
+      backgroundPosition: "0 -3px",
+      borderRadius: "4px 4px 0 0"
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "flex-start",
+      marginTop: "6px",
+      marginBottom: "8px",
+      gap: "10px"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "flex-start",
+      gap: "8px"
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: "22px",
+      lineHeight: 1
+    }
+  }, ENTRY_ICONS[entry.categoria] || "🎫"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h3", {
+    style: {
+      fontFamily: "'Archivo Black', sans-serif",
+      fontSize: "16px",
+      color: "#1B1F23",
+      margin: 0,
+      lineHeight: "1.2"
+    }
+  }, entry.nombre), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: "11px",
+      color: "#8a8577",
+      fontWeight: 600
+    }
+  }, entry.fecha))), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: "10px",
+      fontWeight: 700,
+      padding: "3px 9px",
+      borderRadius: "999px",
+      background: badgeBg,
+      color: badgeText,
+      flexShrink: 0
+    }
+  }, entry.estado)), /*#__PURE__*/React.createElement("p", {
+    style: {
+      fontSize: "12.5px",
+      color: "#3d3a33",
+      lineHeight: "1.45",
+      margin: "0 0 8px 0"
+    }
+  }, entry.detalle), entry.alarma && /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: "8px",
+      padding: "8px 10px",
+      background: "rgba(214,69,69,0.1)",
+      borderRadius: "4px",
+      fontSize: "12px",
+      color: "#a83d3d",
+      display: "flex",
+      alignItems: "center",
+      gap: "6px",
+      fontWeight: 600
+    }
+  }, "⏰ Alarma: ", entry.alarma));
+}
 function TabButton({
   active,
   onClick,
@@ -2131,14 +2645,23 @@ function ChinaTripApp() {
     icon: Ticket,
     title: "Entradas y alarmas",
     subtitle: "Qué está comprado y qué falta, con las alarmas de compra activas"
-  }, /*#__PURE__*/React.createElement(SectionTable, {
-    markdown: sections.entradas
-  }), /*#__PURE__*/React.createElement("div", {
+  }, APP_DATA.entradas.map((e, i) => /*#__PURE__*/React.createElement(EntryCard, {
+    key: i,
+    entry: e
+  })), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: "24px"
     }
   }, /*#__PURE__*/React.createElement(SubHeading, null, "Pendientes generales"), /*#__PURE__*/React.createElement(MiniMarkdown, {
     text: sections.pendientes
+  }))), tab === "comidas" && /*#__PURE__*/React.createElement(PanelHeader, {
+    icon: Utensils,
+    title: "Comidas",
+    subtitle: "Restaurantes elegidos día a día, con su estado real"
+  }, APP_DATA.comidas.map((c, i) => /*#__PURE__*/React.createElement(MealCard, {
+    key: i,
+    meal: c,
+    idx: i
   }))), tab === "trenes" && /*#__PURE__*/React.createElement(PanelHeader, {
     icon: Train,
     title: "Trenes",
@@ -2192,6 +2715,11 @@ function ChinaTripApp() {
     onClick: () => setTab("itinerario"),
     icon: MapIcon,
     label: "Itinerario"
+  }), /*#__PURE__*/React.createElement(TabButton, {
+    active: tab === "comidas",
+    onClick: () => setTab("comidas"),
+    icon: Utensils,
+    label: "Comidas"
   }), /*#__PURE__*/React.createElement(TabButton, {
     active: tab === "trenes",
     onClick: () => setTab("trenes"),
