@@ -1324,6 +1324,80 @@ const APP_DATA = {
       "fijarseEn": "La pequeña torre del reloj central de 27.5 metros (Monumento a la Liberación), que queda ridículamente enana rodeada de rascacielos gigantescos.",
       "datoCurioso": "Es el único monumento cívico de guerra en toda China que no está dedicado a líderes políticos, sino a la victoria del pueblo."
     }
+  },
+  "cityWeather": {
+    "hongkong": {
+      "nombre": "Hong Kong",
+      "lat": 22.3193,
+      "lon": 114.1694,
+      "tempMaxJul": 32,
+      "tempMinJul": 28,
+      "humedadJul": 82
+    },
+    "pekin": {
+      "nombre": "Pekín",
+      "lat": 39.9042,
+      "lon": 116.4074,
+      "tempMaxJul": 31,
+      "tempMinJul": 23,
+      "humedadJul": 75
+    },
+    "xian": {
+      "nombre": "Xi'an",
+      "lat": 34.3416,
+      "lon": 108.9398,
+      "tempMaxJul": 33,
+      "tempMinJul": 23,
+      "humedadJul": 65
+    },
+    "chengdu": {
+      "nombre": "Chengdú",
+      "lat": 30.5728,
+      "lon": 104.0668,
+      "tempMaxJul": 31,
+      "tempMinJul": 23,
+      "humedadJul": 78
+    },
+    "chongqing": {
+      "nombre": "Chongqing",
+      "lat": 29.563,
+      "lon": 106.5516,
+      "tempMaxJul": 35,
+      "tempMinJul": 26,
+      "humedadJul": 75
+    },
+    "zhangjiajie": {
+      "nombre": "Zhangjiajie",
+      "lat": 29.117,
+      "lon": 110.4793,
+      "tempMaxJul": 32,
+      "tempMinJul": 24,
+      "humedadJul": 80
+    },
+    "furongzhen": {
+      "nombre": "Furongzhen",
+      "lat": 28.5167,
+      "lon": 109.9667,
+      "tempMaxJul": 31,
+      "tempMinJul": 23,
+      "humedadJul": 78
+    },
+    "longji": {
+      "nombre": "Longji / Guilin",
+      "lat": 25.753,
+      "lon": 110.1714,
+      "tempMaxJul": 33,
+      "tempMinJul": 26,
+      "humedadJul": 78
+    },
+    "yangshuo": {
+      "nombre": "Yangshuo",
+      "lat": 24.7785,
+      "lon": 110.4998,
+      "tempMaxJul": 33,
+      "tempMinJul": 26,
+      "humedadJul": 80
+    }
   }
 };
 const COLOR_INFO = {
@@ -1799,6 +1873,116 @@ function FormattedInline({
     size: 11
   }), " Abrir mapa"));
 }
+const MONTH_MAP_ES = {
+  ene: 0,
+  feb: 1,
+  mar: 2,
+  abr: 3,
+  may: 4,
+  jun: 5,
+  jul: 6,
+  ago: 7,
+  sep: 8,
+  oct: 9,
+  nov: 10,
+  dic: 11
+};
+function parseFechaDia(fechaDia) {
+  // fechaDia formato "Vie 10 Jul" -> Date 2026-07-10
+  if (!fechaDia) return null;
+  const match = fechaDia.match(/(\d{1,2})\s+([A-Za-zé]+)/);
+  if (!match) return null;
+  const day = parseInt(match[1], 10);
+  const monthKey = match[2].toLowerCase().slice(0, 3).replace("á", "a").replace("é", "e");
+  const month = MONTH_MAP_ES[monthKey];
+  if (month === undefined) return null;
+  return new Date(2026, month, day);
+}
+function useWeather(ciudadKey, fechaDia) {
+  const [weather, setWeather] = useState(null); // { tipo: 'forecast'|'historico', tempMax, tempMin, humedad }
+  const [loaded, setLoaded] = useState(false);
+  useEffect(() => {
+    let mounted = true;
+    const cityInfo = ciudadKey && APP_DATA.cityWeather && APP_DATA.cityWeather[ciudadKey];
+    if (!cityInfo) {
+      setLoaded(true);
+      return;
+    }
+    const targetDate = parseFechaDia(fechaDia);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const diffDays = targetDate ? Math.round((targetDate - today) / 86400000) : null;
+
+    // Si la fecha está dentro del rango de pronóstico de Open-Meteo (~15 días) y no es pasada, intentar API real
+    if (diffDays !== null && diffDays >= 0 && diffDays <= 15) {
+      const dateStr = targetDate.toISOString().split("T")[0];
+      const url = `https://api.open-meteo.com/v1/forecast?latitude=${cityInfo.lat}&longitude=${cityInfo.lon}&daily=temperature_2m_max,temperature_2m_min,relative_humidity_2m_mean&timezone=auto&start_date=${dateStr}&end_date=${dateStr}`;
+      fetch(url).then(res => {
+        if (!res.ok) throw new Error("bad response");
+        return res.json();
+      }).then(json => {
+        if (!mounted) return;
+        if (json.daily && json.daily.temperature_2m_max && json.daily.temperature_2m_max.length > 0) {
+          setWeather({
+            tipo: "forecast",
+            tempMax: Math.round(json.daily.temperature_2m_max[0]),
+            tempMin: Math.round(json.daily.temperature_2m_min[0]),
+            humedad: json.daily.relative_humidity_2m_mean ? Math.round(json.daily.relative_humidity_2m_mean[0]) : null
+          });
+        } else {
+          throw new Error("no data");
+        }
+      }).catch(() => {
+        if (!mounted) return;
+        // Fallback a histórico si la API falla (sin conexión, fuera de rango real, etc.)
+        setWeather({
+          tipo: "historico",
+          tempMax: cityInfo.tempMaxJul,
+          tempMin: cityInfo.tempMinJul,
+          humedad: cityInfo.humedadJul
+        });
+      }).finally(() => {
+        if (mounted) setLoaded(true);
+      });
+    } else {
+      // Fecha lejana: usar promedio histórico directamente
+      setWeather({
+        tipo: "historico",
+        tempMax: cityInfo.tempMaxJul,
+        tempMin: cityInfo.tempMinJul,
+        humedad: cityInfo.humedadJul
+      });
+      setLoaded(true);
+    }
+    return () => {
+      mounted = false;
+    };
+  }, [ciudadKey, fechaDia]);
+  return [weather, loaded];
+}
+function WeatherChip({
+  ciudadKey,
+  fechaDia,
+  dark = false
+}) {
+  const [weather, loaded] = useWeather(ciudadKey, fechaDia);
+  if (!loaded || !weather) return null;
+  const isForecast = weather.tipo === "forecast";
+  return /*#__PURE__*/React.createElement("span", {
+    style: {
+      display: "inline-flex",
+      alignItems: "center",
+      gap: "4px",
+      fontSize: "11px",
+      fontWeight: 600,
+      padding: "2px 8px",
+      borderRadius: "999px",
+      background: dark ? "rgba(255,255,255,0.08)" : "rgba(62,107,140,0.12)",
+      color: dark ? "#a8c4d6" : "#3E6B8C"
+    },
+    title: isForecast ? "Pronóstico real" : "Promedio histórico de julio (fecha aún lejana)"
+  }, isForecast ? "🌡️" : "📊", " ", weather.tempMin, "°-", weather.tempMax, "°C", weather.humedad ? ` · 💧${weather.humedad}%` : "");
+}
 function DayCard({
   day,
   stamped,
@@ -1883,7 +2067,10 @@ function DayCard({
       color: visualStamped ? "#9a9587" : colorInfo.text,
       letterSpacing: "0.03em"
     }
-  }, colorInfo.label.toUpperCase()), visualStamped && /*#__PURE__*/React.createElement("span", {
+  }, colorInfo.label.toUpperCase()), !visualStamped && /*#__PURE__*/React.createElement(WeatherChip, {
+    ciudadKey: day.ciudadKey,
+    fechaDia: day.fecha_dia
+  }), visualStamped && /*#__PURE__*/React.createElement("span", {
     style: {
       fontSize: "10px",
       fontWeight: 700,
