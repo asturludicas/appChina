@@ -140,6 +140,7 @@ const MapIcon = makeIcon("Map");
 const Moon = makeIcon("Moon");
 const Train = makeIcon("Train");
 const Hotel = makeIcon("Hotel");
+const Car = makeIcon("Car");
 
 const APP_DATA = {
   "days": [{
@@ -149,7 +150,7 @@ const APP_DATA = {
     "estado_raw": "✈️ Día de vuelo, sin actividades. · 🔵 Día libre/flexible · 💰 Gasto: € bajo",
     "color": "🔵",
     "budget": "€ bajo",
-    "body_clean": "**Antes de salir de casa:**\n\n- Pasaportes, billetes de avión y primer hotel descargados/capturados offline\n- Alipay/WeChat Pay instalados y, si se puede, vinculados antes de salir\n- VPN instalada y probada\n- eSIM activada o lista para activar al llegar\n\n#### 🌙 Noche\nNoche a bordo. Sin fichas de app.\n\n---",
+    "body_clean": "**Antes de salir de casa:**\n\n- Pasaportes, billetes de avión y primer hotel descargados/capturados offline\n- Alipay/WeChat Pay instalados y, si se puede, vinculados antes de salir\n- VPN instalada y probada\n- eSIM activada o lista para activar al llegar\n- ⚠️ Sacar algo de efectivo en HKD antes de salir o al llegar — varios restaurantes locales en Hong Kong (Mak Man Kee, Yat Lok, etc.) son SOLO EFECTIVO, no aceptan tarjeta ni Alipay\n\n#### 🌙 Noche\nNoche a bordo. Sin fichas de app.\n\n---",
     "meals": null,
     "alarma": null,
     "ciudadKey": "vuelo",
@@ -179,7 +180,7 @@ const APP_DATA = {
     "estado_raw": "Imprescindibles: Victoria Peak + Peak Tram + Star Ferry. Comida y cena: confirmadas (verificadas) · 🟢 Día fácil (urbano, transporte público, sin madrugón) · 💰 Gasto: €€ medio (Peak Tram + comidas + Star Ferry)",
     "color": "🟢",
     "budget": "€€ medio (Peak Tram + comidas + Star Ferry)",
-    "body_clean": "**Antes de salir del hotel:**\n\n- Calzado cómodo para caminar (día largo a pie por Central/Sheung Wan)\n- Octopus card o Alipay listos para MTR\n- Agua y gorra/protección solar por el calor de julio\n- Revisar hora de subida al Peak Tram (objetivo 16:30-17:00)\n\n**🚗 Transporte del día:**\n\n- Alarma recomendada: 07:30 aprox.\n- Hora límite orientativa: salir del hotel sobre 08:30-09:00\n- Hotel → Kowloon/Central: MTR recomendado\n- Central / Sheung Wan / Soho / Tai Kwun / Man Mo: moverse andando y con MTR/tranvía según calor\n- Subida al Peak: Peak Tram o bus/taxi según colas; si hay mucha cola, taxi/DiDi puede ahorrar tiempo\n- Tsim Sha Tsui / Victoria Harbour: Star Ferry si encaja la ruta\n- Notas: día urbano, Octopus/Alipay preparado, agua y pausas por calor\n\n#### 🌅 Mañana - Central y Sheung Wan\nRuta: Hotel - MTR Olympic Station - Hong Kong Station / Central - IFC - pasarelas elevadas - HSBC Main Building - Bank of China Tower - Mid-Levels Escalators - Lan Kwai Fong - Soho - Tai Kwun - Man Mo Temple - Sheung Wan.\n\nZona donde se entiende la ciudad vertical: pasarelas elevadas, escaleras mecánicas cubiertas más largas del mundo (Central-Mid-Levels Escalators), contraste entre rascacielos modernos (HSBC de Foster, Bank of China de Pei) y templos tradicionales.\n\nFichas de app:\n\n- Nombre: Traslado Olympic Station - Central\n\n  - Ciudad: Hong Kong\n\n  - Día: 4 julio\n\n  - Categoría: Transporte\n\n  - Apple Maps: https://maps.apple/p/5TZHyyYkZL9KdQ\n\n  - Notas: Tung Chung Line. Al salir se accede directamente a la red financiera de Central de forma subterránea (Enlace de Central: https://maps.apple/p/sETQgByE7m-xg0). La movilidad peatonal en HK opera en tres dimensiones: subsuelo del metro, aceras a nivel de calle y pasarelas elevadas que cruzan los rascacielos\n\n  - Prioridad: Imprescindible\n\n- Nombre: Central-Mid-Levels Escalators\n\n  - Ciudad: Hong Kong\n\n  - Día: 4 julio\n\n  - Categoría: Paseo / infraestructura urbana\n\n  - Apple Maps: https://maps.apple/p/aM8fgiyzJ2UXuw\n\n  - Notas: Sistema de escaleras mecánicas cubiertas exteriores más largo del mundo, construido en 1993 no como atracción turística sino como solución de ingeniería de movilidad urbana masiva. Cambia de sentido según la hora (baja por la mañana para trabajadores, sube desde mediodía)\n\n  - Prioridad: Muy recomendable\n\n[GUIA:mid_levels_escalators]\n\n- Nombre: Man Mo Temple\n\n  - Ciudad: Hong Kong\n\n  - Día: 4 julio\n\n  - Categoría: Templo\n\n  - Apple Maps: https://maps.apple/p/W3w3IdPrhiPBCL\n\n  - Notas: Parada de transición perfecta entre Soho y Sheung Wan\n\n[GUIA:man_mo_temple]\n\n  - Prioridad: Muy recomendable\n\n- Nombre: Sheung Wan\n\n  - Ciudad: Hong Kong\n\n  - Día: 4 julio\n\n  - Categoría: Barrio / paseo\n\n  - Apple Maps: https://maps.apple/p/wC.Ag2s24h9c9B\n\n[GUIA:sheung_wan]\n\n  - Notas: Tiendas tradicionales de medicina china, pescado seco y cafeterías modernas\n\n  - Prioridad: Muy recomendable\n\nComida día 4:\n\n- Nombre: Dim Sum Square\n- Ciudad: Hong Kong | Día: 4 julio | Categoría: Restaurante local / dim sum\n- Dirección CORREGIDA: G/F, 78 Jervois Street, Sheung Wan (el local se trasladó; ya no está en Hillier Street)\n- Nombre chino: 聚點坊點心專門店\n- Apple Maps: https://maps.apple/p/t-u1ZgxDoq_RTC\n- Coordenadas: Latitud 22.28471, Longitud 114.15112\n- Horario: almuerzo\n- Comida: Verificado · Elegido (opción principal, ir pronto por colas)\n- Notas: Dim sum tradicional rápido y sin pretensiones. Har gow, siu mai y baked BBQ pork buns. Cola desde las 12:30 en fin de semana, ir pronto\n- Prioridad: Muy recomendable\n\n- Nombre: Samsen Sheung Wan\n- Ciudad: Hong Kong | Día: 4 julio | Categoría: Restaurante / street food tailandesa\n- Dirección: Sheung Wan, Hong Kong\n- Apple Maps: PENDIENTE generar pin\n- Horario: almuerzo\n- Comida: Opción B\n- Notas: Comida tailandesa tipo street food muy popular. Boat noodles, curries, arroz frito con cangrejo. Alternativa si apetece cambiar de dim sum\n- Prioridad: Opción B\n\n#### ☀️ Tarde - Subida al Peak\nA media tarde, ir hacia Peak Tram Lower Terminus para subir a Victoria Peak. Llegar con tiempo para ver las vistas de día, el atardecer y el skyline iluminado de noche.\n\nFichas de app:\n\n- Nombre: Peak Tram Lower Terminus\n\n  - Ciudad: Hong Kong\n\n  - Día: 4 julio\n\n  - Categoría: Transporte / acceso al Peak\n\n  - Apple Maps: https://maps.apple/p/AW~zDaAiGRF0SQ\n\n[GUIA:peak_tram_lower_terminus]\n\n  - Horario: estar allí 16:30-17:00h\n\n  - Notas: Llegar estrictamente entre las 16:30 y 17:00h para coger el funicular antes del colapso de masas. Recomendable billete cerrado con Sky Terrace 428 si el día no presenta niebla densa. Inaugurado en 1888, usaba motores de vapor en sus inicios y servía para que los gobernadores coloniales británicos escaparan del calor del puerto inferior\n\n  - Prioridad: Imprescindible\n\n- Nombre: Victoria Peak\n\n  - Ciudad: Hong Kong\n\n  - Día: 4 julio\n\n  - Categoría: Mirador / vistas\n\n  - Apple Maps: https://maps.apple/p/jX66uBG2ITdtYw\n\n  - Horario: subir ~17:30 para coger sitio antes del atardecer\n\n  - Notas: El mejor punto para entender Hong Kong como ciudad, isla, Kowloon, bahía, montaña y puerto\n\n[GUIA:victoria_peak]\n\n  - Prioridad: Imprescindible\n\n#### 🌙 Noche - Star Ferry de vuelta\nBajar del Peak y cruzar la bahía en el Star Ferry desde Central Pier 7 hasta Tsim Sha Tsui. Cena de ganso asado en Central: Yat Lok (más auténtico/económico) o Yung Kee (más formal/tranquilo).\n\nFicha de app:\n\n- Nombre: Central Pier No. 7 Star Ferry\n\n  - Ciudad: Hong Kong\n\n  - Día: 4 julio\n\n  - Categoría: Ferry / transporte\n\n  - Apple Maps: https://maps.apple/p/eTXJ6roDSq5J~a\n\n[GUIA:central_pier_no_7_star_ferry]\n\n  - Horario: embarque ~21:00 tras bajar del Peak\n\n  - Notas: Transporte histórico de Hong Kong, cruza Victoria Harbour. Buena vista del skyline desde el agua\n\n  - Prioridad: Imprescindible\n\nCena día 4:\n\n- Nombre: Yat Lok Restaurant\n- Ciudad: Hong Kong | Día: 4 julio | Categoría: Restaurante local (1 estrella Michelin) / roast goose\n- Dirección: G/F, 34-38 Stanley Street, Central, Hong Kong\n- Nombre chino: 一樂燒鵝\n- Apple Maps: https://maps.apple/p/Ge9~3KUPscHjAC\n- Coordenadas: Latitud 22.28258, Longitud 114.15611\n- Horario: cena (cierra 20:30-21:00 según día, cerrado los miércoles)\n- Comida: Verificado · Elegido (opción principal, cierra pronto, solo efectivo)\n- Notas: Local pequeño y concurrido, 1 estrella Michelin desde 2015, famoso por el ganso asado. Solo efectivo. Experiencia auténtica y directa\n- Prioridad: Muy recomendable\n\n- Nombre: Yung Kee Restaurant\n- Ciudad: Hong Kong | Día: 4 julio | Categoría: Restaurante cantonés histórico / roast goose\n- Dirección: 32-40 Wellington Street, Central, Hong Kong\n- Apple Maps: PENDIENTE generar pin\n- Horario: cena\n- Comida: Opción B\n- Notas: Institución desde 1942, ya sin estrella Michelin (la perdió en 2011) pero sigue siendo referencia de ganso asado en HK. Más formal, amplio y pausado que Yat Lok, acepta reserva\n- Prioridad: Opción B\n\n---",
+    "body_clean": "**Antes de salir del hotel:**\n\n- Calzado cómodo para caminar (día largo a pie por Central/Sheung Wan)\n- Octopus card o Alipay listos para MTR\n- Agua y gorra/protección solar por el calor de julio\n- Revisar hora de subida al Peak Tram (objetivo 16:30-17:00)\n\n**🚗 Transporte del día:**\n\n- Alarma recomendada: 07:30 aprox.\n- Hora límite orientativa: salir del hotel sobre 08:30-09:00\n- Hotel → Kowloon/Central: MTR recomendado\n- Central / Sheung Wan / Soho / Tai Kwun / Man Mo: moverse andando y con MTR/tranvía según calor\n- Subida al Peak: Peak Tram o bus/taxi según colas; si hay mucha cola, taxi/DiDi puede ahorrar tiempo\n- Tsim Sha Tsui / Victoria Harbour: Star Ferry si encaja la ruta\n- Notas: día urbano, Octopus/Alipay preparado, agua y pausas por calor\n\n#### 🌅 Mañana - Central y Sheung Wan\nRuta: Hotel - MTR Olympic Station - Hong Kong Station / Central - IFC - pasarelas elevadas - HSBC Main Building - Bank of China Tower - Mid-Levels Escalators - Lan Kwai Fong - Soho - Tai Kwun - Man Mo Temple - Sheung Wan.\n\nZona donde se entiende la ciudad vertical: pasarelas elevadas, escaleras mecánicas cubiertas más largas del mundo (Central-Mid-Levels Escalators), contraste entre rascacielos modernos (HSBC de Foster, Bank of China de Pei) y templos tradicionales.\n\nFichas de app:\n\n- Nombre: Traslado Olympic Station - Central\n\n  - Ciudad: Hong Kong\n\n  - Día: 4 julio\n\n  - Categoría: Transporte\n\n  - Apple Maps: https://maps.apple/p/5TZHyyYkZL9KdQ\n\n  - Notas: Tung Chung Line. Al salir se accede directamente a la red financiera de Central de forma subterránea (Enlace de Central: https://maps.apple/p/sETQgByE7m-xg0). La movilidad peatonal en HK opera en tres dimensiones: subsuelo del metro, aceras a nivel de calle y pasarelas elevadas que cruzan los rascacielos\n\n  - Prioridad: Imprescindible\n\n- Nombre: Central-Mid-Levels Escalators\n\n  - Ciudad: Hong Kong\n\n  - Día: 4 julio\n\n  - Categoría: Paseo / infraestructura urbana\n\n  - Apple Maps: https://maps.apple/p/aM8fgiyzJ2UXuw\n\n  - Notas: Sistema de escaleras mecánicas cubiertas exteriores más largo del mundo, construido en 1993 no como atracción turística sino como solución de ingeniería de movilidad urbana masiva. Cambia de sentido según la hora (baja por la mañana para trabajadores, sube desde mediodía)\n\n  - Prioridad: Muy recomendable\n\n[GUIA:mid_levels_escalators]\n\n- Nombre: Man Mo Temple\n\n  - Ciudad: Hong Kong\n\n  - Día: 4 julio\n\n  - Categoría: Templo\n\n  - Apple Maps: https://maps.apple/p/W3w3IdPrhiPBCL\n\n  - Notas: Parada de transición perfecta entre Soho y Sheung Wan\n\n[GUIA:man_mo_temple]\n\n  - Prioridad: Muy recomendable\n\n- Nombre: Sheung Wan\n\n  - Ciudad: Hong Kong\n\n  - Día: 4 julio\n\n  - Categoría: Barrio / paseo\n\n  - Apple Maps: https://maps.apple/p/wC.Ag2s24h9c9B\n\n[GUIA:sheung_wan]\n\n  - Notas: Tiendas tradicionales de medicina china, pescado seco y cafeterías modernas\n\n  - Prioridad: Muy recomendable\n\nComida día 4:\n\n- Nombre: Dim Sum Square\n- Ciudad: Hong Kong | Día: 4 julio | Categoría: Restaurante local / dim sum\n- Dirección CORREGIDA: G/F, 78 Jervois Street, Sheung Wan (el local se trasladó; ya no está en Hillier Street)\n- Nombre chino: 聚點坊點心專門店\n- Apple Maps: https://maps.apple/p/t-u1ZgxDoq_RTC\n- Coordenadas: Latitud 22.28471, Longitud 114.15112\n- Horario: almuerzo\n- Comida: Verificado · Elegido (opción principal, ir pronto por colas)\n- Notas: Dim sum tradicional rápido y sin pretensiones. Har gow, siu mai y baked BBQ pork buns. Cola desde las 12:30 en fin de semana, ir pronto\n- Prioridad: Muy recomendable\n\n- Nombre: Samsen Sheung Wan\n- Ciudad: Hong Kong | Día: 4 julio | Categoría: Restaurante / street food tailandesa\n- Dirección: Sheung Wan, Hong Kong\n- Apple Maps: PENDIENTE generar pin\n- Horario: almuerzo\n- Comida: Opción B\n- Notas: Comida tailandesa tipo street food muy popular. Boat noodles, curries, arroz frito con cangrejo. Alternativa si apetece cambiar de dim sum\n- Prioridad: Opción B\n\n#### ☀️ Tarde - Subida al Peak\nA media tarde, ir hacia Peak Tram Lower Terminus para subir a Victoria Peak. Llegar con tiempo para ver las vistas de día, el atardecer y el skyline iluminado de noche.\n\nFichas de app:\n\n- Nombre: Peak Tram Lower Terminus\n\n  - Ciudad: Hong Kong\n\n  - Día: 4 julio\n\n  - Categoría: Transporte / acceso al Peak\n\n  - Apple Maps: https://maps.apple/p/AW~zDaAiGRF0SQ\n\n[GUIA:peak_tram_lower_terminus]\n\n  - Horario: estar allí 16:30-17:00h\n\n  - Notas: Llegar estrictamente entre las 16:30 y 17:00h para coger el funicular antes del colapso de masas. Recomendable billete cerrado con Sky Terrace 428 si el día no presenta niebla densa. Inaugurado en 1888, usaba motores de vapor en sus inicios y servía para que los gobernadores coloniales británicos escaparan del calor del puerto inferior\n\n  - Prioridad: Imprescindible\n\n- Nombre: Victoria Peak\n\n  - Ciudad: Hong Kong\n\n  - Día: 4 julio\n\n  - Categoría: Mirador / vistas\n\n  - Apple Maps: https://maps.apple/p/jX66uBG2ITdtYw\n\n  - Horario: subir ~17:30 para coger sitio antes del atardecer\n\n  - Notas: El mejor punto para entender Hong Kong como ciudad, isla, Kowloon, bahía, montaña y puerto\n\n[GUIA:victoria_peak]\n\n  - Prioridad: Imprescindible\n\n#### 🌙 Noche - Star Ferry de vuelta\nBajar del Peak y cruzar la bahía en el Star Ferry desde Central Pier 7 hasta Tsim Sha Tsui. ⚠️ Cena de ganso asado en Central condicionada a la hora: Yat Lok solo si llegáis ANTES de las 20:00 (cierra pronto, no es cena tardía segura). Si el Peak se alarga, mejor Yung Kee (abre más tarde) o cena más cómoda en Central/Jordan.\n\nFicha de app:\n\n- Nombre: Central Pier No. 7 Star Ferry\n\n  - Ciudad: Hong Kong\n\n  - Día: 4 julio\n\n  - Categoría: Ferry / transporte\n\n  - Apple Maps: https://maps.apple/p/eTXJ6roDSq5J~a\n\n[GUIA:central_pier_no_7_star_ferry]\n\n  - Horario: embarque ~21:00 tras bajar del Peak\n\n  - Notas: Transporte histórico de Hong Kong, cruza Victoria Harbour. Buena vista del skyline desde el agua\n\n  - Prioridad: Imprescindible\n\nCena día 4:\n\n- Nombre: Yat Lok Restaurant\n- Ciudad: Hong Kong | Día: 4 julio | Categoría: Restaurante local (1 estrella Michelin) / roast goose\n- Dirección: G/F, 34-38 Stanley Street, Central, Hong Kong\n- Nombre chino: 一樂燒鵝\n- Apple Maps: https://maps.apple/p/Ge9~3KUPscHjAC\n- Coordenadas: Latitud 22.28258, Longitud 114.15611\n- Horario: cena (cierra 20:30-21:00 según día, cerrado los miércoles)\n- Comida: Verificado · Elegido SOLO SI llegáis antes de las 20:00 (cierra pronto, no es cena tardía segura)\n- Notas: Local pequeño y concurrido, 1 estrella Michelin desde 2015, famoso por el ganso asado. Solo efectivo. Experiencia auténtica y directa\n- Prioridad: Muy recomendable\n\n- Nombre: Yung Kee Restaurant\n- Ciudad: Hong Kong | Día: 4 julio | Categoría: Restaurante cantonés histórico / roast goose\n- Dirección: 32-40 Wellington Street, Central, Hong Kong\n- Apple Maps: PENDIENTE generar pin\n- Horario: cena\n- Comida: Opción B\n- Notas: Institución desde 1942, ya sin estrella Michelin (la perdió en 2011) pero sigue siendo referencia de ganso asado en HK. Más formal, amplio y pausado que Yat Lok, acepta reserva\n- Prioridad: Opción B\n\n---",
     "meals": {
       "principal": {
         "que_mirar": "Comida: Dim Sum Square (opción B Samsen) · Cena: Yat Lok (opción B Yung Kee)",
@@ -197,7 +198,7 @@ const APP_DATA = {
     "estado_raw": "Comida y cena: mirar zona (pendientes) · 🟡 Día durillo (mucho recorrido a pie, calor húmedo) · 💰 Gasto: € bajo (templos gratis, mercados sin coste de entrada)",
     "color": "🟡",
     "budget": "€ bajo (solo comidas y metro)",
-    "body_clean": "**Antes de salir del hotel:**\n\n- Agua y gorra (calor húmedo todo el día, mucho recorrido a pie)\n- Sin necesidad de pasaporte hoy\n\n**🚗 Transporte del día:**\n\n- Alarma recomendada: 08:00 aprox.\n- Hora límite orientativa: salir sobre 09:00\n- Hotel → Wong Tai Sin Temple: MTR directo, gran afluencia local\n- Wong Tai Sin → Chi Lin Nunnery / Nan Lian Garden: caminando ~18 min (puente elevado peatonal)\n- Nan Lian Garden → Kowloon Walled City Park: DiDi recomendado (evita 24 min de caminata sin sombra con calor húmedo)\n- Mong Kok (mercados): MTR o taxi corto según cansancio\n- Vuelta al hotel: taxi/DiDi si es tarde o estáis cansados\n- Trayecto con bastante caminata acumulada: llevar agua y algo para picar\n\n#### 🌅 Mañana - Wong Tai Sin y jardines Tang\n\nTraslado matutino directo en MTR hacia Wong Tai Sin Temple, templo taoísta/budista con gran afluencia de fieles locales. Fijarse en el ritual del Kau Cim (agitar un tubo de bambú con varillas numeradas hasta que cae una, que determina la fortuna mediante un oráculo escrito). Es famoso porque la cultura popular dice que \"concede cualquier deseo pedido con el corazón puro\"; hay adivinos oficiales que interpretan las varillas y las líneas de la mano.\n\nFicha de app:\n\n- Nombre: Wong Tai Sin Temple\n  - Categoría: Templo Taoísta / Budista\n  - Apple Maps: https://maps.apple/p/TKxqvsWk7_XCTi\n  - Prioridad: Alta\n\n[GUIA:wong_tai_sin]\n\nDespués, Chi Lin Nunnery y Nan Lian Garden, conectados a pie por un puente elevado (~18 min andando desde Wong Tai Sin). Fijarse en el silencio del jardín Tang y la simetría de la madera oscura del monasterio, enmarcado por torres residenciales de 50 pisos al fondo. Dato curioso: la estructura se reconstruyó en 1998 siguiendo las técnicas de la Dinastía Tang — ni un solo clavo de metal, todo ensamblado con encajes machihembrados de madera de cedro.\n\nFicha de app:\n\n- Nombre: Chi Lin Nunnery & Nan Lian Garden\n  - Categoría: Monasterio / Jardín paisajístico Tang\n  - Apple Maps: https://maps.apple/p/E9okTWSmg6MGJ.z\n  - Prioridad: Imprescindible\n\n[GUIA:chi_lin_nunnery]\n\n#### ☀️ Tarde - Kowloon Walled City Park\n\nTrayecto en DiDi desde Nan Lian Garden hasta el parque (evita la caminata larga sin sombra). Fijarse en la maqueta de bronce a escala que se conserva en el centro del parque y los paneles arqueológicos con los cimientos de la antigua puerta de la ciudad. Dato curioso: este parque de estilo clásico chino fue, hasta su demolición en 1993, la mítica Ciudad Amurallada de Kowloon — el lugar más densamente poblado del planeta, un enclave sin ley de 2.6 hectáreas donde malvivían 50.000 personas en un laberinto vertical de edificios interconectados, clínicas clandestinas, talleres ilegales y control de las Tríadas.\n\nFicha de app:\n\n- Nombre: Kowloon Walled City Park\n  - Categoría: Parque histórico / Urbanismo extremo\n  - Apple Maps: https://maps.apple/p/E2d.avpgDL~dHU\n  - Prioridad: Alta (selección del itinerario)\n\n[GUIA:kowloon_walled_city]\n\n#### 🌙 Noche - Eje de mercados especializados de Mong Kok\n\nRecorrido lineal a pie uniendo el Flower Market, el Yuen Po Bird Garden y el Goldfish Market, terminando en las compras de Ladies Market y la densidad de neones de Portland Street. Fijarse en las bolsas de plástico infladas con oxígeno donde cuelgan miles de peces de colores en las fachadas del Goldfish Market, y los ancianos paseando jaulas de bambú artesanales en el Bird Garden. Dato curioso: confinar peces y pájaros cantores en casa no es solo decorativo — está ligado al Feng Shui, donde el movimiento del agua y la vitalidad del animal actúan como catalizadores de prosperidad y desvían la energía negativa en pisos pequeños.\n\nFichas de app:\n\n- Nombre: Mercado de Flores (Flower Market)\n  - Categoría: Mercado especializado\n  - Apple Maps: https://maps.apple/p/T5Aav~-PmMewF4\n\n- Nombre: Yuen Po Bird Garden\n  - Categoría: Mercado especializado\n  - Apple Maps: https://maps.apple/p/bguBpUyssE3ZAz\n\n[GUIA:yuen_po_bird_garden]\n\n- Nombre: Sneaker Street\n  - Categoría: Calle comercial\n  - Apple Maps: https://maps.apple/p/vRG_LWSfIwU3bf\n\n[GUIA:sneaker_street]\n\n- Nombre: Ladies Market\n  - Categoría: Mercado especializado\n  - Apple Maps: https://maps.apple/p/bkEMjrXp5divI2\n\n[GUIA:ladies_market]\n\n- Nombre: Portland Street (neones)\n  - Categoría: Calle / paseo nocturno\n  - Apple Maps: https://maps.apple/p/G2sA2RfdHyQgRW\n\n[GUIA:portland_street]\n\n[GUIA:mong_kok_mercados]\n\nComida día 5: cerca de Wong Tai Sin o Kowloon Walled City Park.\nCena día 5: Opción principal: Hing Kee Claypot Rice, Temple Street (claypot rice nocturno). Opción B: Spice Market o Temple Street Spicy Crabs (marisco dai pai dong). Zona: Temple Street/Jordan.",
+    "body_clean": "**Antes de salir del hotel:**\n\n- Agua y gorra (calor húmedo todo el día, mucho recorrido a pie)\n- Sin necesidad de pasaporte hoy\n\n**🚗 Transporte del día:**\n\n- Alarma recomendada: 08:00 aprox.\n- Hora límite orientativa: salir sobre 09:00\n- Hotel → Wong Tai Sin Temple: MTR directo, gran afluencia local\n- Wong Tai Sin → Chi Lin Nunnery / Nan Lian Garden: caminando ~18 min (puente elevado peatonal)\n- Nan Lian Garden → Kowloon Walled City Park: DiDi recomendado (evita 24 min de caminata sin sombra con calor húmedo)\n- Mong Kok (mercados): MTR o taxi corto según cansancio\n- Vuelta al hotel: taxi/DiDi si es tarde o estáis cansados\n- Trayecto con bastante caminata acumulada: llevar agua y algo para picar\n\n#### 🌅 Mañana - Wong Tai Sin y jardines Tang\n\nTraslado matutino directo en MTR hacia Wong Tai Sin Temple, templo taoísta/budista con gran afluencia de fieles locales. Fijarse en el ritual del Kau Cim (agitar un tubo de bambú con varillas numeradas hasta que cae una, que determina la fortuna mediante un oráculo escrito). Es famoso porque la cultura popular dice que \"concede cualquier deseo pedido con el corazón puro\"; hay adivinos oficiales que interpretan las varillas y las líneas de la mano.\n\nFicha de app:\n\n- Nombre: Wong Tai Sin Temple\n  - Categoría: Templo Taoísta / Budista\n  - Apple Maps: https://maps.apple/p/TKxqvsWk7_XCTi\n  - Prioridad: Alta\n\n[GUIA:wong_tai_sin]\n\nDespués, Chi Lin Nunnery y Nan Lian Garden, conectados a pie por un puente elevado (~18 min andando desde Wong Tai Sin). Fijarse en el silencio del jardín Tang y la simetría de la madera oscura del monasterio, enmarcado por torres residenciales de 50 pisos al fondo. Dato curioso: la estructura se reconstruyó en 1998 siguiendo las técnicas de la Dinastía Tang — ni un solo clavo de metal, todo ensamblado con encajes machihembrados de madera de cedro.\n\nFicha de app:\n\n- Nombre: Chi Lin Nunnery & Nan Lian Garden\n  - Categoría: Monasterio / Jardín paisajístico Tang\n  - Apple Maps: https://maps.apple/p/E9okTWSmg6MGJ.z\n  - Prioridad: Imprescindible\n\n[GUIA:chi_lin_nunnery]\n\n#### ☀️ Tarde - Kowloon Walled City Park\n\nTrayecto en DiDi desde Nan Lian Garden hasta el parque (evita la caminata larga sin sombra). Fijarse en la maqueta de bronce a escala que se conserva en el centro del parque y los paneles arqueológicos con los cimientos de la antigua puerta de la ciudad. Dato curioso: este parque de estilo clásico chino fue, hasta su demolición en 1993, la mítica Ciudad Amurallada de Kowloon — el lugar más densamente poblado del planeta, un enclave sin ley de 2.6 hectáreas donde malvivían 50.000 personas en un laberinto vertical de edificios interconectados, clínicas clandestinas, talleres ilegales y control de las Tríadas.\n\nFicha de app:\n\n- Nombre: Kowloon Walled City Park\n  - Categoría: Parque histórico / Urbanismo extremo\n  - Apple Maps: https://maps.apple/p/E2d.avpgDL~dHU\n  - Prioridad: Alta (selección del itinerario)\n\n[GUIA:kowloon_walled_city]\n\n#### 🌙 Noche - Eje de mercados especializados de Mong Kok\n\nRecorrido lineal a pie uniendo el Flower Market, el Yuen Po Bird Garden y el Goldfish Market, terminando en las compras de Ladies Market y la densidad de neones de Portland Street. Fijarse en las bolsas de plástico infladas con oxígeno donde cuelgan miles de peces de colores en las fachadas del Goldfish Market, y los ancianos paseando jaulas de bambú artesanales en el Bird Garden. Dato curioso: confinar peces y pájaros cantores en casa no es solo decorativo — está ligado al Feng Shui, donde el movimiento del agua y la vitalidad del animal actúan como catalizadores de prosperidad y desvían la energía negativa en pisos pequeños.\n\nFichas de app:\n\n- Nombre: Mercado de Flores (Flower Market)\n  - Categoría: Mercado especializado\n  - Apple Maps: https://maps.apple/p/T5Aav~-PmMewF4\n\n- Nombre: Yuen Po Bird Garden\n  - Categoría: Mercado especializado\n  - Apple Maps: https://maps.apple/p/bguBpUyssE3ZAz\n\n[GUIA:yuen_po_bird_garden]\n\n- Nombre: Sneaker Street\n  - Categoría: Calle comercial\n  - Apple Maps: https://maps.apple/p/vRG_LWSfIwU3bf\n\n[GUIA:sneaker_street]\n\n- Nombre: Ladies Market\n  - Categoría: Mercado especializado\n  - Apple Maps: https://maps.apple/p/bkEMjrXp5divI2\n\n[GUIA:ladies_market]\n\n- Nombre: Portland Street (neones)\n  - Categoría: Calle / paseo nocturno\n  - Apple Maps: https://maps.apple/p/G2sA2RfdHyQgRW\n\n[GUIA:portland_street]\n\n[GUIA:mong_kok_mercados]\n\n**Opcional (solo si hace buen tiempo y no rompe el ritmo):** Choi Hung Estate, el bloque de viviendas con la fachada de colores arcoíris muy fotografiado en redes — no es imprescindible, solo añadirlo si vais sobrados de tiempo y energía.\n\nComida día 5 - Plan B (zona demasiado abierta, mejor tener algo concreto): congee o wonton noodles en algún local sencillo cerca de Wong Tai Sin, o arroz con carnes asadas / centro comercial con aire acondicionado cerca de Kowloon Walled City Park si aprieta el calor.\nCena día 5: Opción principal: Hing Kee Claypot Rice, Temple Street (claypot rice nocturno). Opción B: Spice Market o Temple Street Spicy Crabs (marisco dai pai dong). Zona: Temple Street/Jordan.",
     "meals": {
       "principal": {
         "que_mirar": "Comida: Lau Sum Kee Noodle / opción B One Dim Sum / merienda Kam Wah · Cena: Hing Kee Claypot Rice / opción B Spice Market o Temple Street Spicy Crabs",
@@ -233,7 +234,7 @@ const APP_DATA = {
     "estado_raw": "✅ Día reestructurado: Jingshan movido aquí para liberar el jueves · 🟡 Día durillo (llegada + 3 sitios) · 💰 Gasto: € bajo (templos + mercado)",
     "color": "🟡",
     "budget": "€€ medio",
-    "body_clean": "**Antes de salir del hotel (tras llegar):**\n\n- Captura del hotel en chino (zona Xinzhong Street)\n- Agua y gorra, calor de julio en Pekín\n- Comprar agua/snacks de supervivencia por la noche para el día siguiente (ver más abajo)\n\n[TRANSPORTE: Llegada en tren nocturno → Hotel Homeinn (Xinzhong Street): metro o DiDi directo para soltar mochilas]\n\n#### 🌅 09:00 - Tren nocturno → hotel (check-in)\n\nLlegada a la estación de Pekín desde el tren nocturno. Traslado directo al hotel en metro o DiDi para soltar mochilas, ducha rápida de supervivencia para quitar el cansancio del viaje y salir a la calle a exprimir el día.\n\nFicha de app:\n\n- Nombre: Homeinn Selected (Zona Xinzhong Street)\n  - Categoría: Alojamiento / Base operativa\n  - Prioridad: Alta\n\n#### 🌅 11:00 - Templo del Cielo y Mercado de las Perlas\n\n[TRANSPORTE: Hotel → Templo del Cielo: metro o DiDi directo]\n\nPaseo matutino por los jardines del Templo del Cielo (天坛), donde los locales se juntan a jugar a las cartas y practicar taichi. Al terminar, se cruza la avenida por el paso subterráneo directo al Mercado de las Perlas (红桥市场) para el primer contacto con el regateo y las compras de imitaciones.\n\n[GUIA:templo_del_cielo_y_mercado_de_las_perlas]\n\nFicha de app:\n\n- Nombre: Templo del Cielo y Mercado de las Perlas\n  - Categoría: Parque imperial / Mercado\n  - Notas: Paso subterráneo directo entre ambos, sin necesidad de transporte\n  - Prioridad: Alta\n\n#### ☀️ 18:00 - Mirador de la Colina del Carbón (Jingshan)\n\n[TRANSPORTE: Mercado de las Perlas → Jingshan: DiDi hacia el centro del mapa]\n\n⚠️ Nota táctica de reestructuración: mover este punto al martes es la clave para liberar el jueves. Hay que subir los escalones hasta el pabellón central antes del cierre de accesos para pillar el atardecer limpio con las vistas panorámicas de todos los tejados dorados de la Ciudad Prohibida.\n\nFicha de app:\n\n- Nombre: Parque Jingshan (景山公园)\n  - Categoría: Mirador / Parque\n  - Prioridad: Alta\n\n[GUIA:jingshan_atardecer]\n\n#### 🌙 20:00 - Noche en los lagos de Houhai y hutongs\n\n[TRANSPORTE: Jingshan → Houhai: a pie directo, bajando por la salida norte del parque]\n\nPaseo nocturno por la zona de los canales iluminados de Houhai (后海) y los callejones tradicionales (hutongs) de Nanluoguxiang (南锣鼓巷).\n\n[GUIA:houhai_y_nanluoguxiang]\n\nFicha de app:\n\n- Nombre: Houhai y Nanluoguxiang\n  - Categoría: Lago / Hutongs / Paseo nocturno\n  - Prioridad: Alta\n\n🚨 Compra obligatoria de supervivencia: antes de volver al hotel, entrar a un 7-Eleven o FamilyMart y comprar onigiris, baozis envasados, agua y frutos secos. Se guardan en la mochila para la comida en ruta del día siguiente (día de Universal Studios, sin paradas en restaurantes).\n\nCena día 7: en la zona de Houhai/hutongs, sin sitio fijo concreto.",
+    "body_clean": "**Antes de salir del hotel (tras llegar):**\n\n- Captura del hotel en chino (zona Xinzhong Street)\n- Agua y gorra, calor de julio en Pekín\n- Comprar agua/snacks de supervivencia por la noche para el día siguiente (ver más abajo)\n\n[TRANSPORTE: Llegada en tren nocturno → Hotel Homeinn (Xinzhong Street): metro o DiDi directo para soltar mochilas]\n\n#### 🌅 09:00 - Tren nocturno → hotel (check-in)\n\nLlegada a la estación de Pekín desde el tren nocturno. Traslado directo al hotel en metro o DiDi para soltar mochilas, ducha rápida de supervivencia para quitar el cansancio del viaje y salir a la calle a exprimir el día.\n\nFicha de app:\n\n- Nombre: Homeinn Selected (Zona Xinzhong Street)\n  - Categoría: Alojamiento / Base operativa\n  - Prioridad: Alta\n\n#### 🌅 11:00 - Templo del Cielo y Mercado de las Perlas\n\n[TRANSPORTE: Hotel → Templo del Cielo: metro o DiDi directo]\n\nPaseo matutino por los jardines del Templo del Cielo (天坛), donde los locales se juntan a jugar a las cartas y practicar taichi. Al terminar, se cruza la avenida por el paso subterráneo directo al Mercado de las Perlas (红桥市场) para el primer contacto con el regateo y las compras de imitaciones.\n\n[GUIA:templo_del_cielo_y_mercado_de_las_perlas]\n\nFicha de app:\n\n- Nombre: Templo del Cielo y Mercado de las Perlas\n  - Categoría: Parque imperial / Mercado\n  - Notas: Paso subterráneo directo entre ambos, sin necesidad de transporte\n  - Prioridad: Alta\n\n#### ☀️ 18:00 - Mirador de la Colina del Carbón (Jingshan)\n\n[TRANSPORTE: Mercado de las Perlas → Jingshan: DiDi hacia el centro del mapa]\n\n⚠️ Nota táctica de reestructuración: mover este punto al martes es la clave para liberar el jueves. Hay que subir los escalones hasta el pabellón central antes del cierre de accesos para pillar el atardecer limpio con las vistas panorámicas de todos los tejados dorados de la Ciudad Prohibida.\n\nFicha de app:\n\n- Nombre: Parque Jingshan (景山公园)\n  - Categoría: Mirador / Parque\n  - Prioridad: Alta\n\n[GUIA:jingshan_atardecer]\n\n#### 🌙 20:00 - Noche en los lagos de Houhai y hutongs\n\n[TRANSPORTE: Jingshan → Houhai: a pie directo, bajando por la salida norte del parque]\n\nPaseo nocturno por la zona de los canales iluminados de Houhai (后海) y los callejones tradicionales (hutongs) de Nanluoguxiang (南锣鼓巷).\n\n[GUIA:houhai_y_nanluoguxiang]\n\nFicha de app:\n\n- Nombre: Houhai y Nanluoguxiang\n  - Categoría: Lago / Hutongs / Paseo nocturno\n  - Prioridad: Alta\n\n🚨 Compra obligatoria de supervivencia: antes de volver al hotel, entrar a un 7-Eleven o FamilyMart y comprar onigiris, baozis envasados, agua y frutos secos. Se guardan en la mochila para la comida en ruta del día siguiente (día de Universal Studios, sin paradas en restaurantes).\n\nCena día 7 - Plan B (cena sencilla, no pesada; Da Dong es el día especial, no hoy): dumplings o noodles en Xian Lao Man, Mr. Shi's Dumplings, o un local cómodo cerca de Guijie/Dongzhimen.",
     "meals": {
       "principal": {
         "que_mirar": "Comida: Fangzhuanchang 69 Zhajiangmian · Cena: No. 9 Courtyard (opción B Mr. Shi's Dumplings, opción C Yaoji Chaogan)",
@@ -251,7 +252,7 @@ const APP_DATA = {
     "estado_raw": "✅ Universal Studios COMPRADA, plan fijo del día · 🟡 Día durillo (parque entero, sin descanso) · 💰 Gasto: €€€ alto (entrada parque)",
     "color": "🟡",
     "budget": "€€€ alto (Da Dong es la cena más cara del viaje)",
-    "body_clean": "**Antes de salir del hotel:**\n\n- Snacks/onigiris/agua comprados la noche anterior (almuerzo militar en ruta)\n- Confirmar entrada de Universal Studios capturada en el móvil\n\n[TRANSPORTE: Hotel → Universal Resort: Metro Línea 7 o DiDi directo]\n\n#### 🌅 11:30 - Traslado express al extremo este\n\nAlmuerzo \"by the way\": almuerzo militar en los asientos del coche o del metro con los snacks y onigiris comprados la noche anterior. Cero paradas en restaurantes para aprovechar el tiempo al milímetro.\n\nComida día 8: en ruta, snacks comprados la noche anterior, sin parada en restaurante.\n\n#### ☀️ 13:00 hasta cierre - Universal Studios Beijing\n\n🎫 ✅ COMPRADA. Estrategia sin Express Pass:\n\n1. Cruzar el CityWalk y Hollywood a paso ligero sin detenerse a hacer fotos en la bola de la entrada. El objetivo está al fondo.\n2. Incursión directa en The Wizarding World of Harry Potter (Hogsmeade).\n3. Monitorear la app del parque en tiempo real: si la atracción del castillo (Forbidden Journey) supera los 80 minutos de cola, desviar a Transformers o Jurassic World y volver al castillo en los últimos 45 minutos antes del cierre.\n\nFicha de app:\n\n- Nombre: Universal Studios Beijing (北京环球度假区)\n  - Categoría: Parque temático / Día confirmado\n  - Entrada: ✅ COMPRADA\n  - Prioridad: Imprescindible\n\n[GUIA:universal_beijing]\n\nCena día 8: dentro o cerca del parque, según cierre y cansancio.",
+    "body_clean": "**Antes de salir del hotel:**\n\n- Snacks/onigiris/agua comprados la noche anterior (almuerzo militar en ruta)\n- Confirmar entrada de Universal Studios capturada en el móvil\n\n[TRANSPORTE: Hotel → Universal Resort: Metro Línea 7 o DiDi directo]\n\n#### 🌅 11:30 - Traslado express al extremo este\n\nAlmuerzo \"by the way\": almuerzo militar en los asientos del coche o del metro con los snacks y onigiris comprados la noche anterior. Cero paradas en restaurantes para aprovechar el tiempo al milímetro.\n\nComida día 8: snacks en ruta camino del parque. Una vez dentro, NO depender solo de snacks si vais a estar hasta el cierre — aceptar comer algo dentro del parque (CityWalk) aunque sea más caro de lo normal, mejor que aguantar todo el día sin comer en condiciones.\n\n#### ☀️ 13:00 hasta cierre - Universal Studios Beijing\n\n🎫 ✅ COMPRADA. Estrategia sin Express Pass:\n\n1. Cruzar el CityWalk y Hollywood a paso ligero sin detenerse a hacer fotos en la bola de la entrada. El objetivo está al fondo.\n2. Incursión directa en The Wizarding World of Harry Potter (Hogsmeade).\n3. Monitorear la app del parque en tiempo real: si la atracción del castillo (Forbidden Journey) supera los 80 minutos de cola, desviar a Transformers o Jurassic World y volver al castillo en los últimos 45 minutos antes del cierre.\n\nFicha de app:\n\n- Nombre: Universal Studios Beijing (北京环球度假区)\n  - Categoría: Parque temático / Día confirmado\n  - Entrada: ✅ COMPRADA\n  - Prioridad: Imprescindible\n\n[GUIA:universal_beijing]\n\nCena día 8: dentro o cerca del parque, según cierre y cansancio.",
     "meals": {
       "principal": {
         "que_mirar": "Cena: Da Dong Nanxincang",
@@ -269,7 +270,7 @@ const APP_DATA = {
     "estado_raw": "✅ Mutianyu COMPRADA · ✅ Ciudad Prohibida COMPRADA (turno tarde) · ✅ Da Dong reservado · 🔴 Día muy duro (muralla + ciudad + cena, día maratón) · 💰 Gasto: €€€ alto (Da Dong es la cena más cara del viaje)",
     "color": "🔴",
     "budget": "€€€ alto (coche privado + entrada + teleférico)",
-    "body_clean": "**Antes de salir del hotel:**\n\n- Pasaporte IMPRESCINDIBLE (control de Tian'anmen y Ciudad Prohibida)\n- Agua y snack/comida rápida para el trayecto de bajada de Mutianyu\n- Ropa algo mejor para la cena de Da Dong por la noche\n\n[TRANSPORTE: Hotel → Mutianyu: chófer privado contratado o DiDi coordinado desde el hotel. Salida 06:30 AM, madrugón militar para batir al sol de julio y a los buses turísticos]\n\n#### 🌅 06:30 - Excursión a la Gran Muralla (Mutianyu)\n\nLlegada a la base a las 08:00 AM. Subida en teleférico cerrado, caminata fotográfica exprés entre 3 o 4 torres de vigilancia y descenso adrenalínico en el mítico tobogán. Salida de la base en el coche a las 11:30 AM en punto.\n\nEntrada Mutianyu: ✅ COMPRADA, 2 adultos, transporte coche privado organizado.\n\n[GUIA:gran_muralla_de_mutianyu]\n\nFicha de app:\n\n- Nombre: Gran Muralla de Mutianyu (慕田峪长城)\n  - Categoría: Monumento / Excursión\n  - Entrada: ✅ COMPRADA\n  - Prioridad: Imprescindible\n\n[TRANSPORTE: Mutianyu → Tian'anmen: trayecto de hora y media de bajada de la montaña al centro de Pekín en el mismo coche]\n\n#### ☀️ 11:30-13:00 - Descenso urbano y comida en coche\n\nTrayecto de hora y media de bajada de la montaña al centro de Pekín. Se aprovecha para descansar las piernas del trekking de la muralla y almorzar snacks o comida rápida en el trayecto.\n\nComida día 9: snacks o comida rápida en el coche durante el trayecto de bajada.\n\n#### ☀️ 13:00 - Controles de la Plaza de Tian'anmen\n\nEl coche os deja en el acceso del control militar sur. Paso obligatorio de arcos de seguridad, escáner de mochilas minimalista y revisión de pasaporte físico.\n\n[GUIA:plaza_de_tiananmen]\n\n⚠️ Aviso: la entrada de la Ciudad Prohibida valida el acceso, pero conviene haber pedido en la recepción del hotel el martes 7 que saquen el pase oficial gratuito en su sistema, para evitar colas o bloqueos de cupo con los militares.\n\nFicha de app:\n\n- Nombre: Plaza de Tian'anmen (天安门广场)\n  - Categoría: Plaza histórica / Control de acceso\n  - Prioridad: Alta\n\n#### ☀️ 13:15 - Museo del Palacio en la Ciudad Prohibida\n\n🎫 ✅ COMPRADA. Turno de tarde (acceso general de tarde, 10,72€).\n\nRecorrido lineal de sur a norte por el eje histórico principal: Salón de la Armonía Suprema → Trono del Emperador → Jardín Imperial. Al entrar a mediodía, el 85% de los tours de la mañana ya están saliendo, por lo que los patios están mucho más limpios para fotos sin ríos de gente. Salida del recinto sobre las 16:30 PM.\n\nFicha de app:\n\n- Nombre: Museo del Palacio - Ciudad Prohibida (故宫博物院)\n  - Categoría: Palacio imperial / Imprescindible\n  - Entrada: ✅ COMPRADA, turno tarde\n  - Prioridad: Imprescindible\n\n[GUIA:ciudad_prohibida_tarde]\n\n#### 🌙 20:00 - Cena de celebración en Da Dong\n\n[TRANSPORTE: Hotel → Da Dong: DiDi tras una ducha celestial]\n\nCena oficial de cierre de Pekín para probar el auténtico pato pequinés crujiente. Recuerda haber pedido en recepción el primer día que llamen por teléfono para confirmar la reserva de la mesa.\n\nFicha de app:\n\n- Nombre: Da Dong Roast Duck (大董烤鸭店)\n  - Categoría: Restaurante / Cena de cierre, RESERVA CONFIRMADA\n  - Prioridad: Imprescindible\n\nCena día 9: Da Dong, mesa reservada.",
+    "body_clean": "**Antes de salir del hotel:**\n\n- Pasaporte IMPRESCINDIBLE (control de Tian'anmen y Ciudad Prohibida)\n- Agua y snack/comida rápida para el trayecto de bajada de Mutianyu\n- Ropa algo mejor para la cena de Da Dong por la noche\n\n[TRANSPORTE: Hotel → Mutianyu: chófer privado contratado o DiDi coordinado desde el hotel. Salida 06:30 AM, madrugón militar para batir al sol de julio y a los buses turísticos]\n\n#### 🌅 06:30 - Excursión a la Gran Muralla (Mutianyu)\n\nLlegada a la base a las 08:00 AM. Subida en teleférico cerrado, caminata fotográfica exprés entre 3 o 4 torres de vigilancia y descenso adrenalínico en el mítico tobogán. Salida de la base en el coche a las 11:30 AM en punto.\n\nEntrada Mutianyu: ✅ COMPRADA, 2 adultos, transporte coche privado organizado.\n\n[GUIA:gran_muralla_de_mutianyu]\n\nFicha de app:\n\n- Nombre: Gran Muralla de Mutianyu (慕田峪长城)\n  - Categoría: Monumento / Excursión\n  - Entrada: ✅ COMPRADA\n  - Prioridad: Imprescindible\n\n[TRANSPORTE: Mutianyu → Tian'anmen: trayecto de hora y media de bajada de la montaña al centro de Pekín en el mismo coche]\n\n#### ☀️ 11:30-13:00 - Descenso urbano y comida en coche\n\nTrayecto de hora y media de bajada de la montaña al centro de Pekín. Se aprovecha para descansar las piernas del trekking de la muralla y almorzar snacks o comida rápida en el trayecto.\n\nComida día 9: comida de supervivencia en el coche, no restaurante este día. ⚠️ Comprar el día ANTERIOR (8 jul): fruta, frutos secos, algo salado, bebida, barrita/pan y agua. Este día puede romperse por colas o controles, mejor ir con provisiones de sobra.\n\n#### ☀️ 13:00 - Controles de la Plaza de Tian'anmen\n\nEl coche os deja en el acceso del control militar sur. Paso obligatorio de arcos de seguridad, escáner de mochilas minimalista y revisión de pasaporte físico.\n\n[GUIA:plaza_de_tiananmen]\n\n⚠️ Aviso: la entrada de la Ciudad Prohibida valida el acceso, pero conviene haber pedido en la recepción del hotel el martes 7 que saquen el pase oficial gratuito en su sistema, para evitar colas o bloqueos de cupo con los militares.\n\nFicha de app:\n\n- Nombre: Plaza de Tian'anmen (天安门广场)\n  - Categoría: Plaza histórica / Control de acceso\n  - Prioridad: Alta\n\n#### ☀️ 13:15 - Museo del Palacio en la Ciudad Prohibida\n\n🎫 ✅ COMPRADA. Turno de tarde (acceso general de tarde, 10,72€).\n\nRecorrido lineal de sur a norte por el eje histórico principal: Salón de la Armonía Suprema → Trono del Emperador → Jardín Imperial. Al entrar a mediodía, el 85% de los tours de la mañana ya están saliendo, por lo que los patios están mucho más limpios para fotos sin ríos de gente. Salida del recinto sobre las 16:30 PM.\n\nFicha de app:\n\n- Nombre: Museo del Palacio - Ciudad Prohibida (故宫博物院)\n  - Categoría: Palacio imperial / Imprescindible\n  - Entrada: ✅ COMPRADA, turno tarde\n  - Prioridad: Imprescindible\n\n[GUIA:ciudad_prohibida_tarde]\n\n#### 🌙 20:00 - Cena de celebración en Da Dong\n\n[TRANSPORTE: Hotel → Da Dong: DiDi tras una ducha celestial]\n\nCena oficial de cierre de Pekín para probar el auténtico pato pequinés crujiente. Recuerda haber pedido en recepción el primer día que llamen por teléfono para confirmar la reserva de la mesa.\n\nFicha de app:\n\n- Nombre: Da Dong Roast Duck (大董烤鸭店)\n  - Categoría: Restaurante / Cena de cierre, RESERVA CONFIRMADA\n  - Prioridad: Imprescindible\n\nCena día 9: Da Dong, mesa reservada.",
     "meals": {
       "principal": {
         "que_mirar": "Cena: Haidilao Dongzhimen/Guijie (opción B Xian Lao Man, opción C Siji Minfu)",
@@ -311,7 +312,7 @@ const APP_DATA = {
     "estado_raw": "✅ Entrada Terracota COMPRADA (08:30-09:30). Día partido en dos: Terracota por la mañana, Gran Pagoda + Datang por la noche · 🔴 Día muy duro (madrugón + tarde-noche larga) · 💰 Gasto: €€ medio (entrada Terracota + fuentes/paseo gratis)",
     "color": "🔴",
     "budget": "€€ medio (entrada + transporte)",
-    "body_clean": "**Antes de salir del hotel:**\n\n- Pasaporte/entrada (control de acceso al recinto de Terracota)\n- Agua y snack, recinto grande y caluroso\n- Calzado cómodo, va a ser un día largo partido en dos mitades\n\n[TRANSPORTE: Salida del hotel sobre 06:45-07:00 en DiDi, taxi o traslado privado hacia Terracota, para llegar sin estrés a la primera franja de la mañana]\n\n#### 🌅 Mañana - Guerreros de Terracota\n\nSalida muy temprana porque la entrada es en la primera franja de la mañana. Los Guerreros están a unos 40 km del centro, en la zona de Lintong, porque forman parte del enorme complejo funerario del primer emperador Qin Shi Huang.\n\nFicha de app:\n\n- Nombre: Guerreros de Terracota\n  - Categoría: Monumento / arqueología / imprescindible\n  - Entrada: ✅ COMPRADA, franja 08:30-09:30\n  - Notas: Ir directos al Foso 1 (el más impresionante y el que más se llena). Orden recomendado: Foso 1 → Foso 3 → Foso 2 → Museo/carros de bronce si apetece\n  - Prioridad: Imprescindible\n\nFijarse en que no hay dos soldados iguales: peinados, bigotes, armaduras, expresiones, rangos militares, y las zonas que todavía están sin reconstruir. Los guerreros se crearon para proteger al primer emperador en la otra vida; muchas figuras siguen en proceso de excavación y restauración.\n\n[TRANSPORTE: Vuelta a Xi'an tras Terracota. No meter Huaqing Palace ni Mount Li este día — con calor, madrugón y visita arqueológica, lo sensato es volver, comer y descansar]\n\nComida día 11: Improvisar al volver a Xi'an, sin sitio fijo concreto.\n\n#### ☀️ Tarde - Descanso\n\nPausa de unas dos horas en el hotel para ducha, aire acondicionado y descanso antes de salir de nuevo. En julio el calor condiciona mucho el ritmo — compensa partir el día en dos: visitas temprano y tarde-noche, evitando las horas centrales.\n\n#### 🌙 Tarde-Noche - Gran Pagoda, fuentes y Datang Everbright City\n\n[TRANSPORTE: Desde el hotel NO merece la pena ir andando (6-7 km, 1h20-1h40). Mejor metro o DiDi. En metro: Zhonglou → Línea 2 → Xiaozhai → Línea 3 → Dayanta (~30-40 min). En DiDi: ~25-35 min según tráfico. Dayanta es estación de intercambio de líneas 3 y 4, pero desde el hotel la ruta más simple es L2+L3]\n\nPor la tarde, zona de Dayanta/大雁塔. No es obligatorio subir a la pagoda — lo importante es ver el conjunto, pasear por la plaza y disfrutar del ambiente. Una vez allí, sí merece la pena moverse a pie: Gran Pagoda → plaza de las fuentes → Datang Everbright City.\n\nFicha de app:\n\n- Nombre: Gran Pagoda de la Oca Salvaje\n  - Categoría: Monumento / budismo / zona Tang\n  - Apple Maps: https://maps.apple/p/Hxxm6suzHKwisX\n  - Notas: Construida en época Tang para conservar textos budistas traídos desde India por el monje Xuanzang. Fijarse en la forma escalonada, la simetría del conjunto y la estatua del monje\n\n[GUIA:gran_pagoda_de_la_oca_salvaje]\n  - Prioridad: Alta\n\n- Nombre: Metro Zhonglou (estación)\n  - Categoría: Transporte / metro\n  - Apple Maps: https://maps.apple/p/hMMwojbNXR4LH7\n\n- Nombre: Metro Dayanta (estación)\n  - Categoría: Transporte / metro\n  - Apple Maps: https://maps.apple/p/5HDcp15V6_CquY\n\nParada práctica en Joy City Mall, cerca de la pagoda, para descansar, ir al baño, tomar algo fresco o cenar algo sencillo antes de las fuentes y el paseo nocturno.\n\nFicha de app:\n\n- Nombre: Joy City Mall Xi'an\n  - Categoría: Descanso / comida / aire acondicionado\n  - Apple Maps: https://maps.apple/p/6p~qWgKv5q_W6w\n  - Prioridad: Media\n\nFuentes musicales de la Gran Pagoda en la plaza norte — confirmar horario el mismo día, normalmente hay pases de tarde-noche. Opción recomendada: pase de las 19:00 si hay cansancio, o el de las 21:00 para verlo más de noche.\n\nFicha de app:\n\n- Nombre: Fuentes musicales de la Gran Pagoda\n  - Categoría: Espectáculo / noche\n  - Apple Maps: https://maps.apple/p/Hxxm6suzHKwisX\n  - Notas: Pase 19:00 (con cansancio) o 21:00 (más de noche) — confirmar horario ese día\n  - Prioridad: Alta si coincide bien el horario\n\nPara cerrar, paseo por Datang Everbright City — zona nocturna inspirada en la estética Tang, con farolillos, edificios iluminados, gente vestida con hanfu, espectáculos callejeros y mucho ambiente para fotos.\n\nFicha de app:\n\n- Nombre: Datang Everbright City\n  - Categoría: Paseo nocturno / luces / ambiente Tang\n  - Apple Maps: https://maps.apple/p/Rgp79df9uYhMZZ\n\n[GUIA:datang_everbright_city]\n  - Prioridad: Alta\n\n[TRANSPORTE: Vuelta al hotel en metro o DiDi según cansancio y hora. Tras el madrugón de Terracota, no alargar demasiado la noche]\n\nCena día 11: En la zona de Joy City Mall o Barrio Musulmán al volver, sin sitio fijo concreto.",
+    "body_clean": "**Antes de salir del hotel:**\n\n- Pasaporte/entrada (control de acceso al recinto de Terracota)\n- Agua y snack, recinto grande y caluroso\n- Calzado cómodo, va a ser un día largo partido en dos mitades\n\n[TRANSPORTE: Salida del hotel sobre 06:45-07:00 en DiDi, taxi o traslado privado hacia Terracota, para llegar sin estrés a la primera franja de la mañana]\n\n#### 🌅 Mañana - Guerreros de Terracota\n\nSalida muy temprana porque la entrada es en la primera franja de la mañana. Los Guerreros están a unos 40 km del centro, en la zona de Lintong, porque forman parte del enorme complejo funerario del primer emperador Qin Shi Huang.\n\nFicha de app:\n\n- Nombre: Guerreros de Terracota\n  - Categoría: Monumento / arqueología / imprescindible\n  - Entrada: ✅ COMPRADA, franja 08:30-09:30\n  - Notas: Ir directos al Foso 1 (el más impresionante y el que más se llena). Orden recomendado: Foso 1 → Foso 3 → Foso 2 → Museo/carros de bronce si apetece\n  - Prioridad: Imprescindible\n\nFijarse en que no hay dos soldados iguales: peinados, bigotes, armaduras, expresiones, rangos militares, y las zonas que todavía están sin reconstruir. Los guerreros se crearon para proteger al primer emperador en la otra vida; muchas figuras siguen en proceso de excavación y restauración.\n\n[TRANSPORTE: Vuelta a Xi'an tras Terracota. No meter Huaqing Palace ni Mount Li este día — con calor, madrugón y visita arqueológica, lo sensato es volver, comer y descansar]\n\nComida día 11 - Plan B (no buscar algo famoso, el día ya es duro): algo cómodo cerca del hotel o en zona con aire acondicionado al volver de Terracota.\n\n#### ☀️ Tarde - Descanso\n\nPausa de unas dos horas en el hotel para ducha, aire acondicionado y descanso antes de salir de nuevo. En julio el calor condiciona mucho el ritmo — compensa partir el día en dos: visitas temprano y tarde-noche, evitando las horas centrales.\n\n#### 🌙 Tarde-Noche - Gran Pagoda, fuentes y Datang Everbright City\n\n[TRANSPORTE: Desde el hotel NO merece la pena ir andando (6-7 km, 1h20-1h40). Mejor metro o DiDi. En metro: Zhonglou → Línea 2 → Xiaozhai → Línea 3 → Dayanta (~30-40 min). En DiDi: ~25-35 min según tráfico. Dayanta es estación de intercambio de líneas 3 y 4, pero desde el hotel la ruta más simple es L2+L3]\n\nPor la tarde, zona de Dayanta/大雁塔. No es obligatorio subir a la pagoda — lo importante es ver el conjunto, pasear por la plaza y disfrutar del ambiente. Una vez allí, sí merece la pena moverse a pie: Gran Pagoda → plaza de las fuentes → Datang Everbright City.\n\nFicha de app:\n\n- Nombre: Gran Pagoda de la Oca Salvaje\n  - Categoría: Monumento / budismo / zona Tang\n  - Apple Maps: https://maps.apple/p/Hxxm6suzHKwisX\n  - Notas: Construida en época Tang para conservar textos budistas traídos desde India por el monje Xuanzang. Fijarse en la forma escalonada, la simetría del conjunto y la estatua del monje\n\n[GUIA:gran_pagoda_de_la_oca_salvaje]\n  - Prioridad: Alta\n\n- Nombre: Metro Zhonglou (estación)\n  - Categoría: Transporte / metro\n  - Apple Maps: https://maps.apple/p/hMMwojbNXR4LH7\n\n- Nombre: Metro Dayanta (estación)\n  - Categoría: Transporte / metro\n  - Apple Maps: https://maps.apple/p/5HDcp15V6_CquY\n\nParada práctica en Joy City Mall, cerca de la pagoda, para descansar, ir al baño, tomar algo fresco o cenar algo sencillo antes de las fuentes y el paseo nocturno. Si hay cansancio, cenar aquí directamente es buena opción; volver al Barrio Musulmán solo si todavía queda energía.\n\nFicha de app:\n\n- Nombre: Joy City Mall Xi'an\n  - Categoría: Descanso / comida / aire acondicionado\n  - Apple Maps: https://maps.apple/p/6p~qWgKv5q_W6w\n  - Prioridad: Media\n\nFuentes musicales de la Gran Pagoda en la plaza norte — confirmar horario el mismo día, normalmente hay pases de tarde-noche. Opción recomendada: pase de las 19:00 si hay cansancio, o el de las 21:00 para verlo más de noche.\n\nFicha de app:\n\n- Nombre: Fuentes musicales de la Gran Pagoda\n  - Categoría: Espectáculo / noche\n  - Apple Maps: https://maps.apple/p/Hxxm6suzHKwisX\n  - Notas: Pase 19:00 (con cansancio) o 21:00 (más de noche) — confirmar horario ese día\n  - Prioridad: Alta si coincide bien el horario\n\nPara cerrar, paseo por Datang Everbright City — zona nocturna inspirada en la estética Tang, con farolillos, edificios iluminados, gente vestida con hanfu, espectáculos callejeros y mucho ambiente para fotos.\n\nFicha de app:\n\n- Nombre: Datang Everbright City\n  - Categoría: Paseo nocturno / luces / ambiente Tang\n  - Apple Maps: https://maps.apple/p/Rgp79df9uYhMZZ\n\n[GUIA:datang_everbright_city]\n  - Prioridad: Alta\n\n[TRANSPORTE: Vuelta al hotel en metro o DiDi según cansancio y hora. Tras el madrugón de Terracota, no alargar demasiado la noche]\n\nCena día 11: En la zona de Joy City Mall o Barrio Musulmán al volver, sin sitio fijo concreto.",
     "meals": {
       "desayuno": {
         "hora": "07:15h",
@@ -372,7 +373,7 @@ const APP_DATA = {
     "estado_raw": "Comida/cena de Xiaomian pendiente de buscar local concreto · 🟡 Día durillo (tren + calor extremo de Chongqing) · 💰 Gasto: € bajo (tren + Xiaomian barato)",
     "color": "🟡",
     "budget": "€ bajo (tren + Xiaomian barato)",
-    "body_clean": "**Antes de salir del hotel (tras llegar):**\n\n- Captura del hotel YOLO Skyline en chino (Jiefangbei)\n- No arrastrar maletas por el metro el primer día — Chongqing es inmensa y laberíntica, con desniveles ópticos en las salidas\n- ⚠️ Salir desde Chengdu EAST, no desde otra estación. No meter visitas esta mañana, salir con margen desde el hotel\n\n[TRANSPORTE: Aeropuerto/estación → YOLO Skyline Hotel: DiDi recomendado, trayecto directo al hotel]\n\n#### 🌅 Mañana - Llegada\n\nTren corto desde Chengdú. Traslado directo en DiDi al hotel YOLO Skyline Riverview Designer Hotel (Jiefangbei, distrito de Yuzhong). Check-in, ducha y descanso obligatorio a mediodía para resguardarse del calor húmedo extremo de julio.\n\nFicha de app:\n\n- Nombre: YOLO Skyline Riverview Designer Hotel\n  - Nombre chino: YOLO高空江景设计酒店\n  - Categoría: Alojamiento / Base operativa\n  - Dirección: Jiefangbei, Distrito de Yuzhong, Chongqing\n  - Amap: https://surl.amap.com/21LXsqCS5qL\n  - Notas: Hotel concepto \"High Altitude\" (Gao Kong) — fijarse en las cristaleras del lobby o la habitación, las vistas del skyline y el río Yangtsé compiten con cualquier mirador de pago de la ciudad\n\n#### 🌙 Noche - Flujo de bienvenida (todo a pie, ruta encadenada)\n\nEste bloque se hace íntegramente a pie, ya que todos los puntos están en la misma cuadrícula céntrica de la ciudad. Empezar al atardecer.\n\n[TRANSPORTE: Todo el recorrido de esta noche es a pie, ruta lineal encadenada sin necesidad de DiDi ni metro]\n\nPrimera parada, el barrio de Shibati (Los 18 Escalones), ideal a partir de las 17:30-18:00h cuando refresca y se encienden los farolillos rojos.\n\nFicha de app:\n\n- Nombre: Shibati (Los 18 Escalones) & Tienda \"Miao\"\n  - Nombre chino: 十八梯 (山国巷)\n  - Categoría: Barrio histórico / Paseo fotográfico\n  - Notas: Buscar en el callejón Shanguo Xiang la tienda \"Miao\"\n\n[GUIA:shibati] — retrato personalizado de pareja estilo manga/anime por ~15€ en 30 minutos. Tomar la foto al llegar, pasear por el barrio y recogerlo antes de marcharse\n  - Prioridad: Alta (visita) / Opcional alto (el retrato manga)\n\nOpcional: fideos rápidos en Zhouxiaobo Chongqing Noodles si hay hambre antes de cenar (ver recomendación de plato en pestaña Comidas).\n\nSiguiente parada, el edificio Kuixinglou — mirador de la \"Torre 3D\", visita rápida de 20-30 minutos.\n\nFicha de app:\n\n- Nombre: Kuixinglou (La Torre 3D y Plaza Datang)\n  - Nombre chino: 魁星楼\n  - Categoría: Curiosidad urbanística / Ilusión óptica\n  - Prioridad: Alta\n\n[GUIA:kuixinglou]\n\nCena oficial del día 1 en Yang Ji Long Fu, en la cuadrícula central de Jiefangbei.\n\nFicha de app:\n\n- Nombre: Yang Ji Long Fu\n  - Nombre chino: 杨记隆府 (解放碑店)\n  - Categoría: Restaurante tradicional / Cena oficial 14 jul\n  - Apple Maps: PENDIENTE / Amap: https://surl.amap.com/NWuBKOOcaA\n  - Notas: No requiere reserva previa. Estética de taberna antigua de madera con recetas tradicionales heredadas\n  - Prioridad: Alta\n\nPara cerrar, ruta nocturna hasta el Puente Qiansimen — estrategia evita-masas: no entrar en el hormiguero de las 11 plantas de Hongyadong de noche, ir directos a la mitad del puente para la vista limpia.\n\nFicha de app:\n\n- Nombre: Paseo nocturno Qiansimen Bridge & Hongyadong\n  - Nombre chino: 千厮门大桥 / 洪崖洞\n  - Categoría: Skyline / Paseo nocturno\n  - Notas: Desde el puente, suspendidos sobre el río Jialing, panorámica cyberpunk perfecta de Hongyadong iluminado de oro reflejándose en el agua, contrastado con las pantallas de neón de Raffles City\n\n[GUIA:puente_qiansimen]\n  - Prioridad: Imprescindible\n\nCena día 14: Yang Ji Long Fu, cena oficial ya elegida — ver recomendaciones de plato en la pestaña Comidas.",
+    "body_clean": "**Antes de salir del hotel (tras llegar):**\n\n- Captura del hotel YOLO Skyline en chino (Jiefangbei)\n- No arrastrar maletas por el metro el primer día — Chongqing es inmensa y laberíntica, con desniveles ópticos en las salidas\n- ⚠️ Salir desde Chengdu EAST, no desde otra estación. No meter visitas esta mañana, salir con margen desde el hotel\n\n[TRANSPORTE: Aeropuerto/estación → YOLO Skyline Hotel: DiDi recomendado, trayecto directo al hotel]\n\n#### 🌅 Mañana - Llegada\n\nTren corto desde Chengdú. Traslado directo en DiDi al hotel YOLO Skyline Riverview Designer Hotel (Jiefangbei, distrito de Yuzhong). Check-in, ducha y descanso obligatorio a mediodía para resguardarse del calor húmedo extremo de julio.\n\nFicha de app:\n\n- Nombre: YOLO Skyline Riverview Designer Hotel\n  - Nombre chino: YOLO高空江景设计酒店\n  - Categoría: Alojamiento / Base operativa\n  - Dirección: Jiefangbei, Distrito de Yuzhong, Chongqing\n  - Amap: https://surl.amap.com/21LXsqCS5qL\n  - Notas: Hotel concepto \"High Altitude\" (Gao Kong) — fijarse en las cristaleras del lobby o la habitación, las vistas del skyline y el río Yangtsé compiten con cualquier mirador de pago de la ciudad\n\n#### 🌙 Noche - Flujo de bienvenida (todo a pie, ruta encadenada)\n\nEste bloque se hace íntegramente a pie, ya que todos los puntos están en la misma cuadrícula céntrica de la ciudad. Empezar al atardecer.\n\n[TRANSPORTE: Todo el recorrido de esta noche es a pie, ruta lineal encadenada sin necesidad de DiDi ni metro]\n\nPrimera parada, el barrio de Shibati (Los 18 Escalones), ideal a partir de las 17:30-18:00h cuando refresca y se encienden los farolillos rojos.\n\nFicha de app:\n\n- Nombre: Shibati (Los 18 Escalones) & Tienda \"Miao\"\n  - Nombre chino: 十八梯 (山国巷)\n  - Categoría: Barrio histórico / Paseo fotográfico\n  - Notas: Buscar en el callejón Shanguo Xiang la tienda \"Miao\"\n\n[GUIA:shibati] — retrato personalizado de pareja estilo manga/anime por ~15€ en 30 minutos. Tomar la foto al llegar, pasear por el barrio y recogerlo antes de marcharse\n  - Prioridad: Alta (visita) / Opcional alto (el retrato manga)\n\nOpcional: fideos rápidos en Zhouxiaobo Chongqing Noodles si hay hambre antes de cenar (ver recomendación de plato en pestaña Comidas).\n\nSiguiente parada, el edificio Kuixinglou — mirador de la \"Torre 3D\", visita rápida de 20-30 minutos.\n\nFicha de app:\n\n- Nombre: Kuixinglou (La Torre 3D y Plaza Datang)\n  - Nombre chino: 魁星楼\n  - Categoría: Curiosidad urbanística / Ilusión óptica\n  - Prioridad: Alta\n\n[GUIA:kuixinglou]\n\nComida día 14 - sitio concreto de xiaomian (cerrado, ya no queda pendiente): Ju Laotou Bobo Noodles, sucursal Jiefangbei.\n\nFicha de app:\n\n- Nombre: Ju Laotou Bobo Noodles (Jiefangbei Direct Store)\n  - Categoría: Restaurante local / Xiaomian\n  - Dirección: No. 21, Mofang Lane, Jiaochangkou, Jiefangbei, Chongqing\n  - Horario: 08:00-15:00 y 17:30-20:00\n  - Notas: SIN VERIFICAR con la misma exigencia que los restaurantes Michelin — recomendación de guías de viaje sobre xiaomian, wan za mian y beef noodles. Comprobar que sigue abierto antes de ir\n  - Prioridad: Alta\n\nCena oficial del día 1 en Yang Ji Long Fu, en la cuadrícula central de Jiefangbei.\n\nFicha de app:\n\n- Nombre: Yang Ji Long Fu\n  - Nombre chino: 杨记隆府 (解放碑店)\n  - Categoría: Restaurante tradicional / Cena oficial 14 jul\n  - Apple Maps: PENDIENTE / Amap: https://surl.amap.com/NWuBKOOcaA\n  - Notas: No requiere reserva previa. Estética de taberna antigua de madera con recetas tradicionales heredadas\n  - Prioridad: Alta\n\nPara cerrar, ruta nocturna hasta el Puente Qiansimen — estrategia evita-masas: no entrar en el hormiguero de las 11 plantas de Hongyadong de noche, ir directos a la mitad del puente para la vista limpia.\n\nFicha de app:\n\n- Nombre: Paseo nocturno Qiansimen Bridge & Hongyadong\n  - Nombre chino: 千厮门大桥 / 洪崖洞\n  - Categoría: Skyline / Paseo nocturno\n  - Notas: Desde el puente, suspendidos sobre el río Jialing, panorámica cyberpunk perfecta de Hongyadong iluminado de oro reflejándose en el agua, contrastado con las pantallas de neón de Raffles City\n\n[GUIA:puente_qiansimen]\n  - Prioridad: Imprescindible\n\nCena día 14: Yang Ji Long Fu, cena oficial ya elegida — ver recomendaciones de plato en la pestaña Comidas.",
     "meals": {
       "principal": {
         "que_mirar": "Cena: Yang Ji Long Fu (opción B pescado Wanzhou, opción C Li Chuan Chuan Xiang)",
@@ -450,7 +451,7 @@ const APP_DATA = {
     "estado_raw": "Día de seguridad climática. ✅ Puente de cristal COMPRADO (Línea B Gran Cañón + abono 5/7 atracciones). Comida: no reservar, depende del plan. Cena: mirar zona · 🟡 Día durillo (posible repetición de esfuerzo del día 16, o más suave si se hace Tianzi) · 💰 Gasto: €€ medio (puente de cristal si se usa)",
     "color": "🟡",
     "budget": "€€ medio (puente de cristal si se usa)",
-    "body_clean": "**Antes de salir del hotel:**\n\n- Mismo equipo que el día 16 por si se repite la ruta (agua, snack, batería externa)\n- Decidir Escenario A o B según el parte del día anterior antes de salir\n\n**🚗 Transporte del día:**\n\n- Alarma recomendada: 06:30 aprox.\n- Hora límite orientativa: salir sobre 07:30 si se vuelve al parque\n- Maosao Inn → parque/ruta elegida: taxi/DiDi corto o traslado local\n- Dentro del parque: buses internos/lanzaderas entre miradores y rutas\n- Regreso a Wulingyuan: bus interno + taxi/andar\n- Notas: día flexible, ajustar según cansancio, clima y lo que falte del parque\n\n#### Todo el día\nCon buen tiempo: Montaña Tianzi + Gran Cañón de Zhangjiajie (puente de cristal) o lago Baofeng. Si el día 16 amaneció con niebla: usar este día entero para repetir los miradores de Avatar y asegurar las vistas claras.\n\n✅ Puente de cristal COMPRADO: Línea B del Gran Cañón de Zhangjiajie (Gran Cañón + Puente de Cristal), más abono de 5 de 7 atracciones (sin decidir cuáles todavía, ver pestaña Entradas para la lista con restricciones de peso/altura/edad). Ruta de referencia ~3h: centro de viajeros → puente de cristal → pasarela de cristal → Plaza del Arcoíris → crucero Lago Arcoíris → cueva táctil → crucero Lago del Manantial Divino → salida.\n\n**⚠️ Plan B (decisión según el día 16):** Escenario A — el día 16 salió despejado y las fotos de Avatar quedaron bien: usar este día para Tianzi + puente de cristal (plan principal). Escenario B — el día 16 hubo niebla: cancelar Tianzi/puente de cristal y repetir íntegramente la ruta del día 16 (Bailong + Yuanjiajie). Si se reserva el puente de cristal con antelación y luego no se usa por activarse el escenario B, perder esa reserva sale más barato que perder la única oportunidad de ver Avatar con buen tiempo.\n\nComida día 18: Depende del plan que se elija ese día (parque o repetir Avatar).\n\n#### 🌙 Noche\nCena día 18:\n\n- Opción principal: Hunan Mifen\n- Alternativas: shaokao (barbacoa) o jiachang cai suave\n- Si hay cansancio: Niurou Fen o fideos con setas\n- Para shaokao pedir \"Bu la\" (no picante) si se prefiere\n\nCena ligera cerca de Maosao Inn, sin sitio fijado.\n\n---",
+    "body_clean": "**Antes de salir del hotel:**\n\n- Mismo equipo que el día 16 por si se repite la ruta (agua, snack, batería externa)\n- Decidir Escenario A o B según el parte del día anterior antes de salir\n\n**🚗 Transporte del día:**\n\n- Alarma recomendada: 06:30 aprox.\n- Hora límite orientativa: salir sobre 07:30 si se vuelve al parque\n- Maosao Inn → parque/ruta elegida: taxi/DiDi corto o traslado local\n- Dentro del parque: buses internos/lanzaderas entre miradores y rutas\n- Regreso a Wulingyuan: bus interno + taxi/andar\n- Notas: día flexible, ajustar según cansancio, clima y lo que falte del parque\n\n#### Todo el día\nCon buen tiempo: Montaña Tianzi + Gran Cañón de Zhangjiajie (puente de cristal) o lago Baofeng. Si el día 16 amaneció con niebla: usar este día entero para repetir los miradores de Avatar y asegurar las vistas claras.\n\n✅ Puente de cristal COMPRADO: Línea B del Gran Cañón de Zhangjiajie (Gran Cañón + Puente de Cristal), más abono de 5 de 7 atracciones (sin decidir cuáles todavía, ver pestaña Entradas para la lista con restricciones de peso/altura/edad). Ruta de referencia ~3h: centro de viajeros → puente de cristal → pasarela de cristal → Plaza del Arcoíris → crucero Lago Arcoíris → cueva táctil → crucero Lago del Manantial Divino → salida.\n\n**⚠️ Plan B (decisión según el día 16):** ⚠️ REGLA GENERAL: Avatar/Yuanjiajie con buena visibilidad tiene SIEMPRE prioridad sobre el Gran Cañón/Puente de cristal — no al revés. Escenario A — el día 16 salió despejado y las fotos de Avatar quedaron bien: usar este día para Tianzi + puente de cristal (plan principal). Escenario B — el día 16 hubo niebla, O si amanece con niebla también este mismo día 18: cancelar Tianzi/puente de cristal y repetir íntegramente la ruta del día 16 (Bailong + Yuanjiajie), aunque eso signifique sacrificar el Gran Cañón por completo. Si se reserva el puente de cristal con antelación y luego no se usa por activarse el escenario B, perder esa reserva sale más barato que perder la única oportunidad de ver Avatar con buen tiempo.\n\nComida día 18: Depende del plan que se elija ese día (parque o repetir Avatar).\n\n#### 🌙 Noche\nCena día 18:\n\n- Opción principal: Hunan Mifen\n- Alternativas: shaokao (barbacoa) o jiachang cai suave\n- Si hay cansancio: Niurou Fen o fideos con setas\n- Para shaokao pedir \"Bu la\" (no picante) si se prefiere\n\nCena ligera cerca de Maosao Inn, sin sitio fijado.\n\n---",
     "meals": {
       "principal": {
         "que_mirar": "Cena ligera cerca de Maosao Inn: Hunan Mifen (alternativas shaokao o jiachang cai)",
@@ -468,7 +469,7 @@ const APP_DATA = {
     "estado_raw": "✅ Teleférico Tianmen COMPRADO (Ruta B: sube en Tianmen Cave Express, baja en teleférico de Tianmenshan). Comida mediodía: improvisar/excursión. Cena: mirar zona · 🔴 Día muy duro (traslado + Tianmen + 999 escaleras) · 💰 Gasto: €€€ alto (teleférico Tianmen es caro)",
     "color": "🔴",
     "budget": "€€€ alto (teleférico Tianmen es caro)",
-    "body_clean": "**Antes de salir del hotel:**\n\n- Check-out completo de Maosao Inn, revisar que no falta nada\n- Confirmar tipo de entrada de Tianmen (sube en teleférico/baja en bus, o al revés)\n- Calzado cómodo, 999 escaleras en la Puerta del Cielo\n\n**🚗 Transporte del día:**\n\n- Alarma recomendada: 06:30 aprox.\n- Hora límite orientativa: salir de Wulingyuan con margen para cambiar de zona y visitar Tianmen\n- Maosao Inn → Moli Hotel / Zhangjiajie ciudad: DiDi/taxi recomendado por maletas\n- Hotel/Moli → Tianmen Cableway: andando si está cerca; taxi corto si hace calor\n- Tianmen Mountain: teleférico + buses internos + escaleras/pasarelas según ruta\n- Bajada de Tianmen: bus de las 99 curvas o sistema que corresponda a la entrada comprada\n- Notas: confirmar tipo de entrada/ruta de Tianmen para saber si se sube en teleférico y se baja en bus o viceversa\n\n#### 🌅 Mañana - Traslado\nCheck-out Maosao Inn. Traslado a Zhangjiajie ciudad (**~40 min**). Check-in Moli Intelligent Hotel (junto al teleférico).\n\n#### ☀️ Tarde - Montaña Tianmen\nSubida en la Ruta A del teleférico de la Montaña Tianmen (el más largo del mundo desde el centro urbano). Pasarelas de cristal suspendidas, Puerta del Cielo (999 escaleras), bajada en bus por las 99 curvas.\n\n✅ Teleférico Tianmen COMPRADO: Ruta B — sube en Tianmen Cave Express, baja en teleférico de Tianmenshan. Incluye entrada al Parque Forestal Nacional de Tianmenshan.\n\nComida día 19 (mediodía): flexible, en plena excursión a Tianmen.\n\n#### 🌙 Noche\nCena día 19:\n\n- Opción principal: Jiachang Cai cerca de Tianmen Cableway / Dayong Road\n- Alternativas: Hunan Mifen o shaokao (buscar 家常菜, 米粉 o 烧烤)\n\nCerca del Moli Hotel / zona teleférico, sin sitio fijado.\n\n---\n\n## Bloque 6 — Pueblos de agua y arroz (Días 19-22)\n\n**Hotel:** Tuwang Palace · Eight Halls, Waterfall View · 20-21 jul (confirmar reserva)\n**Hotel:** Longsheng Fengyi Hotel · Dazhai · 21-22 jul\n**Hotel:** Yunwu Vacation Boutique Stay · Xingping · 22-24 jul\n\n---",
+    "body_clean": "**Antes de salir del hotel:**\n\n- Check-out completo de Maosao Inn, revisar que no falta nada\n- Confirmar tipo de entrada de Tianmen (sube en teleférico/baja en bus, o al revés)\n- Calzado cómodo, 999 escaleras en la Puerta del Cielo\n\n**🚗 Transporte del día:**\n\n- Alarma recomendada: 06:30 aprox.\n- Hora límite orientativa: salir de Wulingyuan con margen para cambiar de zona y visitar Tianmen\n- Maosao Inn → Moli Hotel / Zhangjiajie ciudad: DiDi/taxi recomendado por maletas\n- Hotel/Moli → Tianmen Cableway: andando si está cerca; taxi corto si hace calor\n- Tianmen Mountain: teleférico + buses internos + escaleras/pasarelas según ruta\n- Bajada de Tianmen: bus de las 99 curvas o sistema que corresponda a la entrada comprada\n- Notas: confirmar tipo de entrada/ruta de Tianmen para saber si se sube en teleférico y se baja en bus o viceversa\n\n#### 🌅 Mañana - Traslado\nCheck-out Maosao Inn. Traslado a Zhangjiajie ciudad (**~40 min**). Check-in Moli Intelligent Hotel (junto al teleférico).\n\n#### ☀️ Tarde - Montaña Tianmen\n⚠️ CORREGIDO: entrada comprada es RUTA B (no Ruta A) — sube en Tianmen Cave Express (el teleférico más largo del mundo desde el centro urbano), baja en teleférico de Tianmenshan. Pasarelas de cristal suspendidas, Puerta del Cielo (999 escaleras) en el recorrido.\n\n✅ Teleférico Tianmen COMPRADO: Ruta B — sube en Tianmen Cave Express, baja en teleférico de Tianmenshan. Incluye entrada al Parque Forestal Nacional de Tianmenshan.\n\nComida día 19 (mediodía): flexible, en plena excursión a Tianmen.\n\n#### 🌙 Noche\nCena día 19 - cerca del Moli Hotel/teleférico, NO buscar nada lejano (día ya muy cansado tras Tianmen):\n\n- Opción principal: Jiachang Cai cerca de Tianmen Cableway / Dayong Road\n- Alternativas: Hunan Mifen o shaokao (buscar 家常菜, 米粉 o 烧烤)\n\n---\n\n## Bloque 6 — Pueblos de agua y arroz (Días 19-22)\n\n**Hotel:** Tuwang Palace · Eight Halls, Waterfall View · 20-21 jul (confirmar reserva)\n**Hotel:** Longsheng Fengyi Hotel · Dazhai · 21-22 jul\n**Hotel:** Yunwu Vacation Boutique Stay · Xingping · 22-24 jul\n\n---",
     "meals": {
       "principal": {
         "que_mirar": "Cena cerca del Moli Hotel/Tianmen Cableway: Jiachang Cai (alternativas Hunan Mifen o shaokao)",
@@ -834,9 +835,9 @@ const APP_DATA = {
     "ciudad": "Hong Kong final",
     "noches": 1,
     "nombre": null,
-    "direccion": "Zona West Kowloon / Jordan / Tsim Sha Tsui",
+    "direccion": "Zona West Kowloon / Austin / Jordan / Tsim Sha Tsui",
     "mapsUrl": null,
-    "estado": "⚠️ SIN RESERVAR",
+    "estado": "🔴 PRIORIDAD ALTA — SIN RESERVAR, reservar cuanto antes",
     "nombreChino": null
   }],
   "vuelos": {
@@ -1546,7 +1547,96 @@ const APP_DATA = {
       "humedadJul": 80,
       "probLluviaJul": 55
     }
-  }
+  },
+  "transportChecklist": [{
+    "categoria": "rojo",
+    "texto": "Coche privado Pekín → Mutianyu → Tian'anmen/Ciudad Prohibida",
+    "fecha": "9 jul"
+  }, {
+    "categoria": "rojo",
+    "texto": "Tren Zhangjiajie West → Furongzhen o alternativa de tren cercano",
+    "fecha": "20 jul"
+  }, {
+    "categoria": "rojo",
+    "texto": "Plan B coche privado Zhangjiajie → Furongzhen si no sale tren",
+    "fecha": "20 jul"
+  }, {
+    "categoria": "rojo",
+    "texto": "Furongzhen → Guilin/Longji/Dazhai: tren + coche o coche directo",
+    "fecha": "21 jul"
+  }, {
+    "categoria": "rojo",
+    "texto": "Recogida/traslado en Dazhai hasta Longsheng Fengyi Hotel",
+    "fecha": "21 jul"
+  }, {
+    "categoria": "rojo",
+    "texto": "Traslado Longji/Dazhai → Guilin North para conectar con Yangshuo",
+    "fecha": "22 jul"
+  }, {
+    "categoria": "rojo",
+    "texto": "Tren Guangzhou South → Hong Kong del 24 jul",
+    "fecha": "24 jul"
+  }, {
+    "categoria": "rojo",
+    "texto": "Tren Hong Kong → Guangzhou South del 25 jul, temprano",
+    "fecha": "25 jul"
+  }, {
+    "categoria": "naranja",
+    "texto": "Zhangjiajie West → Maosao Inn",
+    "fecha": "16 jul"
+  }, {
+    "categoria": "naranja",
+    "texto": "Maosao Inn → Puerta Este de Wulingyuan",
+    "fecha": "17 jul"
+  }, {
+    "categoria": "naranja",
+    "texto": "Maosao Inn → Gran Cañón/Puente de cristal si se hace",
+    "fecha": "18 jul"
+  }, {
+    "categoria": "naranja",
+    "texto": "Maosao Inn → Moli Hotel/Zhangjiajie ciudad",
+    "fecha": "19 jul"
+  }, {
+    "categoria": "naranja",
+    "texto": "Estación Furongzhen → Tuwang Palace",
+    "fecha": "20 jul"
+  }, {
+    "categoria": "naranja",
+    "texto": "Dazhai → Longsheng Fengyi Hotel",
+    "fecha": "21 jul"
+  }, {
+    "categoria": "naranja",
+    "texto": "Yunwu/Xingping → estación Yangshuo",
+    "fecha": "24 jul"
+  }, {
+    "categoria": "amarillo",
+    "texto": "West Kowloon → hotel Hong Kong",
+    "fecha": "3 jul"
+  }, {
+    "categoria": "amarillo",
+    "texto": "Nan Lian → Kowloon Walled City Park",
+    "fecha": "5 jul"
+  }, {
+    "categoria": "amarillo",
+    "texto": "Xi'an → Terracota",
+    "fecha": "11 jul"
+  }, {
+    "categoria": "amarillo",
+    "texto": "Chengdú → Pandas",
+    "fecha": "13 jul"
+  }, {
+    "categoria": "amarillo",
+    "texto": "Chengdu East → hotel",
+    "fecha": "12 jul"
+  }, {
+    "categoria": "amarillo",
+    "texto": "Chongqing hotel → Chongqing East Station (reservar con margen)",
+    "fecha": "16 jul"
+  }, {
+    "categoria": "amarillo",
+    "texto": "Llegada Hong Kong final → hotel",
+    "fecha": "24 jul"
+  }]
 };
 const COLOR_INFO = {
   "🔵": {
@@ -2616,6 +2706,174 @@ function useManualTrains() {
     deleteTrain,
     loaded
   };
+}
+function useChecklistDone() {
+  const [doneMap, setDoneMap] = useState({});
+  const [loaded, setLoaded] = useState(false);
+  useEffect(() => {
+    if (!window.firebaseDb) {
+      let mounted = true;
+      (async () => {
+        try {
+          const res = await window.storage.get("transport-checklist-done", false);
+          if (mounted && res) setDoneMap(JSON.parse(res.value));
+        } catch (e) {}
+        if (mounted) setLoaded(true);
+      })();
+      return () => {
+        mounted = false;
+      };
+    }
+    const ref = window.firebaseDb.ref("data/transport_checklist_done");
+    const handler = snapshot => {
+      const val = snapshot.val();
+      try {
+        setDoneMap(val ? JSON.parse(val) : {});
+      } catch (e) {
+        setDoneMap({});
+      }
+    };
+    ref.on("value", handler);
+    setLoaded(true);
+    return () => ref.off("value", handler);
+  }, []);
+  const toggle = async idx => {
+    const next = {
+      ...doneMap,
+      [idx]: !doneMap[idx]
+    };
+    setDoneMap(next);
+    try {
+      await window.storage.set("transport-checklist-done", JSON.stringify(next), false);
+    } catch (e) {
+      console.error("Storage error", e);
+    }
+  };
+  return [doneMap, toggle, loaded];
+}
+const CHECKLIST_CATEGORIES = {
+  rojo: {
+    label: "🔴 Cerrar sí o sí",
+    bg: "#D64545",
+    text: "#FBEAEA",
+    desc: "Hay que organizarlo antes de viajar, sin excusas"
+  },
+  naranja: {
+    label: "🟠 Dejar hablado con alojamiento",
+    bg: "#E8A33D",
+    text: "#2A1F0E",
+    desc: "Conviene confirmarlo con el hotel/conductor antes de llegar"
+  },
+  amarillo: {
+    label: "🟡 DiDi/taxi sobre la marcha",
+    bg: "#F2C572",
+    text: "#2A1F0E",
+    desc: "Se resuelve sin agobio el mismo día"
+  }
+};
+function TransportChecklist({
+  items
+}) {
+  const [doneMap, toggle, loaded] = useChecklistDone();
+  const [open, setOpen] = useState(true);
+  if (!loaded) return null;
+  const totalDone = items.filter((_, i) => doneMap[i]).length;
+  const grouped = {
+    rojo: [],
+    naranja: [],
+    amarillo: []
+  };
+  items.forEach((item, i) => grouped[item.categoria].push({
+    ...item,
+    idx: i
+  }));
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: "22px"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    onClick: () => setOpen(!open),
+    style: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      cursor: "pointer",
+      marginBottom: open ? "12px" : "0"
+    }
+  }, /*#__PURE__*/React.createElement(SubHeading, null, "✅ Checklist de transportes a cerrar (", totalDone, "/", items.length, ")"), open ? /*#__PURE__*/React.createElement(ChevronUp, {
+    size: 18,
+    color: "#E8A33D"
+  }) : /*#__PURE__*/React.createElement(ChevronDown, {
+    size: 18,
+    color: "#E8A33D"
+  })), open && Object.entries(CHECKLIST_CATEGORIES).map(([catKey, catInfo]) => grouped[catKey].length > 0 && /*#__PURE__*/React.createElement("div", {
+    key: catKey,
+    style: {
+      marginBottom: "16px"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: "12px",
+      fontWeight: 700,
+      color: catInfo.bg,
+      marginBottom: "8px"
+    }
+  }, catInfo.label, " ", /*#__PURE__*/React.createElement("span", {
+    style: {
+      opacity: 0.7,
+      fontWeight: 500
+    }
+  }, "· ", catInfo.desc)), grouped[catKey].map(item => {
+    const isDone = !!doneMap[item.idx];
+    return /*#__PURE__*/React.createElement("div", {
+      key: item.idx,
+      onClick: () => toggle(item.idx),
+      style: {
+        display: "flex",
+        alignItems: "flex-start",
+        gap: "10px",
+        padding: "10px 12px",
+        borderRadius: "4px",
+        background: isDone ? "rgba(255,255,255,0.04)" : "#F5F2EA",
+        marginBottom: "6px",
+        cursor: "pointer",
+        opacity: isDone ? 0.55 : 1
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        flexShrink: 0,
+        width: "20px",
+        height: "20px",
+        borderRadius: "50%",
+        border: isDone ? "none" : `2px solid ${catInfo.bg}`,
+        background: isDone ? "#5B8C5A" : "transparent",
+        color: "#fff",
+        fontSize: "11px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: "1px"
+      }
+    }, isDone ? "✓" : ""), /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: "10px",
+        fontWeight: 700,
+        color: "#8a8577"
+      }
+    }, item.fecha), /*#__PURE__*/React.createElement("p", {
+      style: {
+        fontSize: "13px",
+        color: isDone ? "#7d7868" : "#2e2b25",
+        margin: "2px 0 0 0",
+        lineHeight: "1.4",
+        textDecoration: isDone ? "line-through" : "none"
+      }
+    }, item.texto)));
+  }))));
 }
 function ManualTrainForm({
   onAdd
@@ -4485,106 +4743,6 @@ function MealCard({
     placeholder: "Pegar aquí dirección exacta / enlace de Amap..."
   }));
 }
-const ENTRY_ICONS = {
-  parque: "🌲",
-  monumento: "🏯",
-  transporte: "🚡"
-};
-function EntryCard({
-  entry
-}) {
-  const isComprada = entry.estado === "COMPRADA";
-  const isPendiente = entry.estado === "PENDIENTE";
-  const badgeBg = isComprada ? "#5B8C5A" : isPendiente ? "#D64545" : "#E8A33D";
-  const badgeText = isComprada ? "#EFF6EE" : isPendiente ? "#FBEAEA" : "#2A1F0E";
-  return /*#__PURE__*/React.createElement("div", {
-    style: {
-      background: "#F5F2EA",
-      borderRadius: "4px",
-      marginBottom: "14px",
-      padding: "16px 18px",
-      boxShadow: "0 2px 10px rgba(0,0,0,0.3)",
-      border: "1px solid rgba(0,0,0,0.06)",
-      position: "relative"
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      position: "absolute",
-      top: 0,
-      left: 0,
-      right: 0,
-      height: "6px",
-      backgroundImage: "radial-gradient(circle, #1B1F23 3px, transparent 3.5px)",
-      backgroundSize: "16px 6px",
-      backgroundPosition: "0 -3px",
-      borderRadius: "4px 4px 0 0"
-    }
-  }), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "flex-start",
-      marginTop: "6px",
-      marginBottom: "8px",
-      gap: "10px"
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: "flex",
-      alignItems: "flex-start",
-      gap: "8px"
-    }
-  }, /*#__PURE__*/React.createElement("span", {
-    style: {
-      fontSize: "22px",
-      lineHeight: 1
-    }
-  }, ENTRY_ICONS[entry.categoria] || "🎫"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h3", {
-    style: {
-      fontFamily: "'Archivo Black', sans-serif",
-      fontSize: "16px",
-      color: "#1B1F23",
-      margin: 0,
-      lineHeight: "1.2"
-    }
-  }, entry.nombre), /*#__PURE__*/React.createElement("span", {
-    style: {
-      fontSize: "11px",
-      color: "#8a8577",
-      fontWeight: 600
-    }
-  }, entry.fecha))), /*#__PURE__*/React.createElement("span", {
-    style: {
-      fontSize: "10px",
-      fontWeight: 700,
-      padding: "3px 9px",
-      borderRadius: "999px",
-      background: badgeBg,
-      color: badgeText,
-      flexShrink: 0
-    }
-  }, entry.estado)), /*#__PURE__*/React.createElement("p", {
-    style: {
-      fontSize: "12.5px",
-      color: "#3d3a33",
-      lineHeight: "1.45",
-      margin: "0 0 8px 0"
-    }
-  }, entry.detalle), entry.alarma && /*#__PURE__*/React.createElement("div", {
-    style: {
-      marginTop: "8px",
-      padding: "8px 10px",
-      background: "rgba(214,69,69,0.1)",
-      borderRadius: "4px",
-      fontSize: "12px",
-      color: "#a83d3d",
-      display: "flex",
-      alignItems: "center",
-      gap: "6px",
-      fontWeight: 600
-    }
-  }, "⏰ Alarma: ", entry.alarma));
-}
 function TabButton({
   active,
   onClick,
@@ -4708,19 +4866,6 @@ function ChinaTripApp() {
     day: d,
     stamped: !!stampedMap[d.day_num],
     onToggle: () => toggleDay(d.day_num)
-  }))), tab === "entradas" && /*#__PURE__*/React.createElement(PanelHeader, {
-    icon: Ticket,
-    title: "Entradas y alarmas",
-    subtitle: "Qué está comprado y qué falta, con las alarmas de compra activas"
-  }, APP_DATA.entradas.map((e, i) => /*#__PURE__*/React.createElement(EntryCard, {
-    key: i,
-    entry: e
-  })), /*#__PURE__*/React.createElement("div", {
-    style: {
-      marginTop: "24px"
-    }
-  }, /*#__PURE__*/React.createElement(SubHeading, null, "Pendientes generales"), /*#__PURE__*/React.createElement(MiniMarkdown, {
-    text: sections.pendientes
   }))), tab === "comidas" && /*#__PURE__*/React.createElement(PanelHeader, {
     icon: Utensils,
     title: "Comidas",
@@ -4735,7 +4880,9 @@ function ChinaTripApp() {
     icon: Train,
     title: "Trenes",
     subtitle: "Estación de origen → destino, horario y duración de cada trayecto"
-  }, /*#__PURE__*/React.createElement(SubHeading, null, "Vuelos internacionales"), /*#__PURE__*/React.createElement(FlightCard, {
+  }, /*#__PURE__*/React.createElement(TransportChecklist, {
+    items: APP_DATA.transportChecklist
+  }), /*#__PURE__*/React.createElement(SubHeading, null, "Vuelos internacionales"), /*#__PURE__*/React.createElement(FlightCard, {
     flight: APP_DATA.vuelos.ida
   }), /*#__PURE__*/React.createElement(FlightCard, {
     flight: APP_DATA.vuelos.vuelta
@@ -4774,6 +4921,12 @@ function ChinaTripApp() {
     }
   }, /*#__PURE__*/React.createElement(SubHeading, null, "Esenciales transversales"), /*#__PURE__*/React.createElement(MiniMarkdown, {
     text: sections.transversales.split("### Entradas")[0]
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: "24px"
+    }
+  }, /*#__PURE__*/React.createElement(SubHeading, null, "Pendientes generales"), /*#__PURE__*/React.createElement(MiniMarkdown, {
+    text: sections.pendientes
   }))), tab === "contabilidad" && /*#__PURE__*/React.createElement(ExpensesTab, {
     days: days
   })), /*#__PURE__*/React.createElement("div", {
@@ -4808,11 +4961,6 @@ function ChinaTripApp() {
     onClick: () => setTab("hoteles"),
     icon: Hotel,
     label: "Hoteles"
-  }), /*#__PURE__*/React.createElement(TabButton, {
-    active: tab === "entradas",
-    onClick: () => setTab("entradas"),
-    icon: Ticket,
-    label: "Entradas"
   }), /*#__PURE__*/React.createElement(TabButton, {
     active: tab === "contabilidad",
     onClick: () => setTab("contabilidad"),
