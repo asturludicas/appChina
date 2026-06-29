@@ -2342,16 +2342,54 @@ function DayCard({
       background: visualStamped ? "#3a3530" : "rgba(232,163,61,0.18)",
       color: visualStamped ? "#8a8577" : "#A6660E"
     }
-  }, "⏰ ", day.alarma)), day.estado_raw && /*#__PURE__*/React.createElement("div", {
-    style: {
-      padding: "0 18px 14px 18px",
-      fontSize: "13px",
-      color: estadoColor,
-      fontWeight: 500,
-      lineHeight: "1.5",
-      borderBottom: open ? "1px dashed rgba(0,0,0,0.15)" : "none"
-    }
-  }, day.estado_raw.replace(/🔵|🟢|🟡|🔴|💰/g, "").replace(/\s·\s\s*/g, " · ").trim()), !open && day.resumenRapido && /*#__PURE__*/React.createElement("div", {
+  }, "⏰ ", day.alarma)), day.estado_raw && (() => {
+    // Separar el estado_raw en segmentos por "·", cada uno es un dato independiente.
+    // Se filtran los segmentos de color (🔵🟢🟡🔴, ya mostrado como badge arriba) y de gasto (💰, ya mostrado como chip de clima al lado)
+    const segments = day.estado_raw.split(/\s·\s/).map(s => s.trim()).filter(Boolean).filter(s => !/^(🔵|🟢|🟡|🔴)/.test(s) && !/^💰/.test(s));
+    if (segments.length === 0) return null;
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "0 18px 14px 18px",
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "6px",
+        borderBottom: open ? "1px dashed rgba(0,0,0,0.15)" : "none"
+      }
+    }, segments.map((seg, i) => {
+      // Detectar el emoji inicial (si existe) para usarlo como icono del chip
+      const emojiMatch = seg.match(/^([\p{Emoji}\u2600-\u27BF]+)\s*/u);
+      const emoji = emojiMatch ? emojiMatch[1] : null;
+      const restoTexto = emoji ? seg.slice(emojiMatch[0].length) : seg;
+      // Separar "detalle entre paréntesis" del texto principal para hacerlo más pequeño
+      const parenMatch = restoTexto.match(/^(.*?)\s*\(([^)]+)\)\s*(.*)$/);
+      const principal = parenMatch ? (parenMatch[1] + parenMatch[3]).trim() : restoTexto;
+      const detalle = parenMatch ? parenMatch[2] : null;
+      return /*#__PURE__*/React.createElement("span", {
+        key: i,
+        style: {
+          display: "inline-flex",
+          alignItems: "center",
+          gap: "4px",
+          fontSize: "12px",
+          fontWeight: 600,
+          padding: "4px 10px",
+          borderRadius: "999px",
+          background: visualStamped ? "#3a3530" : "#EFE9D8",
+          color: visualStamped ? "#8a8577" : estadoColor,
+          maxWidth: "100%"
+        }
+      }, emoji && /*#__PURE__*/React.createElement("span", {
+        style: {
+          fontSize: "13px"
+        }
+      }, emoji), /*#__PURE__*/React.createElement("span", null, principal), detalle && open && /*#__PURE__*/React.createElement("span", {
+        style: {
+          opacity: 0.65,
+          fontWeight: 500
+        }
+      }, "· ", detalle));
+    }));
+  })(), !open && day.resumenRapido && /*#__PURE__*/React.createElement("div", {
     style: {
       padding: "0 18px 14px 18px",
       fontSize: "12px",
