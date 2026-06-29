@@ -2858,6 +2858,384 @@ function useSiteGuides() {
   }, []);
   return [guides, loaded];
 }
+const CNY_TO_EUR = 0.129; // Tipo de cambio fijo aproximado, junio 2026. Editar aquí si cambia mucho durante el viaje.
+
+function useExpenses() {
+  const [expenses, setExpenses] = useState([]);
+  const [loaded, setLoaded] = useState(false);
+  useEffect(() => {
+    if (!window.firebaseDb) {
+      let mounted = true;
+      (async () => {
+        try {
+          const res = await window.storage.get("expenses-list", false);
+          if (mounted && res) setExpenses(JSON.parse(res.value));
+        } catch (e) {}
+        if (mounted) setLoaded(true);
+      })();
+      return () => {
+        mounted = false;
+      };
+    }
+    const ref = window.firebaseDb.ref("data/expenses_list");
+    const handler = snapshot => {
+      const val = snapshot.val();
+      if (val) {
+        try {
+          setExpenses(JSON.parse(val));
+        } catch (e) {
+          setExpenses([]);
+        }
+      } else {
+        setExpenses([]);
+      }
+    };
+    ref.on("value", handler);
+    setLoaded(true);
+    return () => ref.off("value", handler);
+  }, []);
+  const persist = async next => {
+    setExpenses(next);
+    try {
+      await window.storage.set("expenses-list", JSON.stringify(next), false);
+    } catch (e) {
+      console.error("Storage error", e);
+    }
+  };
+  const addExpense = (dayNum, fechaDia, cantidad, descripcion) => persist([...expenses, {
+    id: Date.now(),
+    dayNum,
+    fechaDia,
+    cantidad,
+    descripcion
+  }]);
+  const deleteExpense = id => persist(expenses.filter(e => e.id !== id));
+  return {
+    expenses,
+    addExpense,
+    deleteExpense,
+    loaded
+  };
+}
+function ExpenseForm({
+  days,
+  onAdd
+}) {
+  const [open, setOpen] = useState(false);
+  const [dayNum, setDayNum] = useState(days[0]?.day_num || 1);
+  const [cantidad, setCantidad] = useState("");
+  const [descripcion, setDescripcion] = useState("");
+  const submit = () => {
+    const num = parseFloat(cantidad.replace(",", "."));
+    if (!num || num <= 0 || !descripcion.trim()) return;
+    const day = days.find(d => d.day_num === parseInt(dayNum, 10));
+    onAdd(parseInt(dayNum, 10), day ? day.fecha_dia : "", num, descripcion.trim());
+    setCantidad("");
+    setDescripcion("");
+    setOpen(false);
+  };
+  if (!open) {
+    return /*#__PURE__*/React.createElement("button", {
+      onClick: () => setOpen(true),
+      style: {
+        width: "100%",
+        padding: "14px",
+        borderRadius: "4px",
+        border: "2px dashed #8a8577",
+        background: "transparent",
+        color: "#E8A33D",
+        fontSize: "14px",
+        fontWeight: 700,
+        cursor: "pointer",
+        marginBottom: "18px"
+      }
+    }, "+ Añadir gasto");
+  }
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: "#F5F2EA",
+      borderRadius: "4px",
+      padding: "16px",
+      marginBottom: "18px",
+      border: "2px dashed #8a8577"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: "10px"
+    }
+  }, /*#__PURE__*/React.createElement("label", {
+    style: {
+      fontSize: "11px",
+      color: "#8a8577",
+      fontWeight: 700,
+      display: "block",
+      marginBottom: "3px"
+    }
+  }, "Día del viaje"), /*#__PURE__*/React.createElement("select", {
+    value: dayNum,
+    onChange: e => setDayNum(e.target.value),
+    style: {
+      width: "100%",
+      fontSize: "13px",
+      padding: "8px 10px",
+      borderRadius: "4px",
+      border: "1px solid #c9c2b0",
+      background: "#fff",
+      color: "#2e2b25"
+    }
+  }, days.map(d => /*#__PURE__*/React.createElement("option", {
+    key: d.day_num,
+    value: d.day_num
+  }, "Día ", d.day_num, " · ", d.fecha_dia)))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: "10px"
+    }
+  }, /*#__PURE__*/React.createElement("label", {
+    style: {
+      fontSize: "11px",
+      color: "#8a8577",
+      fontWeight: 700,
+      display: "block",
+      marginBottom: "3px"
+    }
+  }, "Cantidad (CNY ¥)"), /*#__PURE__*/React.createElement("input", {
+    type: "text",
+    inputMode: "decimal",
+    value: cantidad,
+    onChange: e => setCantidad(e.target.value),
+    placeholder: "ej. 128",
+    style: {
+      width: "100%",
+      fontSize: "13px",
+      padding: "8px 10px",
+      borderRadius: "4px",
+      border: "1px solid #c9c2b0",
+      background: "#fff",
+      color: "#2e2b25",
+      boxSizing: "border-box"
+    }
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: "12px"
+    }
+  }, /*#__PURE__*/React.createElement("label", {
+    style: {
+      fontSize: "11px",
+      color: "#8a8577",
+      fontWeight: 700,
+      display: "block",
+      marginBottom: "3px"
+    }
+  }, "Descripción"), /*#__PURE__*/React.createElement("input", {
+    type: "text",
+    value: descripcion,
+    onChange: e => setDescripcion(e.target.value),
+    placeholder: "ej. Cena Da Dong",
+    style: {
+      width: "100%",
+      fontSize: "13px",
+      padding: "8px 10px",
+      borderRadius: "4px",
+      border: "1px solid #c9c2b0",
+      background: "#fff",
+      color: "#2e2b25",
+      boxSizing: "border-box"
+    }
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: "8px"
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: submit,
+    style: {
+      flex: 1,
+      padding: "10px",
+      borderRadius: "4px",
+      border: "none",
+      background: "#3E6B8C",
+      color: "#EAF2F8",
+      fontWeight: 700,
+      fontSize: "13px",
+      cursor: "pointer"
+    }
+  }, "Guardar"), /*#__PURE__*/React.createElement("button", {
+    onClick: () => setOpen(false),
+    style: {
+      flex: 1,
+      padding: "10px",
+      borderRadius: "4px",
+      border: "1px solid #8a8577",
+      background: "transparent",
+      color: "#6b665a",
+      fontWeight: 700,
+      fontSize: "13px",
+      cursor: "pointer"
+    }
+  }, "Cancelar")));
+}
+function ExpenseRow({
+  expense,
+  onDelete
+}) {
+  const eur = (expense.cantidad * CNY_TO_EUR).toFixed(2);
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      padding: "10px 12px",
+      borderRadius: "4px",
+      background: "#F5F2EA",
+      marginBottom: "6px"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: "13px",
+      color: "#2e2b25",
+      fontWeight: 600
+    }
+  }, expense.descripcion), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: "11px",
+      color: "#8a8577"
+    }
+  }, "≈ ", eur, " €")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: "10px"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: "15px",
+      fontWeight: 700,
+      color: "#A6660E"
+    }
+  }, "¥", expense.cantidad), /*#__PURE__*/React.createElement("button", {
+    onClick: () => onDelete(expense.id),
+    style: {
+      background: "none",
+      border: "none",
+      color: "#a83d3d",
+      fontSize: "13px",
+      cursor: "pointer",
+      padding: "2px"
+    }
+  }, "✕")));
+}
+function ExpensesTab({
+  days
+}) {
+  const {
+    expenses,
+    addExpense,
+    deleteExpense,
+    loaded
+  } = useExpenses();
+  if (!loaded) return null;
+  const totalCNY = expenses.reduce((sum, e) => sum + e.cantidad, 0);
+  const totalEUR = (totalCNY * CNY_TO_EUR).toFixed(2);
+  const grouped = {};
+  expenses.forEach(e => {
+    if (!grouped[e.dayNum]) grouped[e.dayNum] = [];
+    grouped[e.dayNum].push(e);
+  });
+  const orderedDayNums = Object.keys(grouped).map(Number).sort((a, b) => a - b);
+  return /*#__PURE__*/React.createElement(PanelHeader, {
+    icon: Wallet,
+    title: "Contabilidad",
+    subtitle: "Gastos del viaje, día a día y en total"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: "#2a2620",
+      borderRadius: "6px",
+      padding: "20px",
+      marginBottom: "20px",
+      textAlign: "center"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: "11px",
+      color: "#a8a299",
+      fontWeight: 700,
+      letterSpacing: "0.04em",
+      marginBottom: "6px"
+    }
+  }, "TOTAL GASTADO"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: "'Archivo Black', sans-serif",
+      fontSize: "32px",
+      color: "#E8A33D"
+    }
+  }, "¥", totalCNY.toFixed(0)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: "14px",
+      color: "#d8d3c8",
+      marginTop: "2px"
+    }
+  }, "≈ ", totalEUR, " €"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: "10px",
+      color: "#8a8577",
+      marginTop: "8px"
+    }
+  }, "Tipo de cambio fijo: 1 ¥ ≈ ", CNY_TO_EUR, " € (orientativo)")), /*#__PURE__*/React.createElement(ExpenseForm, {
+    days: days,
+    onAdd: addExpense
+  }), expenses.length === 0 && /*#__PURE__*/React.createElement("p", {
+    style: {
+      fontSize: "13px",
+      color: "#8a8577",
+      textAlign: "center",
+      marginTop: "20px"
+    }
+  }, "Sin gastos añadidos todavía."), orderedDayNums.map(dayNum => {
+    const dayExpenses = grouped[dayNum];
+    const dayTotal = dayExpenses.reduce((sum, e) => sum + e.cantidad, 0);
+    const dayTotalEur = (dayTotal * CNY_TO_EUR).toFixed(2);
+    const fechaDia = dayExpenses[0]?.fechaDia || "";
+    return /*#__PURE__*/React.createElement("div", {
+      key: dayNum,
+      style: {
+        marginBottom: "18px"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "baseline",
+        marginBottom: "8px",
+        paddingBottom: "6px",
+        borderBottom: "1px solid rgba(255,255,255,0.1)"
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontFamily: "'Archivo Black', sans-serif",
+        fontSize: "13px",
+        color: "#E8A33D"
+      }
+    }, "Día ", dayNum, " · ", fechaDia), /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: "13px",
+        color: "#a8a299",
+        fontWeight: 700
+      }
+    }, "¥", dayTotal.toFixed(0), " ", /*#__PURE__*/React.createElement("span", {
+      style: {
+        opacity: 0.7
+      }
+    }, "(≈", dayTotalEur, "€)"))), dayExpenses.map(e => /*#__PURE__*/React.createElement(ExpenseRow, {
+      key: e.id,
+      expense: e,
+      onDelete: deleteExpense
+    })));
+  }));
+}
 function FlightCard({
   flight
 }) {
@@ -4396,7 +4774,9 @@ function ChinaTripApp() {
     }
   }, /*#__PURE__*/React.createElement(SubHeading, null, "Esenciales transversales"), /*#__PURE__*/React.createElement(MiniMarkdown, {
     text: sections.transversales.split("### Entradas")[0]
-  })))), /*#__PURE__*/React.createElement("div", {
+  }))), tab === "contabilidad" && /*#__PURE__*/React.createElement(ExpensesTab, {
+    days: days
+  })), /*#__PURE__*/React.createElement("div", {
     style: {
       position: "fixed",
       bottom: 0,
@@ -4433,6 +4813,11 @@ function ChinaTripApp() {
     onClick: () => setTab("entradas"),
     icon: Ticket,
     label: "Entradas"
+  }), /*#__PURE__*/React.createElement(TabButton, {
+    active: tab === "contabilidad",
+    onClick: () => setTab("contabilidad"),
+    icon: Wallet,
+    label: "Gastos"
   }), /*#__PURE__*/React.createElement(TabButton, {
     active: tab === "emergencias",
     onClick: () => setTab("emergencias"),
