@@ -5602,7 +5602,7 @@ function ChinaTripApp() {
     }
   }, /*#__PURE__*/React.createElement(SubHeading, null, "Pendientes generales"), /*#__PURE__*/React.createElement(MiniMarkdown, {
     text: sections.pendientes
-  }))), tab === "contabilidad" && /*#__PURE__*/React.createElement(ExpensesTab, {
+  })), /*#__PURE__*/React.createElement(FrasesChina, null)), tab === "contabilidad" && /*#__PURE__*/React.createElement(ExpensesTab, {
     days: days
   })), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -5659,6 +5659,361 @@ function SubHeading({
       marginBottom: "10px"
     }
   }, children);
+}
+const FRASES_CHINA = [{
+  categoria: "Hotel",
+  icono: "🏨",
+  frases: [{
+    es: "Tenemos una reserva",
+    en: "We have a reservation",
+    zh: "我们有预订"
+  }, {
+    es: "La reserva está a nombre de…",
+    en: "The reservation is under the name of…",
+    zh: "预订的名字是…"
+  }, {
+    es: "Queremos hacer el check-in",
+    en: "We would like to check in",
+    zh: "我们想办理入住"
+  }, {
+    es: "¿Podemos dejar las maletas aquí?",
+    en: "Can we leave our luggage here?",
+    zh: "可以寄存行李吗？"
+  }, {
+    es: "¿A qué hora es el check-out?",
+    en: "What time is check-out?",
+    zh: "几点退房？"
+  }, {
+    es: "Necesitamos ayuda con la dirección",
+    en: "We need help finding the address",
+    zh: "我们需要帮助找地址"
+  }]
+}, {
+  categoria: "Comida y bebida",
+  icono: "🍜",
+  frases: [{
+    es: "No queremos picante",
+    en: "We don't want spicy food",
+    zh: "不要辣"
+  }, {
+    es: "Poco picante",
+    en: "Mild spicy / A little spicy",
+    zh: "微辣"
+  }, {
+    es: "Sin cilantro",
+    en: "No cilantro",
+    zh: "不要香菜"
+  }, {
+    es: "Sin cebolla",
+    en: "No onion",
+    zh: "不要葱"
+  }, {
+    es: "Sin ajo",
+    en: "No garlic",
+    zh: "不要蒜"
+  }, {
+    es: "¿Tiene algún plato no picante?",
+    en: "Do you have any non-spicy dish?",
+    zh: "有不辣的菜吗？"
+  }, {
+    es: "Queremos esto",
+    en: "We want this",
+    zh: "我们要这个"
+  }, {
+    es: "Dos raciones, por favor",
+    en: "Two portions, please",
+    zh: "请来两份"
+  }, {
+    es: "Agua fría, por favor",
+    en: "Cold water, please",
+    zh: "请给我们冰水"
+  }, {
+    es: "Agua del tiempo, por favor",
+    en: "Room-temperature water, please",
+    zh: "请给我们常温水"
+  }]
+}, {
+  categoria: "Alergias",
+  icono: "⚠️",
+  frases: [{
+    es: "Soy alérgico/a a…",
+    en: "I am allergic to…",
+    zh: "我对……过敏"
+  }, {
+    es: "Alérgico al marisco",
+    en: "Allergic to shellfish / seafood",
+    zh: "我对海鲜过敏"
+  }, {
+    es: "No puedo comer lácteos",
+    en: "I can't eat dairy",
+    zh: "我不能吃乳制品"
+  }, {
+    es: "No puedo comer frutos secos",
+    en: "I can't eat nuts",
+    zh: "我不能吃坚果"
+  }, {
+    es: "Por favor, no ponga…",
+    en: "Please don't add…",
+    zh: "请不要放……"
+  }, {
+    es: "¿Esto lleva…?",
+    en: "Does this contain…?",
+    zh: "这个里面有……吗？"
+  }]
+}, {
+  categoria: "Pagos",
+  icono: "💳",
+  frases: [{
+    es: "¿Se puede pagar con Alipay?",
+    en: "Can I pay with Alipay?",
+    zh: "可以用支付宝吗？"
+  }, {
+    es: "¿Se puede pagar con WeChat Pay?",
+    en: "Can I pay with WeChat Pay?",
+    zh: "可以用微信支付吗？"
+  }, {
+    es: "¿Se puede pagar con tarjeta?",
+    en: "Can I pay by card?",
+    zh: "可以刷卡吗？"
+  }, {
+    es: "No tenemos efectivo",
+    en: "We don't have cash",
+    zh: "我们没有现金"
+  }, {
+    es: "El pago no funciona",
+    en: "The payment doesn't work",
+    zh: "支付不了"
+  }]
+}, {
+  categoria: "Emergencias",
+  icono: "🚨",
+  frases: [{
+    es: "Estamos perdidos",
+    en: "We are lost",
+    zh: "我们迷路了"
+  }, {
+    es: "Necesitamos ayuda",
+    en: "We need help",
+    zh: "我们需要帮助"
+  }, {
+    es: "Llame a la policía, por favor",
+    en: "Please call the police",
+    zh: "请帮我们报警"
+  }, {
+    es: "Llame a una ambulancia, por favor",
+    en: "Please call an ambulance",
+    zh: "请帮我们叫救护车"
+  }, {
+    es: "Necesito ir al hospital",
+    en: "I need to go to the hospital",
+    zh: "我需要去医院"
+  }, {
+    es: "Necesito contactar con mi hotel",
+    en: "I need to contact my hotel",
+    zh: "我需要联系我的酒店"
+  }, {
+    es: "Necesito contactar con la embajada de España",
+    en: "I need to contact the Spanish embassy",
+    zh: "我需要联系西班牙大使馆"
+  }, {
+    es: "Baño",
+    en: "Bathroom",
+    zh: "洗手间"
+  }]
+}, {
+  categoria: "Frase completa",
+  icono: "📋",
+  frases: [{
+    es: "No hablamos chino. Somos turistas españoles. Por favor, use el traductor o escriba aquí. Muchas gracias.",
+    en: "We don't speak Chinese. We are Spanish tourists. Please use the translator or write here. Thank you very much.",
+    zh: "我们不会说中文。我们是西班牙游客。请用翻译软件，或者写在这里。谢谢。"
+  }]
+}];
+function FraseCard({
+  frase,
+  onOpen
+}) {
+  return /*#__PURE__*/React.createElement("div", {
+    onClick: () => onOpen(frase),
+    style: {
+      background: "#F5F2EA",
+      borderRadius: "6px",
+      padding: "12px 14px",
+      marginBottom: "8px",
+      cursor: "pointer",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      gap: "10px",
+      activeOpacity: 0.7
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: "18px",
+      fontWeight: 700,
+      color: "#1B1F23",
+      lineHeight: 1.2
+    }
+  }, frase.zh), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: "11px",
+      color: "#6b665a",
+      marginTop: "3px"
+    }
+  }, frase.es)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: "13px",
+      color: "#a8a299",
+      flexShrink: 0
+    }
+  }, "↗"));
+}
+function FraseModal({
+  frase,
+  onClose
+}) {
+  if (!frase) return null;
+  return /*#__PURE__*/React.createElement("div", {
+    onClick: onClose,
+    style: {
+      position: "fixed",
+      inset: 0,
+      zIndex: 9999,
+      background: "#1B1F23",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      padding: "24px"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    onClick: e => e.stopPropagation(),
+    style: {
+      width: "100%",
+      maxWidth: "600px",
+      textAlign: "center"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: "clamp(42px, 12vw, 72px)",
+      fontWeight: 700,
+      color: "#E8A33D",
+      lineHeight: 1.2,
+      marginBottom: "28px",
+      letterSpacing: "0.02em"
+    }
+  }, frase.zh), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: "clamp(14px, 3.5vw, 20px)",
+      color: "#d8d3c8",
+      marginBottom: "12px",
+      fontWeight: 500,
+      lineHeight: 1.4
+    }
+  }, frase.en), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: "clamp(13px, 3vw, 17px)",
+      color: "#8a8577",
+      lineHeight: 1.4
+    }
+  }, frase.es), /*#__PURE__*/React.createElement("button", {
+    onClick: onClose,
+    style: {
+      marginTop: "40px",
+      padding: "12px 32px",
+      borderRadius: "999px",
+      border: "1px solid rgba(255,255,255,0.2)",
+      background: "transparent",
+      color: "#8a8577",
+      fontSize: "13px",
+      cursor: "pointer"
+    }
+  }, "Cerrar · Toca fuera para volver")));
+}
+function FrasesChina() {
+  const [selectedFrase, setSelectedFrase] = useState(null);
+  const [openCat, setOpenCat] = useState(null);
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: "24px"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: "8px",
+      marginBottom: "14px"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      height: "1px",
+      background: "rgba(255,255,255,0.1)"
+    }
+  }), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: "10px",
+      fontWeight: 700,
+      letterSpacing: "0.07em",
+      color: "#8a8577",
+      textTransform: "uppercase",
+      whiteSpace: "nowrap"
+    }
+  }, "🀄 Frases útiles · toca para ver a pantalla completa"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      height: "1px",
+      background: "rgba(255,255,255,0.1)"
+    }
+  })), /*#__PURE__*/React.createElement("p", {
+    style: {
+      fontSize: "11px",
+      color: "#6b665a",
+      marginBottom: "14px",
+      lineHeight: 1.5
+    }
+  }, "Toca cualquier frase para verla en grande en horizontal. Ideal para enseñar el móvil."), FRASES_CHINA.map(cat => /*#__PURE__*/React.createElement("div", {
+    key: cat.categoria,
+    style: {
+      marginBottom: "10px"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    onClick: () => setOpenCat(openCat === cat.categoria ? null : cat.categoria),
+    style: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      padding: "10px 14px",
+      background: "#2a2620",
+      borderRadius: "6px",
+      cursor: "pointer"
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: "14px",
+      fontWeight: 700,
+      color: "#E8A33D"
+    }
+  }, cat.icono, " ", cat.categoria), /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: "#8a8577",
+      fontSize: "12px"
+    }
+  }, openCat === cat.categoria ? "▲" : "▼", " ", cat.frases.length, " frases")), openCat === cat.categoria && /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: "6px"
+    }
+  }, cat.frases.map((f, i) => /*#__PURE__*/React.createElement(FraseCard, {
+    key: i,
+    frase: f,
+    onOpen: setSelectedFrase
+  }))))), /*#__PURE__*/React.createElement(FraseModal, {
+    frase: selectedFrase,
+    onClose: () => setSelectedFrase(null)
+  }));
 }
 function PanelHeader({
   icon: Icon,
