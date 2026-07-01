@@ -2747,52 +2747,55 @@ function useManualTrains() {
 function useChecklistDone() {
   const [doneMap, setDoneMap] = useState({});
   const [loaded, setLoaded] = useState(false);
+
+  // window.storage usa sanitizeKey que convierte guiones bajos pero NO guiones normales.
+  // La clave "transport-checklist-done" se guarda en Firebase como data/transport-checklist-done.
+  // El listener DEBE usar exactamente esa misma ruta.
+  const STORAGE_KEY = "transport-checklist-done";
+  const FB_PATH = "data/transport-checklist-done";
   useEffect(() => {
-    if (!window.firebaseDb) {
-      let mounted = true;
-      (async () => {
+    let mounted = true;
+
+    // Leer estado inicial con window.storage (igual que el resto de hooks que funcionan)
+    window.storage.get(STORAGE_KEY, false).then(res => {
+      if (mounted && res && res.value) {
         try {
-          const res = await window.storage.get("transport-checklist-done", false);
-          if (mounted && res) setDoneMap(JSON.parse(res.value));
+          setDoneMap(JSON.parse(res.value));
         } catch (e) {}
-        if (mounted) setLoaded(true);
-      })();
-      return () => {
-        mounted = false;
-      };
-    }
-    const ref = window.firebaseDb.ref("data/transport_checklist_done");
-    const handler = snapshot => {
-      const val = snapshot.val();
-      try {
-        setDoneMap(val ? JSON.parse(val) : {});
-      } catch (e) {
-        setDoneMap({});
       }
+      if (mounted) setLoaded(true);
+    }).catch(() => {
+      if (mounted) setLoaded(true);
+    });
+
+    // Listener en tiempo real para sincronizar entre los dos móviles
+    let ref = null;
+    if (window.firebaseDb) {
+      ref = window.firebaseDb.ref(FB_PATH);
+      const handler = snapshot => {
+        if (!mounted) return;
+        const val = snapshot.val();
+        if (val) {
+          try {
+            setDoneMap(JSON.parse(val));
+          } catch (e) {}
+        }
+      };
+      ref.on("value", handler);
+    }
+    return () => {
+      mounted = false;
+      if (ref) ref.off("value");
     };
-    ref.on("value", handler);
-    setLoaded(true);
-    return () => ref.off("value", handler);
   }, []);
   const toggle = async idx => {
     const next = {
       ...doneMap,
       [idx]: !doneMap[idx]
     };
-    setDoneMap(next);
-    const serialized = JSON.stringify(next);
-    if (window.firebaseDb) {
-      try {
-        await window.firebaseDb.ref("data/transport_checklist_done").set(serialized);
-      } catch (e) {
-        console.error("Firebase error", e);
-      }
-    }
-    try {
-      await window.storage.set("transport-checklist-done", serialized, false);
-    } catch (e) {
-      console.error("Storage error", e);
-    }
+    setDoneMap(next); // feedback inmediato en UI
+    // Escribir con window.storage — misma ruta que la lectura inicial
+    await window.storage.set(STORAGE_KEY, JSON.stringify(next), false);
   };
   return [doneMap, toggle, loaded];
 }
