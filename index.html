@@ -2731,7 +2731,6 @@ function useManualTrains() {
 }
 function useChecklistDone() {
   const [doneMap, setDoneMap] = useState({});
-  const [loaded, setLoaded] = useState(false);
   useEffect(() => {
     const ref = window.firebaseDb.ref("data/checklist_transport");
     const handler = snapshot => {
@@ -2739,7 +2738,6 @@ function useChecklistDone() {
       if (val && typeof val === "object") {
         setDoneMap(val);
       }
-      setLoaded(true);
     };
     ref.on("value", handler);
     return () => ref.off("value", handler);
@@ -2750,9 +2748,9 @@ function useChecklistDone() {
       ...prev,
       [idx]: next
     }));
-    window.firebaseDb.ref(`data/checklist_transport/${idx}`).set(next);
+    window.firebaseDb.ref("data/checklist_transport/" + idx).set(next);
   };
-  return [doneMap, toggle, loaded];
+  return [doneMap, toggle];
 }
 const CHECKLIST_CATEGORIES = {
   rojo: {
@@ -2777,9 +2775,8 @@ const CHECKLIST_CATEGORIES = {
 function TransportChecklist({
   items
 }) {
-  const [doneMap, toggle, loaded] = useChecklistDone();
+  const [doneMap, toggle] = useChecklistDone();
   const [open, setOpen] = useState(true);
-  if (!loaded) return null;
   const totalDone = items.filter((_, i) => doneMap[i]).length;
   const grouped = {
     rojo: [],
@@ -5588,9 +5585,13 @@ function ChinaTripApp() {
     icon: Phone,
     title: "Emergencias y esenciales",
     subtitle: "Lo que no quieres tener que buscar bajo presión"
-  }, /*#__PURE__*/React.createElement(SectionTable, {
+  }, /*#__PURE__*/React.createElement(FrasesChina, null), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: "24px"
+    }
+  }, /*#__PURE__*/React.createElement(SubHeading, null, "Información de emergencias"), /*#__PURE__*/React.createElement(SectionTable, {
     markdown: sections.emergencias
-  }), /*#__PURE__*/React.createElement("div", {
+  })), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: "24px"
     }
@@ -5602,7 +5603,7 @@ function ChinaTripApp() {
     }
   }, /*#__PURE__*/React.createElement(SubHeading, null, "Pendientes generales"), /*#__PURE__*/React.createElement(MiniMarkdown, {
     text: sections.pendientes
-  })), /*#__PURE__*/React.createElement(FrasesChina, null)), tab === "contabilidad" && /*#__PURE__*/React.createElement(ExpensesTab, {
+  }))), tab === "contabilidad" && /*#__PURE__*/React.createElement(ExpensesTab, {
     days: days
   })), /*#__PURE__*/React.createElement("div", {
     style: {
