@@ -2732,42 +2732,33 @@ function useManualTrains() {
 function useChecklistDone() {
   const [doneMap, setDoneMap] = useState({});
   const [loaded, setLoaded] = useState(false);
-  const ITEM_COUNT = APP_DATA.transportChecklist ? APP_DATA.transportChecklist.length : 22;
   useEffect(() => {
-    let mounted = true;
-    // Mismo patrón exacto que useAllStamps, que funciona bien:
-    // una clave por item, guardando "true"/"false" como string simple
-    (async () => {
-      const entries = await Promise.all(Array.from({
-        length: ITEM_COUNT
-      }, (_, i) => i).map(async i => {
-        try {
-          const res = await window.storage.get(`transport-check:${i}`, false);
-          return [i, res ? res.value === "true" : false];
-        } catch (e) {
-          return [i, false];
-        }
-      }));
-      if (mounted) {
-        setDoneMap(Object.fromEntries(entries));
-        setLoaded(true);
+    // Un solo listener sobre un único nodo que contiene todo el mapa.
+    // Firebase SDK cachea localmente y dispara el handler inmediatamente
+    // con el valor guardado, sin esperar a la red. Esto evita todos los
+    // problemas de race-condition con desmontajes y Promise.all paralelos.
+    const ref = db.ref("data/checklist_transport");
+    const handler = snapshot => {
+      const val = snapshot.val();
+      if (val && typeof val === "object") {
+        setDoneMap(val);
       }
-    })();
+      setLoaded(true);
+    };
+    ref.on("value", handler);
     return () => {
-      mounted = false;
+      ref.off("value", handler);
     };
   }, []);
-  const toggle = async idx => {
+  const toggle = idx => {
     const next = !doneMap[idx];
+    // Actualización optimista inmediata en local
     setDoneMap(prev => ({
       ...prev,
       [idx]: next
     }));
-    try {
-      await window.storage.set(`transport-check:${idx}`, String(next), false);
-    } catch (e) {
-      console.error("Storage error checklist:", e);
-    }
+    // Escribir directamente en Firebase — el listener de arriba lo confirmará
+    db.ref(`data/checklist_transport/${idx}`).set(next);
   };
   return [doneMap, toggle, loaded];
 }
