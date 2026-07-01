@@ -2733,11 +2733,7 @@ function useChecklistDone() {
   const [doneMap, setDoneMap] = useState({});
   const [loaded, setLoaded] = useState(false);
   useEffect(() => {
-    // Un solo listener sobre un único nodo que contiene todo el mapa.
-    // Firebase SDK cachea localmente y dispara el handler inmediatamente
-    // con el valor guardado, sin esperar a la red. Esto evita todos los
-    // problemas de race-condition con desmontajes y Promise.all paralelos.
-    const ref = db.ref("data/checklist_transport");
+    const ref = window.firebaseDb.ref("data/checklist_transport");
     const handler = snapshot => {
       const val = snapshot.val();
       if (val && typeof val === "object") {
@@ -2746,19 +2742,15 @@ function useChecklistDone() {
       setLoaded(true);
     };
     ref.on("value", handler);
-    return () => {
-      ref.off("value", handler);
-    };
+    return () => ref.off("value", handler);
   }, []);
   const toggle = idx => {
     const next = !doneMap[idx];
-    // Actualización optimista inmediata en local
     setDoneMap(prev => ({
       ...prev,
       [idx]: next
     }));
-    // Escribir directamente en Firebase — el listener de arriba lo confirmará
-    db.ref(`data/checklist_transport/${idx}`).set(next);
+    window.firebaseDb.ref(`data/checklist_transport/${idx}`).set(next);
   };
   return [doneMap, toggle, loaded];
 }
