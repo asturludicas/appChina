@@ -2526,59 +2526,44 @@ function DayCard({
     }
   }, day.resumenRapido), day.meals && /*#__PURE__*/React.createElement("div", {
     style: {
-      margin: "0 18px 14px 18px",
-      padding: "12px 14px",
-      borderRadius: "4px",
-      background: "#EFE9D8",
-      border: "1px dashed #B5740F"
+      margin: "0 18px 12px 18px",
+      padding: "10px 14px",
+      borderRadius: "6px",
+      background: "rgba(166,102,14,0.07)",
+      borderLeft: "3px solid #B5740F"
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
       display: "flex",
       alignItems: "center",
       gap: "6px",
-      marginBottom: "6px"
+      marginBottom: "5px"
     }
   }, /*#__PURE__*/React.createElement(Utensils, {
-    size: 14,
+    size: 12,
     color: "#A6660E"
   }), /*#__PURE__*/React.createElement("span", {
     style: {
-      fontSize: "11px",
+      fontSize: "10px",
       fontWeight: 700,
-      letterSpacing: "0.05em",
+      letterSpacing: "0.07em",
       color: "#A6660E",
-      textTransform: "uppercase",
-      fontFamily: "'IBM Plex Sans', sans-serif"
+      textTransform: "uppercase"
     }
   }, "Dónde comer hoy")), day.meals.desayuno && /*#__PURE__*/React.createElement("div", {
     style: {
-      fontSize: "13px",
-      color: "#3d3a33",
-      marginBottom: "6px",
-      lineHeight: "1.5"
+      fontSize: "12.5px",
+      color: "#5a5040",
+      marginBottom: "4px",
+      lineHeight: "1.45"
     }
-  }, /*#__PURE__*/React.createElement("strong", null, "Desayuno (", day.meals.desayuno.hora, "):"), " ", day.meals.desayuno.que_buscar, /*#__PURE__*/React.createElement("span", {
+  }, /*#__PURE__*/React.createElement("strong", null, "Desayuno ", day.meals.desayuno.hora && `(${day.meals.desayuno.hora})`, ":"), " ", day.meals.desayuno.que_buscar), day.meals.principal && /*#__PURE__*/React.createElement("div", {
     style: {
-      display: "block",
-      fontSize: "11px",
-      color: "#6b6354",
-      marginTop: "2px"
+      fontSize: "12.5px",
+      color: "#5a5040",
+      lineHeight: "1.45"
     }
-  }, day.meals.desayuno.estado, " · ", day.meals.desayuno.motivo)), day.meals.principal && /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: "13px",
-      color: "#3d3a33",
-      lineHeight: "1.5"
-    }
-  }, day.meals.principal.que_mirar, /*#__PURE__*/React.createElement("span", {
-    style: {
-      display: "block",
-      fontSize: "11px",
-      color: "#6b6354",
-      marginTop: "2px"
-    }
-  }, day.meals.principal.estado))), /*#__PURE__*/React.createElement("div", {
+  }, day.meals.principal.que_mirar.replace(/[✅❓🔲🟦☎️]/g, "").trim())), /*#__PURE__*/React.createElement("div", {
     style: {
       display: "flex",
       justifyContent: "flex-end",
@@ -3434,6 +3419,257 @@ function ExpenseRow({
     }
   }, "✕")));
 }
+function useEuroExpenses() {
+  const [expenses, setExpenses] = useState([]);
+  const [loaded, setLoaded] = useState(false);
+  useEffect(() => {
+    let mounted = true;
+    window.storage.get("euro-expenses-list", false).then(res => {
+      if (mounted && res && res.value) {
+        try {
+          setExpenses(JSON.parse(res.value));
+        } catch (e) {}
+      }
+      if (mounted) setLoaded(true);
+    }).catch(() => {
+      if (mounted) setLoaded(true);
+    });
+    return () => {
+      mounted = false;
+    };
+  }, []);
+  const persist = async next => {
+    setExpenses(next);
+    await window.storage.set("euro-expenses-list", JSON.stringify(next), false);
+  };
+  const addExpense = (categoria, descripcion, cantidad) => persist([...expenses, {
+    id: Date.now(),
+    categoria,
+    descripcion,
+    cantidad
+  }]);
+  const deleteExpense = id => persist(expenses.filter(e => e.id !== id));
+  return {
+    expenses,
+    addExpense,
+    deleteExpense,
+    loaded
+  };
+}
+const EURO_CATEGORIES = [{
+  value: "vuelo",
+  label: "✈️ Vuelo"
+}, {
+  value: "escala",
+  label: "🛑 Escala / aeropuerto"
+}, {
+  value: "seguro",
+  label: "🛡️ Seguro de viaje"
+}, {
+  value: "hotel",
+  label: "🏨 Hotel prepagado"
+}, {
+  value: "entrada",
+  label: "🎫 Entrada online"
+}, {
+  value: "otros",
+  label: "📦 Otros previos"
+}];
+function EuroExpenseForm({
+  onAdd
+}) {
+  const [open, setOpen] = useState(false);
+  const [categoria, setCategoria] = useState("vuelo");
+  const [descripcion, setDescripcion] = useState("");
+  const [cantidad, setCantidad] = useState("");
+  const submit = () => {
+    const num = parseFloat(cantidad.replace(",", "."));
+    if (!num || num <= 0 || !descripcion.trim()) return;
+    onAdd(categoria, descripcion.trim(), num);
+    setDescripcion("");
+    setCantidad("");
+    setCategoria("vuelo");
+    setOpen(false);
+  };
+  const fieldStyle = {
+    width: "100%",
+    fontSize: "13px",
+    padding: "8px 10px",
+    borderRadius: "4px",
+    border: "1px solid #c9c2b0",
+    background: "#fff",
+    color: "#2e2b25",
+    boxSizing: "border-box",
+    marginBottom: "8px"
+  };
+  if (!open) return /*#__PURE__*/React.createElement("button", {
+    onClick: () => setOpen(true),
+    style: {
+      width: "100%",
+      padding: "12px",
+      borderRadius: "4px",
+      border: "2px dashed #8a8577",
+      background: "transparent",
+      color: "#a8a299",
+      fontSize: "13px",
+      fontWeight: 700,
+      cursor: "pointer",
+      marginBottom: "10px"
+    }
+  }, "+ Añadir gasto en €");
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: "12px",
+      borderRadius: "4px",
+      border: "2px dashed #8a8577",
+      background: "#F5F2EA",
+      marginBottom: "10px"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: "8px"
+    }
+  }, /*#__PURE__*/React.createElement("label", {
+    style: {
+      fontSize: "10px",
+      color: "#8a8577",
+      fontWeight: 700,
+      display: "block",
+      marginBottom: "2px"
+    }
+  }, "Categoría"), /*#__PURE__*/React.createElement("select", {
+    value: categoria,
+    onChange: e => setCategoria(e.target.value),
+    style: fieldStyle
+  }, EURO_CATEGORIES.map(c => /*#__PURE__*/React.createElement("option", {
+    key: c.value,
+    value: c.value
+  }, c.label)))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: "8px"
+    }
+  }, /*#__PURE__*/React.createElement("label", {
+    style: {
+      fontSize: "10px",
+      color: "#8a8577",
+      fontWeight: 700,
+      display: "block",
+      marginBottom: "2px"
+    }
+  }, "Descripción"), /*#__PURE__*/React.createElement("input", {
+    type: "text",
+    value: descripcion,
+    onChange: e => setDescripcion(e.target.value),
+    placeholder: "ej. Bocadillo escala Jeddah",
+    style: fieldStyle
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: "10px"
+    }
+  }, /*#__PURE__*/React.createElement("label", {
+    style: {
+      fontSize: "10px",
+      color: "#8a8577",
+      fontWeight: 700,
+      display: "block",
+      marginBottom: "2px"
+    }
+  }, "Cantidad (€)"), /*#__PURE__*/React.createElement("input", {
+    type: "text",
+    inputMode: "decimal",
+    value: cantidad,
+    onChange: e => setCantidad(e.target.value),
+    placeholder: "ej. 14.50",
+    style: fieldStyle
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: "8px"
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: submit,
+    style: {
+      flex: 1,
+      padding: "9px",
+      borderRadius: "4px",
+      border: "none",
+      background: "#3E6B8C",
+      color: "#EAF2F8",
+      fontWeight: 700,
+      fontSize: "12px",
+      cursor: "pointer"
+    }
+  }, "Guardar"), /*#__PURE__*/React.createElement("button", {
+    onClick: () => setOpen(false),
+    style: {
+      flex: 1,
+      padding: "9px",
+      borderRadius: "4px",
+      border: "1px solid #8a8577",
+      background: "transparent",
+      color: "#6b665a",
+      fontWeight: 700,
+      fontSize: "12px",
+      cursor: "pointer"
+    }
+  }, "Cancelar")));
+}
+function EuroExpenseRow({
+  expense,
+  onDelete
+}) {
+  const cat = EURO_CATEGORIES.find(c => c.value === expense.categoria) || EURO_CATEGORIES[0];
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      padding: "9px 12px",
+      borderRadius: "4px",
+      background: "#F5F2EA",
+      marginBottom: "6px"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: "10px",
+      color: "#8a8577",
+      fontWeight: 700
+    }
+  }, cat.label), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: "13px",
+      color: "#2e2b25",
+      fontWeight: 600,
+      marginTop: "1px"
+    }
+  }, expense.descripcion)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: "10px"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: "15px",
+      fontWeight: 700,
+      color: "#3E6B8C"
+    }
+  }, expense.cantidad.toFixed(2), " €"), /*#__PURE__*/React.createElement("button", {
+    onClick: () => onDelete(expense.id),
+    style: {
+      background: "none",
+      border: "none",
+      color: "#a83d3d",
+      fontSize: "13px",
+      cursor: "pointer",
+      padding: "2px"
+    }
+  }, "✕")));
+}
 function ExpensesTab({
   days
 }) {
@@ -3443,15 +3679,35 @@ function ExpensesTab({
     deleteExpense,
     loaded
   } = useExpenses();
-  if (!loaded) return null;
+  const {
+    expenses: euroExp,
+    addExpense: addEuroExp,
+    deleteExpense: deleteEuroExp,
+    loaded: euroLoaded
+  } = useEuroExpenses();
+  const [activeSection, setActiveSection] = useState("china");
+  if (!loaded || !euroLoaded) return null;
   const totalCNY = expenses.reduce((sum, e) => sum + e.cantidad, 0);
-  const totalEUR = (totalCNY * CNY_TO_EUR).toFixed(2);
+  const totalChinaEUR = parseFloat((totalCNY * CNY_TO_EUR).toFixed(2));
+  const totalEuroExp = euroExp.reduce((sum, e) => sum + e.cantidad, 0);
+  const totalGlobal = (totalChinaEUR + totalEuroExp).toFixed(2);
   const grouped = {};
   expenses.forEach(e => {
     if (!grouped[e.dayNum]) grouped[e.dayNum] = [];
     grouped[e.dayNum].push(e);
   });
   const orderedDayNums = Object.keys(grouped).map(Number).sort((a, b) => a - b);
+  const tabStyle = active => ({
+    flex: 1,
+    padding: "8px",
+    borderRadius: "4px",
+    border: "none",
+    cursor: "pointer",
+    fontWeight: 700,
+    fontSize: "12px",
+    background: active ? "#E8A33D" : "transparent",
+    color: active ? "#2A1F0E" : "#8a8577"
+  });
   return /*#__PURE__*/React.createElement(PanelHeader, {
     icon: Wallet,
     title: "Contabilidad",
@@ -3460,37 +3716,67 @@ function ExpensesTab({
     style: {
       background: "#2a2620",
       borderRadius: "6px",
-      padding: "20px",
-      marginBottom: "20px",
+      padding: "18px 20px",
+      marginBottom: "16px",
       textAlign: "center"
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      fontSize: "11px",
+      fontSize: "10px",
       color: "#a8a299",
       fontWeight: 700,
-      letterSpacing: "0.04em",
-      marginBottom: "6px"
+      letterSpacing: "0.05em",
+      marginBottom: "4px"
     }
-  }, "TOTAL GASTADO"), /*#__PURE__*/React.createElement("div", {
+  }, "TOTAL GLOBAL DEL VIAJE"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontFamily: "'Archivo Black', sans-serif",
-      fontSize: "32px",
+      fontSize: "30px",
       color: "#E8A33D"
     }
-  }, "¥", totalCNY.toFixed(0)), /*#__PURE__*/React.createElement("div", {
+  }, totalGlobal, " €"), /*#__PURE__*/React.createElement("div", {
     style: {
-      fontSize: "14px",
-      color: "#d8d3c8",
-      marginTop: "2px"
-    }
-  }, "≈ ", totalEUR, " €"), /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: "10px",
-      color: "#8a8577",
+      display: "flex",
+      justifyContent: "center",
+      gap: "16px",
       marginTop: "8px"
     }
-  }, "Tipo de cambio fijo: 1 ¥ ≈ ", CNY_TO_EUR, " € (orientativo)")), /*#__PURE__*/React.createElement(ExpenseForm, {
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: "11px",
+      color: "#8a8577"
+    }
+  }, "🇨🇳 China: ¥", totalCNY.toFixed(0), " ", /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: "#6b665a"
+    }
+  }, "(≈", totalChinaEUR, "€)")), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: "11px",
+      color: "#8a8577"
+    }
+  }, "✈️ Vuelos/previos: ", totalEuroExp.toFixed(2), "€")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: "10px",
+      color: "#5f5b50",
+      marginTop: "6px"
+    }
+  }, "1 ¥ ≈ ", CNY_TO_EUR, " € · tipo de cambio orientativo")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: "6px",
+      marginBottom: "16px",
+      padding: "4px",
+      background: "rgba(0,0,0,0.15)",
+      borderRadius: "6px"
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    style: tabStyle(activeSection === "china"),
+    onClick: () => setActiveSection("china")
+  }, "🇨🇳 Gastos en China (¥)"), /*#__PURE__*/React.createElement("button", {
+    style: tabStyle(activeSection === "euros"),
+    onClick: () => setActiveSection("euros")
+  }, "✈️ Vuelos y previos (€)")), activeSection === "china" && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(ExpenseForm, {
     days: days,
     onAdd: addExpense
   }), expenses.length === 0 && /*#__PURE__*/React.createElement("p", {
@@ -3498,9 +3784,9 @@ function ExpensesTab({
       fontSize: "13px",
       color: "#8a8577",
       textAlign: "center",
-      marginTop: "20px"
+      marginTop: "16px"
     }
-  }, "Sin gastos añadidos todavía."), orderedDayNums.map(dayNum => {
+  }, "Sin gastos en China todavía."), orderedDayNums.map(dayNum => {
     const dayExpenses = grouped[dayNum];
     const dayTotal = dayExpenses.reduce((sum, e) => sum + e.cantidad, 0);
     const dayTotalEur = (dayTotal * CNY_TO_EUR).toFixed(2);
@@ -3540,7 +3826,52 @@ function ExpensesTab({
       expense: e,
       onDelete: deleteExpense
     })));
-  }));
+  })), activeSection === "euros" && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("p", {
+    style: {
+      fontSize: "12px",
+      color: "#8a8577",
+      marginBottom: "12px",
+      lineHeight: "1.5"
+    }
+  }, "Gastos en el vuelo de ida y vuelta, escalas, aeropuertos y cualquier otro gasto fuera de China continental. Se suman al total global."), /*#__PURE__*/React.createElement(EuroExpenseForm, {
+    onAdd: addEuroExp
+  }), euroExp.length === 0 && /*#__PURE__*/React.createElement("p", {
+    style: {
+      fontSize: "13px",
+      color: "#8a8577",
+      textAlign: "center",
+      marginTop: "16px"
+    }
+  }, "Sin gastos en euros todavía."), euroExp.length > 0 && /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: "10px"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "baseline",
+      marginBottom: "8px",
+      paddingBottom: "6px",
+      borderBottom: "1px solid rgba(255,255,255,0.1)"
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontFamily: "'Archivo Black', sans-serif",
+      fontSize: "13px",
+      color: "#3E6B8C"
+    }
+  }, "Vuelos, escalas y previos"), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: "13px",
+      color: "#a8a299",
+      fontWeight: 700
+    }
+  }, totalEuroExp.toFixed(2), " €")), euroExp.map(e => /*#__PURE__*/React.createElement(EuroExpenseRow, {
+    key: e.id,
+    expense: e,
+    onDelete: deleteEuroExp
+  })))));
 }
 function FlightCard({
   flight
@@ -4512,22 +4843,44 @@ function DayRecommendations({
   });
   return /*#__PURE__*/React.createElement("div", {
     style: {
-      marginTop: "16px"
+      marginTop: "20px"
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      fontFamily: "'Archivo Black', sans-serif",
-      fontSize: "13px",
-      color: "#E8A33D",
-      marginBottom: "8px"
+      display: "flex",
+      alignItems: "center",
+      gap: "8px",
+      marginBottom: "10px"
     }
-  }, "📲 Ideas y recomendaciones añadidas"), recs.length === 0 && /*#__PURE__*/React.createElement("p", {
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      height: "1px",
+      background: "rgba(0,0,0,0.1)"
+    }
+  }), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: "10px",
+      fontWeight: 700,
+      letterSpacing: "0.06em",
+      color: "#8a8577",
+      textTransform: "uppercase",
+      whiteSpace: "nowrap"
+    }
+  }, "📲 Ideas de redes"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      height: "1px",
+      background: "rgba(0,0,0,0.1)"
+    }
+  })), recs.length === 0 && /*#__PURE__*/React.createElement("p", {
     style: {
       fontSize: "12px",
-      color: "#8a8577",
-      marginBottom: "8px"
+      color: "#a8a299",
+      marginBottom: "8px",
+      textAlign: "center"
     }
-  }, "Nada añadido todavía. Si veis algo interesante en redes para este día, guardadlo aquí."), FRANJA_OPTIONS.map(opt => grouped[opt.value].length > 0 && /*#__PURE__*/React.createElement("div", {
+  }, "Nada añadido. Si veis algo para este día, guardadlo aquí."), FRANJA_OPTIONS.map(opt => grouped[opt.value].length > 0 && /*#__PURE__*/React.createElement("div", {
     key: opt.value
   }, grouped[opt.value].map(rec => /*#__PURE__*/React.createElement(RecommendationItem, {
     key: rec.id,
